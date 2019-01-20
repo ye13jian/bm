@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.BookCatalogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eluoen.bm.modular.system.model.BookCatalog">
+        <id column="id" property="id" />
+        <result column="bookid" property="bookid" />
+        <result column="name" property="name" />
+        <result column="describes" property="describes" />
+        <result column="price" property="price" />
+        <result column="restype" property="restype" />
+        <result column="resurl" property="resurl" />
+        <result column="reslink" property="reslink" />
+        <result column="status" property="status" />
+        <result column="createdate" property="createdate" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, bookid, name, describes, price, restype, resurl, reslink, status, createdate, createtime
+    </sql>
+
+    <select id="selectList" resultType="map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_book_catalog
+        where status = 1
+        <if test="condition != null and condition != ''">
+            and name like CONCAT('%',#{condition},'%')
+        </if>
+        <if test="bookid != null and bookid != 0">
+            and (bookid = #{bookid})
+        </if>
+    </select>
+
+    <select id="selectQrList" resultType="map">
+        select
+        b.id bid,b.name bname,bc.id bcid,bc.name bcname
+        from tbl_book_catalog bc,tbl_book b WHERE bc.bookid=b.id
+        AND bc.status = 1
+        <if test="bookid != null and bookid != 0">
+            and (bc.bookid = #{bookid})
+        </if>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.GiftExchangeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eluoen.bm.modular.system.model.GiftExchange">
+        <id column="id" property="id" />
+        <result column="date" property="date" />
+        <result column="time" property="time" />
+        <result column="openid" property="openid" />
+        <result column="giftid" property="giftid" />
+        <result column="count" property="count" />
+        <result column="score" property="score" />
+        <result column="message" property="message" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="country" property="country" />
+        <result column="detailaddress" property="detailaddress" />
+        <result column="fullname" property="fullname" />
+        <result column="mobile" property="mobile" />
+        <result column="express" property="express" />
+        <result column="expressno" property="expressno" />
+        <result column="expressdate" property="expressdate" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, date, time, openid, giftid, count, score, message, province, city, country, detailaddress, fullname, mobile, express, expressno, expressdate, status, remark
+    </sql>
+
+    <select id="selectList" resultType="map">
+        SELECT e.*,g.name giftname,m.nickname,m.fullname,m.mobile
+        FROM tbl_gift_exchange e,tbl_gift g,tbl_member m
+        WHERE e.giftid=g.id AND e.openid=m.openid
+        <choose>
+            <when test="startdate != null and startdate != '' and enddate != null and enddate != ''">
+                AND (e.date BETWEEN #{startdate} AND #{enddate})
+            </when>
+            <otherwise>
+                AND e.date=CURDATE()
+            </otherwise>
+        </choose>
+        <if test="condition != null and condition != ''">
+            AND CONCAT(g.name, m.nickname, IFNULL(m.mobile,''), IFNULL(m.fullname,'')) like CONCAT('%',#{condition},'%')
+        </if>
+    </select>
+
+    <select id="selectById" resultType="map">
+        SELECT e.*,g.name giftname,m.nickname,m.fullname,m.mobile
+        FROM tbl_gift_exchange e,tbl_gift g,tbl_member m
+        WHERE e.giftid=g.id AND e.openid=m.openid AND e.id=#{giftExchangeId}
+    </select>
+
+</mapper>

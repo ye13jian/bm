@@ -9,12 +9,12 @@
         <version>2.0.1.RELEASE</version>
     </parent>
 
-    <groupId>cn.stylefeng.guns</groupId>
-    <artifactId>guns</artifactId>
+    <groupId>com.eluoen.bm</groupId>
+    <artifactId>bm</artifactId>
     <version>1.0.0</version>
 
-    <name>guns-admin</name>
-    <description>guns 的spring boot版本</description>
+    <name>bm</name>
+    <description>bm 的spring boot版本</description>
 
     <packaging>jar</packaging>
 
@@ -30,6 +30,7 @@
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <jwt.version>0.9.0</jwt.version>
+        <zxing.version>3.2.1</zxing.version>
     </properties>
 
     <dependencies>
@@ -158,6 +159,21 @@
         <!--<groupId>org.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
         <!--</dependency>-->
+
+        <!---zxing二维码-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+
+
+
+
+
+
+
+
     </dependencies>
 
     <build>

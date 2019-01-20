@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>礼品管理管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Gift.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="GiftTableToolbar" role="group">
+                            @if(shiro.hasPermission("/gift/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Gift.openAddGift()"/>
+                            @}
+                            @if(shiro.hasPermission("/gift/update")){
+                                <#button btnCss="warning" name="修改" icon="fa-edit" clickFun="Gift.openGiftDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/gift/delete")){
+                                <#button btnCss="danger" name="删除" icon="fa-remove" clickFun="Gift.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="GiftTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/integralMall/gift/gift.js"></script>
+@}

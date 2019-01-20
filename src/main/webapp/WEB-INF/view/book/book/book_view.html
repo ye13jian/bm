@@ -1,0 +1,34 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="name" name="书名" value="${item.name}" disabled="disabled" underline="true"/>
+                    <#avatar id="imgurl" name="书籍图片" avatarImg="${item.imgurl}" underline="true"/>
+                    <#input id="author" name="作者" value="${item.author}" disabled="disabled" underline="true"/>
+                    <#input id="editor" name="编辑" value="${item.editor}" disabled="disabled"/>
+                </div>
+
+                <div class="col-sm-6">
+                    <#input id="category" name="书籍类别" value="${item.category}" disabled="disabled" underline="true"/>
+                    <#input id="series" name="书籍系列" value="${item.series}" disabled="disabled" underline="true"/>
+                    <#input id="isbn" name="ISBN号" value="${item.isbn}" disabled="disabled" underline="true"/>
+                    <#input id="price" name="价格" value="${item.price}" disabled="disabled" underline="true"/>
+                    <#input id="publicationdate" name="出版日期" disabled="disabled" underline="true" type="date"
+                    value="${item.publicationdate}"
+                    clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+                    <#input id="publicationpress" name="出版社" value="${item.publicationpress}" disabled="disabled" underline="true"/>
+                    <#input id="describes" name="书籍描述" disabled="disabled" value="${item.describes}"/>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/book/book/book_info.js"></script>
+@}

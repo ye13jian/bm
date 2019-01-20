@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>用户帖子管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="BbsWx.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="BbsWxTableToolbar" role="group">
+                            <!--
+                            @if(shiro.hasPermission("/bbsWx/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="BbsWx.openAddBbsWx()"/>
+                            @}
+
+                            @if(shiro.hasPermission("/bbsWx/update")){
+                                <#button btnCss="warning" name="回复" icon="fa-edit" clickFun="BbsWx.openBbsWxDetail()" space="true"/>
+                            @}
+                            -->
+
+                            @if(shiro.hasPermission("/bbsWx/delete")){
+                                <#button btnCss="danger" name="删除" icon="fa-remove" clickFun="BbsWx.delete()" space="true"/>
+                            @}
+
+                        </div>
+                        <#table id="BbsWxTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/bbs/bbsWx/bbsWx.js"></script>
+@}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.BookMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eluoen.bm.modular.system.model.Book">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="category" property="category" />
+        <result column="series" property="series" />
+        <result column="isbn" property="isbn" />
+        <result column="imgurl" property="imgurl" />
+        <result column="author" property="author" />
+        <result column="editor" property="editor" />
+        <result column="price" property="price" />
+        <result column="score" property="score" />
+        <result column="publicationdate" property="publicationdate" />
+        <result column="publicationpress" property="publicationpress" />
+        <result column="describes" property="describes" />
+        <result column="createuser" property="createuser" />
+        <result column="status" property="status" />
+        <result column="createdate" property="createdate" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, category, series, isbn, imgurl, author, editor, price, score, publicationdate, publicationpress, describes, createuser, status, createdate, createtime
+    </sql>
+
+
+    <!-- 获取书籍的Ztree -->
+    <select id="tree" resultType="com.eluoen.bm.core.common.node.ZTreeNode">
+		select id,0 as pId,name as name,true as isOpen from tbl_book
+	</select>
+
+</mapper>

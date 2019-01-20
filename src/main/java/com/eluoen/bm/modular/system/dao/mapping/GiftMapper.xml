@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.GiftMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eluoen.bm.modular.system.model.Gift">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="attributes" property="attributes" />
+        <result column="describes" property="describes" />
+        <result column="imgurl1" property="imgurl1" />
+        <result column="imgurl2" property="imgurl2" />
+        <result column="imgurl3" property="imgurl3" />
+        <result column="imgurl4" property="imgurl4" />
+        <result column="score" property="score" />
+        <result column="stock" property="stock" />
+        <result column="sale" property="sale" />
+        <result column="remark" property="remark" />
+        <result column="status" property="status" />
+        <result column="createdate" property="createdate" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, attributes, describes, imgurl1, imgurl2, imgurl3, imgurl4, score, stock, sale, remark, status, createdate, createtime
+    </sql>
+
+</mapper>

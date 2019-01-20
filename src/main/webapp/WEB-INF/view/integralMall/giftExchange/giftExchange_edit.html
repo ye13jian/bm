@@ -1,0 +1,57 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="giftExchangeInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+            <input type="hidden" id="status" value="2">
+            <input type="hidden" id="expressdate" value="${item.expressdate}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="date" name="下单时间" value="${item.date} ${item.time}" readonly="readonly" />
+                            <#input id="consignee" name="收货人" value="${item.fullname} ${item.mobile}" readonly="readonly" />
+                            <#input id="area" name="区域" value="${item.province} ${item.city} ${item.country}" readonly="readonly" />
+                            <#input id="detailaddress" name="详细地址" value="${item.detailaddress}" readonly="readonly" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="gift" name="兑换礼品" value="${item.giftname}" readonly="readonly" />
+                            <#input id="count" name="礼品数量" value="${item.count}" readonly="readonly" />
+                            <#select id="express" name="快递公司">
+                                    <option value="">------ 请选择 ------</option>
+                                @for(express in expresses){
+                                @if(express.status==1||express.expCode==item.express){
+                                    <option value="${express.expCode}"
+                                        @if(express.expCode==item.express){
+                                        selected="selected"
+                                        @}
+                                    >
+                                        ${express.expName}
+                                    </option>
+                                @}
+                                @}
+                            </#select>
+                            <#input id="expressno" name="快递单号" value="${item.expressno}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="GiftExchangeInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="GiftExchangeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    var expressdate = $('#expressdate').val();
+    //alert(expressdate);
+    if(expressdate==null||expressdate==''){
+        $('#expressdate').val(dateFormat(new Date(),'yyyy-MM-dd'));
+    }
+</script>
+<script src="${ctxPath}/static/modular/integralMall/giftExchange/giftExchange_info.js"></script>
+@}

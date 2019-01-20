@@ -1,7 +1,9 @@
 server:
-  port: 8080
+  port: 80
+  servlet:
+    context-path: /bm
 
-guns:
+bm:
   swagger-open: true              #是否开启swagger (true/false)
   kaptcha-open: false             #是否开启登录时验证码 (true/false)
   #  file-upload-path: d:/tmp     #文件上传目录(不配置的话为java.io.tmpdir目录)
@@ -30,26 +32,26 @@ spring:
       max-file-size: 100MB
 
 mybatis-plus:
-  typeAliasesPackage: cn.stylefeng.guns.modular.system.model
+  typeAliasesPackage: com.eluoen.bm.modular.system.model
 
 log:
-  path: guns-logs
+  path: bm-logs
 
 ---
 
 spring:
   profiles: local
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns_v51?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://127.0.0.1:3306/bm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
     password: 52357976
     filters: wall,mergeStat
 
 #多数据源情况的配置
-guns:
+bm:
   muti-datasource:
     open: false
-    url: jdbc:mysql://127.0.0.1:3306/guns_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://127.0.0.1:3306/bm?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
     password: root
     dataSourceNames:
@@ -61,7 +63,7 @@ guns:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://127.0.0.1:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
     password: root
     filters: wall,mergeStat
@@ -71,7 +73,7 @@ spring:
 spring:
   profiles: test
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://127.0.0.1:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
     password: root
     filters: wall,mergeStat

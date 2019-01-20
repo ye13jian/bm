@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.GiftIntegralMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eluoen.bm.modular.system.model.GiftIntegral">
+        <id column="id" property="id" />
+        <result column="date" property="date" />
+        <result column="time" property="time" />
+        <result column="message" property="message" />
+        <result column="score" property="score" />
+        <result column="openid" property="openid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, date, time, message, score, openid
+    </sql>
+
+    <select id="selectList" resultType="map">
+        SELECT i.*,m.nickname,m.fullname,m.mobile
+        FROM tbl_gift_integral i,tbl_member m
+        WHERE i.openid=m.openid
+        <choose>
+            <when test="startdate != null and startdate != '' and enddate != null and enddate != ''">
+                AND (i.date BETWEEN #{startdate} AND #{enddate})
+            </when>
+            <otherwise>
+                AND i.date=CURDATE()
+            </otherwise>
+        </choose>
+        <if test="condition != null and condition != ''">
+            AND CONCAT(i.message, m.nickname, IFNULL(m.mobile,''), IFNULL(m.fullname,'')) like CONCAT('%',#{condition},'%')
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,57 @@
+@layout("/common/_container.html"){
+<style>
+    #editor{
+        width: 100%;
+        border:1px solid #ccc;
+    }
+    .w-e-toolbar{
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+    }
+</style>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+
+                <label class="col-sm-1 control-label">标题</label>
+                <div class="col-sm-11">
+                    <input class="form-control" id="title" name="title" type="text" value="${item.title}">
+                </div>
+
+                <br><br>
+
+                <div class="col-sm-12">
+                    <input id="content" type="hidden" value="${item.content}" >
+                    <div style="display: none;"><label id="lbtext">${item.content}</label></div>
+
+                    <!--
+                    <#button name="设置内容" id="editorSetBtn" btnCss="info" icon="fa-check" clickFun="BbsSysInfoDlg.editorSetBtn()"/>
+                    <#button name="获取内容1" id="editorGetBtn1" btnCss="info" icon="fa-check" clickFun="BbsSysInfoDlg.editorGetBtn1()"/>
+                    <#button name="获取内容2" id="editorGetBtn2" btnCss="info" icon="fa-check" clickFun="BbsSysInfoDlg.editorGetBtn2()"/>
+                    -->
+                    <div id="editorMenu"></div>
+                    <div id="editor" style="min-height:400px;"></div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BbsSysInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BbsSysInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/wangEditor/wangEditor.min.js"></script>
+<script src="${ctxPath}/static/modular/bbs/bbsSys/bbsSys_info.js"></script>
+@}

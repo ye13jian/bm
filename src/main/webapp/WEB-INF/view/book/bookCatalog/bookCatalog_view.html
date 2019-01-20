@@ -1,0 +1,27 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="name" name="目录名" value="${item.name}" underline="true"/>
+                            <#textarea id="describes" name="描述" style="width:100%;height:74px;" value="${item.describes}" underline="true"/>
+                            <#input id=reslink" name="外链地址" value="${item.reslink}" />
+
+                </div>
+
+                <div class="col-sm-6">
+                            <video id="v_resurl" src="/kaptcha/kap?name=${item.resurl}" controls="controls" >您的浏览器不支持 video 标签。</video>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/book/bookCatalog/bookCatalog_info.js"></script>
+@}

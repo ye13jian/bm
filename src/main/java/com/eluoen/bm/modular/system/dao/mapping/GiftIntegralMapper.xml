@@ -17,10 +17,13 @@
         id, date, time, message, score, openid
     </sql>
 
-    <select id="selectList" resultType="map">
+    <select id="selectList_U" resultType="map">
         SELECT i.*,m.nickname,m.fullname,m.mobile
         FROM tbl_gift_integral i,tbl_member m
         WHERE i.openid=m.openid
+        <if test="userId != null and userId != 1">
+            AND m.openid IN (SELECT openid FROM v_openid WHERE userid=#{userId})
+        </if>
         <choose>
             <when test="startdate != null and startdate != '' and enddate != null and enddate != ''">
                 AND (i.date BETWEEN #{startdate} AND #{enddate})

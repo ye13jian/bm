@@ -1,0 +1,210 @@
+@layout("/common/_container.html"){
+<style type="text/css">
+    /*
+    .head-scu-btn{
+        margin-top: 60px;
+    }
+    */
+    .form-group {
+        margin-bottom: 0px;
+    }
+    img{
+        width: 80px;
+        height: 80px;
+    }
+    #ad1_imgPreId img,#ad2_imgPreId img,#ad3_imgPreId img,#ad4_imgPreId img,#ad5_imgPreId img,#ad6_imgPreId img,#ad7_imgPreId img{
+        width: 200px;
+        height: 100px;
+    }
+    #ad8_imgPreId img,#ad9_imgPreId img,#ad10_imgPreId img{
+        width: 200px;
+        height: 40px;
+    }
+    #resource_imgPreId img{
+        width: 90px;
+        height: 100px;
+    }
+    #collection_imgPreId img,#center_imgPreId img{
+        width: 90px;
+        height: 50px;
+    }
+    #integralmall_imgPreId img,#bbs_imgPreId img,#opinion_imgPreId img,#wxqrcode_imgPreId img,#logo_imgPreId img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="logo_img" avatarImg="${mpInfo.logo_img}" name="系统LOGO" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="title" value="${mpInfo.title}" name="标题" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="restype" value="${mpInfo.restype}" name="资源类型" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="tel" value="${mpInfo.tel}" name="联系电话" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="wxqrcode_img" avatarImg="${mpInfo.wxqrcode_img}" name="公众号二维码" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="wxname" value="${mpInfo.wxname}" name="公众号名称" />
+                    </div>
+                    <div class="col-sm-6 b-r">
+                        <#textarea id="rights" name="会员权益说明" style="width:100%;height:115px;" value="${mpInfo.rights}" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad1_img" avatarImg="${mpInfo.ad1_img}" name="首页导航图1\n600×300" />
+                        <#input id="ad1_link" value="${mpInfo.ad1_link}" name="链接" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad2_img" avatarImg="${mpInfo.ad2_img}" name="首页导航图2\n600×300" />
+                        <#input id="ad2_link" value="${mpInfo.ad2_link}" name="链接" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad3_img" avatarImg="${mpInfo.ad3_img}" name="首页导航图3\n600×300" />
+                        <#input id="ad3_link" value="${mpInfo.ad3_link}" name="链接" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="tz1_img" avatarImg="${mpInfo.tz1_img}" name="功能图\n80×80" />
+                        <#input id="tz1_link" value="${mpInfo.tz1_link}" name="链接" />
+                        <#input id="tz1_name" value="${mpInfo.tz1_name}" name="功能名" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="tz2_img" avatarImg="${mpInfo.tz2_img}" name="功能图\n80×80" />
+                        <#input id="tz2_link" value="${mpInfo.tz2_link}" name="链接" />
+                        <#input id="tz2_name" value="${mpInfo.tz2_name}" name="功能名" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="tz3_img" avatarImg="${mpInfo.tz3_img}" name="功能图\n80×80" />
+                        <#input id="tz3_link" value="${mpInfo.tz3_link}" name="链接" />
+                        <#input id="tz3_name" value="${mpInfo.tz3_name}" name="功能名" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="tz4_img" avatarImg="${mpInfo.tz4_img}" name="功能图\n80×80" />
+                        <#input id="tz4_link" value="${mpInfo.tz4_link}" name="链接" />
+                        <#input id="tz4_name" value="${mpInfo.tz4_name}" name="功能名" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="tz5_img" avatarImg="${mpInfo.tz5_img}" name="功能图\n80×80" />
+                        <#input id="tz5_link" value="${mpInfo.tz5_link}" name="链接" />
+                        <#input id="tz5_name" value="${mpInfo.tz5_name}" name="功能名" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="tz6_img" avatarImg="${mpInfo.tz6_img}" name="功能图\n80×80" />
+                        <#input id="tz6_link" value="${mpInfo.tz6_link}" name="链接" />
+                        <#input id="tz6_name" value="${mpInfo.tz6_name}" name="功能名" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad4_img" avatarImg="${mpInfo.ad4_img}" name="在线论坛图片\n600×300" />
+                        <#input id="ad4_link" value="${mpInfo.ad4_link}" name="链接" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad5_img" avatarImg="${mpInfo.ad5_img}" name="会员中心背景\n600×300" />
+                        <#input id="ad5_link" value="${mpInfo.ad5_link}" name="链接" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad6_img" avatarImg="${mpInfo.ad6_img}" name="商城图1\n600×300" />
+                        <#input id="ad6_link" value="${mpInfo.ad6_link}" name="链接" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad7_img" avatarImg="${mpInfo.ad7_img}" name="商城图2\n600×300" />
+                        <#input id="ad7_link" value="${mpInfo.ad7_link}" name="链接" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad8_img" avatarImg="${mpInfo.ad8_img}" name="首页广告图1\n500×100" />
+                        <#input id="ad8_link" value="${mpInfo.ad8_link}" name="链接" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad9_img" avatarImg="${mpInfo.ad9_img}" name="在线论坛图2\n500×100" />
+                        <#input id="ad9_link" value="${mpInfo.ad9_link}" name="链接" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="ad10_img" avatarImg="${mpInfo.ad10_img}" name="会员中心图3\n500×100" />
+                        <#input id="ad10_link" value="${mpInfo.ad10_link}" name="链接" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="resource_img" avatarImg="${mpInfo.resource_img}" name="资源库\n225×250" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="collection_img" avatarImg="${mpInfo.collection_img}" name="我的收藏\n225×125" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="center_img" avatarImg="${mpInfo.center_img}" name="个人中心\n225×125" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row" style="display: none;">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="integralmall_img" avatarImg="${mpInfo.integralmall_img}" name="积分商城\n250×250" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="bbs_img" avatarImg="${mpInfo.bbs_img}" name="在线论坛\n250×250" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="opinion_img" avatarImg="${mpInfo.opinion_img}" name="意见建议\n250×250" />
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MpInfoDlg.editSubmit()"/>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/mpInfo/mpInfo.js"></script>
+@}

@@ -1,0 +1,220 @@
+body {
+	background: #F8F8F8;
+	font-family: "microsoft yahei";
+}
+
+.header_dl a.logo {
+	width: 95px;
+	height: 40px;
+	position: absolute;
+	left: 15px;
+	bottom: 2px;
+}
+
+.header_dl a.logo img {
+	display: block;
+	height: 100%;
+}
+
+.header_dl .search {
+	width: 60%;
+	background: #2b7bc9;
+	float: right;
+	margin-right: 2%;
+	height: 27px;
+	margin-top: 9px;
+	border-radius: 13px;
+	overflow: hidden;
+	transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-webkit-transition: all 0.8s ease;
+}
+
+.header_dl .search input.sea {
+	width: 85%;
+	height: 27px;
+	outline: medium;
+	border: none;
+	vertical-align: middle;
+	text-indent: 1em;
+	background: #ffffff;
+	font-family: "microsoft yahei";
+}
+
+.header_dl .search input.btn {
+	width: 15%;
+	height: 27px;
+	background: url(../img/search_icon.png) center center no-repeat;
+	border: none;
+	outline: medium;
+	vertical-align: middle;
+	background-size: 18px;
+	color: #fff;
+}
+
+.header_dl .back {
+	float: left;
+	font: 28px/45px "宋体";
+	color: #fff;
+	margin-left: 10px;
+	display: none;
+}
+
+.header_dl input::-webkit-input-placeholder {
+	color: #fff;
+}
+
+.slideBox {
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	/*margin-bottom: 20px;*/
+	max-width: 640px;
+	/* 设置焦点图最大宽度 */
+}
+
+.slideBox .hd {
+	position: absolute;
+	height: 28px;
+	line-height: 28px;
+	bottom: 0;
+	right: 40%;
+	z-index: 1;
+}
+
+.slideBox .hd li {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+	text-indent: -9999px;
+	overflow: hidden;
+	margin: 0 6px;
+}
+
+.slideBox .hd li.on {
+	background: orange;
+}
+
+.slideBox .hd ul {
+	margin-top: 0;
+}
+
+.slideBox .bd {
+	position: relative;
+	z-index: 0;
+}
+
+.slideBox .bd li {
+	position: relative;
+	text-align: center;
+}
+
+.slideBox .bd li img {
+	background: url(/public/img/loading.gif) center center no-repeat;
+	vertical-align: top;
+	width: 100%;
+	/* 图片宽度
+100%，达到自适应效果 */
+}
+
+.slideBox .bd li a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+/* 去掉链接触摸高亮 */
+
+.slideBox .bd li .tit {
+	display: block;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	text-indent: 10px;
+	height: 28px;
+	line-height: 28px;
+	background: url(/public/img/focusBg.png) repeat-x;
+	color: #fff;
+	text-align: left;
+}
+
+
+/*广告*/
+.aui-centers-ad {
+    background: #eff3f7;
+    /*padding: 20px 25px;*/
+    border-radius: 10px;
+}
+.aui-centers-ad img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+*{padding: 0; margin: 0;}
+a{text-decoration: none;}
+body{ margin: 0 auto;}
+/*evaluate*/
+.evaluate{overflow: hidden; margin: 0 auto;}
+.evaluate-box{overflow: hidden; margin: 0 auto; }
+.evaluate-bt{overflow: hidden; margin: 0 auto 0; padding: 0 15px; background: #fff; border-bottom: 1px solid #ddd;}
+.evaluate-bt p{overflow: hidden; margin: 0 auto; height: 44xp; line-height: 44px; float: left; font-size: 15px; color: #333333;}
+.evaluate-bt p span{overflow: hidden; margin: 0 auto;}
+.evaluate-bt a{overflow: hidden; margin: 0 auto; height: 44px; line-height: 44px; font-size: 15px; color: #fc3f70; float: right;}
+.evaluate-bt a.more-btn{color: #333333; position: relative; padding-right: 15px;}
+.evaluate-bt a.more-btn:after{ content: ""; width: 8px; height: 8px; display: block; border-top: 1px solid #333; border-right: 1px solid #333; position: absolute; top:16px; right:2px;transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);}
+.evaluate-list{overflow: hidden; margin: 0 auto; padding: 0 15px; background: #fff;}
+.evaluate-list .evaluate-px{overflow: hidden; margin: 0 auto; padding: 10px 0; border-bottom: 1px solid #ddd;}
+.evaluate-list .evaluate-px:last-child{ border: none;}
+.evaluate-list .datum-rw{ overflow: hidden; margin: 0 auto; width: 100%; background: #fff; }
+.evaluate-list .datum-name{ overflow: hidden; margin: 0 auto;}
+.evaluate-list .datum-name i{ overflow: hidden; margin: 0 auto;display: block; float: left; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #ddd;}
+.evaluate-list .datum-name i img{ margin: 0 auto;display: block; width: 100%; height: 100%; object-fit: cover; }
+.evaluate-list .datum-name p{ overflow: hidden; margin: 0 auto; height: 44px; line-height: 44px; font-size: 16px;color: #333333; padding: 0 10px; }
+.evaluate-list .datum-name p a{ overflow: hidden; margin: 0 auto; height: 44px; line-height: 44px; font-size: 16px;color: #333333;}
+.evaluate-list .datum-time{ overflow: hidden; margin: 0.5rem auto; width: 100%; }
+.evaluate-list .datum-time p{ overflow: hidden; margin: 0 auto; font-size: 12px; color: #cccccc; }
+.evaluate-list .datum-time p span{ overflow: hidden; margin: 0 auto;margin-right: 10px; }
+.evaluate-list .discuss{ overflow: hidden; margin: 0 auto;}
+.evaluate-list .discuss p{ overflow: hidden; margin: 0 auto; font-size: 16px; color: #333333;}
+.evaluate-list .discuss-print{ overflow: hidden; margin: 10px auto 0;}
+.evaluate-list .discuss-print ul{ overflow: hidden; margin: 0 auto;}
+.evaluate-list .discuss-print ul li{ overflow: hidden; margin: 0 auto 0.5rem; float: left; margin-right: 0.5rem; width: calc((100% - 1rem) / 3);}
+.evaluate-list .discuss-print ul li:nth-of-type(3n){ margin-right: 0;}
+.evaluate-list .discuss-print ul li a{ overflow: hidden; margin: 0 auto; display: block;}
+.evaluate-list .discuss-print ul li a img{ overflow: hidden; margin: 0 auto; display: block; width: 100%; height: 100%; object-fit: cover;}
+
+.evaluate-list .datum-name2 p{ overflow: hidden; margin: 0 auto; height: 44px; line-height: 44px; font-size: 16px;color: #333333; padding: 0 10px; }
+.p1{ height: 24px!important; line-height: 24px!important; font-size: 16px!important;color: #333333!important;  }
+.p2{ height: 20px!important; line-height: 20px!important; font-size: 12px!important;color: #cccccc!important;  }
+
+
+/*图片预览*/
+.Picture{overflow: hidden; display: none; margin: 0 auto; position: fixed; top:0; left:0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.7); z-index: 889;}
+.Picture-box{ overflow: hidden; width: 100%; height: 100%; position: relative;}
+.Picture-box .theme{ overflow: hidden; width: auto; position: absolute; top:0; left:0;  bottom: 0; right:0; margin: auto;}
+.Picture-box .open	{ overflow: hidden; width: 43px; height: 58px;font-size: 16px; color: #666; text-align: center; background: rgba(0, 0, 0, 0.4); position: absolute; top:0;bottom: 0; margin: auto; z-index: 2;}
+.Picture-box .mine	{ left:0; }
+.Picture-box .Next{ right:0;}
+.Picture-box .theme img{ overflow: hidden; width: 100%; margin: 0 auto; display: block;  object-fit: cover;}
+.Picture-box .gb-btn{ overflow: hidden; width: 30px; height: 30px; line-height: 30px; display: block; position: absolute; top:10px; right:10px; font-size: 32px; color: #fff; text-align: center; }
+
+/*兼容样式*/
+@media (min-width:1080px) and (max-width:2400px){
+    .Picture-box .theme{ width: 100%; height: 90%;}
+    .Picture-box .theme img{ width: auto; height: 100%;}
+    }
+
+

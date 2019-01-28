@@ -1,0 +1,96 @@
+@layout("/common/_container.html"){
+<style type="text/css">
+    /*
+    .head-scu-btn{
+        margin-top: 60px;
+    }
+    */
+    .form-group {
+        margin-bottom: 0px;
+    }
+    img{
+        width: 80px;
+        height: 80px;
+    }
+    #ad1_imgPreId img,#ad2_imgPreId img,#ad3_imgPreId img,#ad4_imgPreId img,#ad5_imgPreId img,#ad6_imgPreId img,#ad7_imgPreId img{
+        width: 200px;
+        height: 100px;
+    }
+    #ad8_imgPreId img,#ad9_imgPreId img,#ad10_imgPreId img{
+        width: 200px;
+        height: 40px;
+    }
+    #resource_imgPreId img{
+        width: 90px;
+        height: 100px;
+    }
+    #collection_imgPreId img,#center_imgPreId img{
+        width: 90px;
+        height: 50px;
+    }
+    #integralmall_imgPreId img,#bbs_imgPreId img,#opinion_imgPreId img,#wxqrcode_imgPreId img,#logo_imgPreId img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${mpInfo.id}">
+            <input type="hidden" id="userid" value="${mpInfo.userid}">
+
+            <div class="row">
+
+                <div class="row">
+                    <div class="col-sm-3 b-r">
+                        <#avatar id="logo_img" avatarImg="${mpInfo.logo_img}" name="系统LOGO" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="title" value="${mpInfo.title}" name="标题" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="restype" value="${mpInfo.restype}" name="资源类型" />
+                    </div>
+                    <div class="col-sm-3 b-r">
+                        <#input id="tel" value="${mpInfo.tel}" name="联系电话" />
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-6 b-r">
+                        <p>外部访问地址：</p>
+                        <p>
+                            http://bm.niqan.com/bm/mp/home?userId=${session.userId}
+                        </p>
+                    </div>
+                    <div class="col-sm-6 b-r">
+                        <p>系统内部访问地址：</p>
+                        <p>
+                            在线论坛：bbsHome
+                        </p>
+                        <p>
+                            积分商城：integralmall/home
+                        </p>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MpInfoDlg.editSubmit()"/>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/mpInfo/mpInfo.js"></script>
+@}

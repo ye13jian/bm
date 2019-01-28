@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.MpIntegralMallMapper">
+
+    <!--查询所有礼品-->
+    <select id="searchGiftList" resultType="java.util.Map">
+        SELECT * FROM tbl_gift WHERE userid=#{userId}
+    </select>
+
+    <!--查询礼品-->
+    <select id="searchGift" resultType="java.util.Map">
+        SELECT * FROM tbl_gift WHERE id=#{giftId}
+    </select>
+
+    <!--插入兑换记录-->
+    <insert id="insertExchange" parameterType="java.util.Map">
+        INSERT INTO tbl_gift_exchange(date,time,openid,giftid,count,score,message,province,city,country,detailaddress,fullname,mobile) VALUES(CURDATE(),CURTIME(),#{map.openid},#{map.giftid},#{map.count},#{map.score},#{map.message},#{map.province},#{map.city},#{map.country},#{map.detailaddress},#{map.fullname},#{map.mobile})
+    </insert>
+
+    <!--减少用户积分-->
+    <update id="subMemberScore" parameterType="java.util.Map">
+        UPDATE tbl_member SET score=score-#{map.score} WHERE openid=#{map.openid}
+    </update>
+
+    <!--减少库存，增加销量-->
+    <update id="updateGiftStockAndSale" parameterType="java.util.Map">
+        UPDATE tbl_gift SET stock=stock-#{map.count},sale=sale+#{map.count} WHERE id=#{map.giftid}
+    </update>
+
+    <!--查询订单-->
+    <select id="searchOrderList" resultType="java.util.Map">
+        SELECT * FROM tbl_gift_exchange e LEFT JOIN tbl_gift g ON e.giftid=g.id LEFT JOIN tbl_express ex ON e.express=ex.exp_code WHERE openid=#{openid} ORDER BY date DESC,time DESC LIMIT 20
+    </select>
+
+</mapper>

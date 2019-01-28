@@ -1,0 +1,45 @@
+.wrap{overflow:hidden}
+.container{padding:44px 0 60px 0;overflow:hidden}
+.bgw{background:white}
+
+/*footer*/
+.footer{position:fixed;bottom:0;left:0;width:100%;height:60px;box-shadow:0 -1px 3px 0 rgba(0,0,0,.2);background:#fff;z-index:88}
+.footer ul li{width:25%;float:left;text-align:center;color:#333;font-size:12px}
+.footer ul a{display:block;height:50px;padding-top:6px}
+.footer ul h4{height:20px;line-height:20px}
+.footer ul p{height:30px;line-height:30px;text-align:center}
+.footer ul i{font-size:24px;color:#666;margin:0}
+.footer ul li.active h4,.footer ul li.active i{color:#17ce71}
+.footer>a{display:block;width:80%;height:40px;line-height:40px;background:#17ce71;color:white;font-size:12px;text-align:center;margin:10px auto;border-radius:3px}
+
+
+.foot_l{width:130px;float:left;height:60px;line-height:60px;padding:0 5px}
+.foot_r{width:calc(100% - 140px);float:right;height:60px;text-align:right;overflow:hidden}
+.foot_r a{display:inline-block;width:80px;height:40px;line-height:40px;margin-top:10px;border-radius:5px;margin-right:10px;text-align:center;color:white}
+a.jrgwc{background:#F6B900}
+a.ljgm{background:#FA7252}
+
+/*首页*/
+h1{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+
+/*分类列表*/
+.index_list{overflow:hidden;margin:10px auto;background:white}
+.index_list li{width:33.33%;float:left;text-align:center;margin:5px 0;font-size:12px}
+.index_list li a{display:block}
+.index_list li div img{width:44px}
+.index_list li p{height:30px;line-height:30px;color:#666}
+ 
+/*主题卖场*/
+.ztmc{overflow:hidden;background:white;margin-top:10px}
+.ztmc h2{font-size:16px;height:42px;line-height:42px;color:#333;text-indent:10px;box-shadow:0 -1px 0 0 #ddd inset;position:relative}
+.ztmc h2 a{text-indent:0;display:block;position:absolute;right:10px;top:8px;width:30px;height:30px;line-height:30px;text-align:center;color:#999;background:#f2f2f2;border-radius:50%}
+.ztmc h2 a i{margin:0}
+.ztmc_list li{width:50%;padding:1px;box-sizing:border-box;float:left;box-shadow:1px 1px 0 0 #eee;text-align:left;position:relative}
+.ztmc_list li div.img{text-align:center;overflow:hidden;height:180px;box-sizing:border-box;background:#f6f6f6;padding:5px}
+.ztmc_list li div.img img{max-width:100%;height:170px}
+.prolist_info{background:#fff;padding:5px;padding-top:0;overflow:hidden}
+.ztmc_list li h4{font-size:13px;color:#333;margin:10px auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ztmc_list li p.red{font-size:14px;height:20px;line-height:20px;float:left}
+.ztmc_list li p.grey{font-size:12px;height:20px;line-height:20px;color:#ccc;text-decoration:line-through;}
+.ztmc_list li a.add{position:absolute;right:6px;bottom:6px;border:1px solid #17ce71;border-radius:3px;height:20px;line-height:20px;text-align:center}
+.ztmc_list li a.add i{color:#17ce71;font-size:12px!important}

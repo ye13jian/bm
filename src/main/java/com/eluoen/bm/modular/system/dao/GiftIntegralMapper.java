@@ -17,6 +17,6 @@ import java.util.Map;
  */
 public interface GiftIntegralMapper extends BaseMapper<GiftIntegral> {
 
-    public List<Map<String,Object>> selectList(@Param("startdate") String startdate, @Param("enddate") String enddate, @Param("condition") String condition);
+    public List<Map<String,Object>> selectList_U(@Param("userId") Integer userId, @Param("startdate") String startdate, @Param("enddate") String enddate, @Param("condition") String condition);
 
 }

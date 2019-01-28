@@ -17,4 +17,15 @@
         id, content, openid, mobile, createdate, createtime
     </sql>
 
+    <select id="selectList_U" resultMap="BaseResultMap">
+        SELECT * FROM tbl_opinion
+        WHERE 1=1
+        <if test="userId != null and userId !=1">
+            AND userid=#{userId}
+        </if>
+        <if test="condition != null and condition != ''">
+            AND (content like CONCAT('%',#{condition},'%') OR mobile like CONCAT('%',#{condition},'%'))
+        </if>
+    </select>
+
 </mapper>

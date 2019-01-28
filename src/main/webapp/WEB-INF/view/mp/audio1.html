@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+		<title>${session.mpInfo.title}</title>
+
+		<link href="${ctxPath}/static/modular/mp/audio1/css/style.css" rel="stylesheet">
+		<script src="${ctxPath}/static/modular/mp/audio1/js/jquery-1.7.2.min.js"></script>
+		<script src="${ctxPath}/static/modular/mp/js/audio1.js"></script>
+		
+	</head>
+
+	<body class="keBody">
+		<input id="ctxPath" type="hidden" value="${ctxPath}" />
+		<input id="openid" type="hidden" value="${session.openid}" />
+		<input id="ossIP" type="hidden" value="${ossIP}" />
+		<div style="display: none;"><label id="bookCatalogListJson">${bookCatalogListJson}</label></div>
+		<h1 class="keTitle">我的收藏（OSS体验版）</h1>
+		<div class="kePublic">
+
+			<div id="background"></div>
+			<div id="player">
+				
+				<div class="cover">
+					<!--<img src="images/3.jpg" alt="chenparty 超好听的德国童声 dj.mp3">-->
+					
+					<div class="music-player__disc">
+					<div class="music-player__image">
+						<img width="100%" src="${ctxPath}/static/mp/audio1/images/c.jpg" alt="">
+					</div>
+					
+					<div class="music-player__pointer"><img width="100%" src="${ctxPath}/static/mp/audio1/images/cd_tou.png" alt=""></div>
+					</div>
+					
+				</div>
+				
+				<div class="ctrl">
+					<div class="tag"><strong></strong></div>
+					<div class="control">
+						<div class="left">
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+						<div class="volume right">
+							<div class="mute icon left"></div>
+							<div style="display: none;" class="slider left ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+								<div class="pace" style="width: 50%;"></div>
+								<a class="ui-slider-handle ui-state-default ui-corner-all" href="javascript:alert('a1');" style="left: 50%;"></a>
+							</div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+							<div class="loaded" style="width: 100%;"></div>
+							<div class="pace" style="width: 0%;"></div>
+							<a class="ui-slider-handle ui-state-default ui-corner-all" href="javascript:alert('a2');" style="left: 15.3672%;"></a>
+						</div>
+						<div class="timer left">0:00</div>
+						<div class="right">
+							<div class="repeat icon"></div>
+							<div style="display: none;" class="shuffle icon"></div>
+						</div>
+					</div>
+				</div>
+				<audio>
+					<source>
+				</audio>
+			</div>
+
+			<div style="overflow: auto; border: 0px solid #FFFFFF;width:100%;height: 300px;">
+			<ul id="playlist">
+				<!--
+				<li class="playing">德国 - 德国第一装甲师进行曲</li>
+				<li class="">魔兽世界 - 亡灵序曲</li>
+				<li class="">德国童声 - chenparty dj</li>
+				-->
+			</ul>
+			</div>
+
+			<script src="${ctxPath}/static/modular/mp/audio1/js/jquery-ui-1.8.17.custom.min.js"></script>
+			<script src="${ctxPath}/static/modular/mp/audio1/js/script.js"></script>
+
+		</div>	
+		
+		<div class="footer">
+			本页面是收藏功能开发体验版
+		</div>
+		
+	</body>
+
+</html>

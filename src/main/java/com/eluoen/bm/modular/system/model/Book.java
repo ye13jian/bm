@@ -71,6 +71,8 @@ public class Book extends Model<Book> {
      * 书籍描述
      */
     private String describes;
+
+    private Integer userid;
     /**
      * 创建人
      */
@@ -177,6 +179,14 @@ public class Book extends Model<Book> {
         this.describes = describes;
     }
 
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
     public String getCreateuser() {
         return createuser;
     }
@@ -238,6 +248,7 @@ public class Book extends Model<Book> {
                 ", publicationdate='" + publicationdate + '\'' +
                 ", publicationpress='" + publicationpress + '\'' +
                 ", describes='" + describes + '\'' +
+                ", userid=" + userid +
                 ", createuser='" + createuser + '\'' +
                 ", status=" + status +
                 ", createdate='" + createdate + '\'' +

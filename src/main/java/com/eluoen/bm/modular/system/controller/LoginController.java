@@ -17,29 +17,27 @@ package com.eluoen.bm.modular.system.controller;
 
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
+import com.eluoen.bm.core.log.LogManager;
+import com.eluoen.bm.core.log.factory.LogTaskFactory;
 import com.eluoen.bm.modular.system.model.User;
 import com.eluoen.bm.modular.system.service.IMenuService;
 import com.eluoen.bm.modular.system.service.IUserService;
 import com.eluoen.bm.core.common.exception.InvalidKaptchaException;
 import com.eluoen.bm.core.common.node.MenuNode;
-import com.eluoen.bm.core.log.LogManager;
-import com.eluoen.bm.core.log.factory.LogTaskFactory;
 import com.eluoen.bm.core.shiro.ShiroKit;
 import com.eluoen.bm.core.shiro.ShiroUser;
 import com.eluoen.bm.core.util.ApiMenuFilter;
 import com.eluoen.bm.core.util.KaptchaUtil;
-import com.eluoen.bm.modular.system.model.User;
-import com.eluoen.bm.modular.system.service.IMenuService;
-import com.eluoen.bm.modular.system.service.IUserService;
 import com.google.code.kaptcha.Constants;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.util.List;
 
 import static cn.stylefeng.roses.core.util.HttpContext.getIp;
@@ -52,6 +50,8 @@ import static cn.stylefeng.roses.core.util.HttpContext.getIp;
  */
 @Controller
 public class LoginController extends BaseController {
+
+    private final static Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private IMenuService menuService;
@@ -129,8 +129,11 @@ public class LoginController extends BaseController {
         currentUser.login(token);
 
         ShiroUser shiroUser = ShiroKit.getUser();
+        log.info("login shiroUser:"+shiroUser.toString());
         super.getSession().setAttribute("shiroUser", shiroUser);
         super.getSession().setAttribute("username", shiroUser.getAccount());
+        log.info("login---------------------------------------------------------------------"+shiroUser.getId());
+        super.getSession().setAttribute("userId", shiroUser.getId());
 
         LogManager.me().executeLog(LogTaskFactory.loginLog(shiroUser.getId(), getIp()));
 

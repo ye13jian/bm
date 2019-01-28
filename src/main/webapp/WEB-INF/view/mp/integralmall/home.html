@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/integralmall/css/base.css">
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/integralmall/css/home.css">
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/integralmall/css/swiper.min.css">
+    <title>积分商城</title>
+</head>
+<body>
+	<div class="wrap">
+
+		<!--主体区域-->
+		<div class="container" style="padding-top:0">
+			
+	         <!-- banner -->
+			  <div class="swiper-container swiper-container-horizontal swiper-container-android">
+			    <div class="swiper-wrapper" style="transform: translate3d(-1200px, 0px, 0px); transition-duration: 0ms;">
+					<div class="swiper-slide"><a href="${session.mpInfo.ad6_link}"><img style="width: 100%;" src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad6_img}"></a></div>
+					<div class="swiper-slide"><a href="${session.mpInfo.ad7_link}"><img style="width: 100%;" src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad7_img}"></a></div>
+				</div>
+
+
+
+			 <!-- list-->
+			<div class="ztmc">
+				<!--<h2>订单管理</h2>-->
+				<ul class="index_list">
+					<li><a href="${ctxPath}/mp/integralmall/orderList?orderType=qb"><div><img src="${ctxPath}/static/modular/mp/integralmall/img/head-icon-003.png"></div><p>全部订单</p></a></li>
+					<li><a href="${ctxPath}/mp/integralmall/orderList?orderType=dfk"><div><img src="${ctxPath}/static/modular/mp/integralmall/img/head-icon-002.png"></div><p>待发货</p></a></li>
+					<li><a href="${ctxPath}/mp/integralmall/orderList?orderType=ywc"><div><img src="${ctxPath}/static/modular/mp/integralmall/img/head-icon-004.png"></div><p>已完成</p></a></li>
+					<!--<li><a href=""><div><img src="${ctxPath}/static/mp/integralmall/img/left-icon-003.png"></div><p>地址管理</p></a></li>-->
+				</ul> 
+			</div>
+
+
+				  <!--主题卖场-->
+		<div class="ztmc">
+			<h2>商品中心</h2>
+			<ul class="ztmc_list">
+
+				@if(gifts!=null){
+				@for(gift in gifts){
+
+				<li>
+					<a href="${ctxPath}/mp/integralmall/detail/${gift.id}"><div class="img"><img src="${ctxPath}/kaptcha/kap?name=${gift.imgurl1}"></div></a>
+					<div class="prolist_info">
+						<h4>${gift.name}</h4>
+						<p class="red">${gift.score}积分</p>
+					</div>
+				</li>
+
+				@}
+				@}
+
+		    </ul>
+	   </div>
+	   
+	   
+
+			
+
+		</div>
+	
+		
+		<!--导航栏-->
+	    <div class="footer">
+      	<ul>
+	  	 	<li><a href="${ctxPath}/mp/home"><p><i class="icons"></i></p><h4>首页</h4></a></li>
+	  	 	<li class="active"><a><p><i class="icons"></i></p><h4>积分商城</h4></a></li>
+	  	 	<li><a href="${ctxPath}/mp/integralmall/orderList?orderType=qb"><p><i class="icons"></i></p><h4>我的订单</h4></a></li>
+	  	 	<li><a href="${ctxPath}/mp/center"><p><i class="icons"></i></p><h4>个人中心</h4></a></li>
+	  	</ul>
+       </div>
+       
+	</div>
+	</div>
+
+<script type="text/javascript" src="${ctxPath}/static/modular/mp/integralmall/js/jquery-1.7.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/mp/integralmall/js/swiper.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+    	var swiper = new Swiper('.swiper-container', {
+	        slidesPerView: 1,
+		    spaceBetween:0,
+		    loop: true,
+		    autoplay: 2500
+	    }); 
+
+	    $(".mrtj_list ul").width($(".mrtj_list ul li").size()*$(".mrtj_list ul li:first").outerWidth(true))
+	})
+</script>
+
+</body>
+</html>

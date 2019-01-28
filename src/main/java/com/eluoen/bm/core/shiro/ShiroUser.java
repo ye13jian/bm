@@ -93,4 +93,16 @@ public class ShiroUser implements Serializable {
         this.roleNames = roleNames;
     }
 
+    @Override
+    public String toString() {
+        return "ShiroUser{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", name='" + name + '\'' +
+                ", deptId=" + deptId +
+                ", roleList=" + roleList +
+                ", deptName='" + deptName + '\'' +
+                ", roleNames=" + roleNames +
+                '}';
+    }
 }

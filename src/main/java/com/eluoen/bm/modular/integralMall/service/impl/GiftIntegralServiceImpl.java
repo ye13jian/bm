@@ -25,7 +25,7 @@ public class GiftIntegralServiceImpl extends ServiceImpl<GiftIntegralMapper, Gif
     private GiftIntegralMapper giftIntegralMapper;
 
     @Override
-    public List<Map<String, Object>> selectList(String startdate, String enddate, String condition) {
-        return this.giftIntegralMapper.selectList(startdate,enddate,condition);
+    public List<Map<String, Object>> selectList_U(Integer userId, String startdate, String enddate, String condition) {
+        return this.giftIntegralMapper.selectList_U(userId,startdate,enddate,condition);
     }
 }

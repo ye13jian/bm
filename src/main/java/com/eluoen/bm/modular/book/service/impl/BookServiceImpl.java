@@ -28,7 +28,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
     private BookMapper bookMapper;
 
     @Override
-    public List<ZTreeNode> tree() {
-        return this.baseMapper.tree();
+    public List<ZTreeNode> tree(Integer userId) {
+        return this.baseMapper.tree(userId);
     }
 }

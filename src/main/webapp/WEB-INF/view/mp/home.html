@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,user-scalable=no,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>${session.mpInfo!=null?session.mpInfo.title:'会员服务首页'}</title>
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/css/home.css" />
+     <script src="${ctxPath}/static/modular/mp/js/jquery1.7.js?v=1.27" type="text/javascript" charset="utf-8"></script>
+     <script src="${ctxPath}/static/modular/mp/js/TouchSlide.1.1.js?v=1.27" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<!--header
+<div class="header_dl">
+	<div class="back"></div>
+    <h1><a href="" class="logo"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.logo_img}" alt="123" title="123" /></a></h1>
+</div>
+-->
+<!--h3-->
+<!--searchbox-->
+<div class="searchBox">
+        <div class="list">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+<!--end-->
+<section class="index">
+    <!-- banner -->
+    <!-- banner -->
+<div id="slideBox" class="slideBox">
+    <div class="bd">
+        <ul>
+			<li><a href="${session.mpInfo.ad1_link}" title=""><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad1_img}"  alt="" /></a></li>
+			<li><a href="${session.mpInfo.ad2_link}" title=""><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad2_img}"  alt="" /></a></li>
+			<li><a href="${session.mpInfo.ad3_link}" title=""><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad3_img}"  alt="" /></a></li>
+		</ul>
+    </div>
+    <div class="hd">
+        <ul></ul>
+    </div>
+</div>
+<script type="text/javascript">
+  TouchSlide({ 
+	slideCell:"#slideBox",
+	titCell:".hd ul",
+	mainCell:".bd ul", 
+	effect:"leftLoop", 
+	autoPage:true,
+	autoPlay:true
+  });
+</script>
+<!-- end -->
+    <!-- end -->
+</section>
+
+
+
+
+
+
+
+
+<div class="content">
+<!--
+<div class="devider b-line"></div>
+-->
+	<div class="list-item-caption b-line">
+		<h2>资源中心</h2>
+		<a href="#" class="list-item-more"><i class="icon icon-more"></i></a>
+	</div>
+	<div class="list-item-store">
+		<ul>
+			<li>
+				<div class="list-item-shop r-line">
+					<a href="${ctxPath}/mp/bookList"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.resource_img}"></a>
+				</div>
+			</li>
+			<li>
+				<div class="">
+					<div class="list-item-shop b-line">
+						<a href="${ctxPath}/mp/collection"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.collection_img}"></a>
+					</div>
+					<div class="list-item-shop">
+						<a href="${ctxPath}/mp/center"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.center_img}"></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+
+<!--
+	<div class="list-item-store item-clear">
+		<ul>
+			<li>
+				<div class="list-item-shop t-line">
+					<a href="#"><img src="images/banner4.jpg"></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+-->	
+	
+	
+	<!-- banner begin
+	<div class="devider t-line"></div>
+     -->
+
+	<div class="list-item-banner t-line">
+		<a href="${session.mpInfo.ad8_link}"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad8_img}"></a>
+	</div>
+	<!-- End -->
+
+	<!--
+	<div class="list-item-caption t-line">
+		<h2>拓展功能</h2>
+		<a href="#" class="list-item-more"><i class="icon icon-more"></i></a>
+	</div>
+	<div class="list-item-store item-groom">
+		<ul>
+			<li>
+				<div class="list-item-shop">
+					<a href="${ctxPath}/mp/integralmall/home"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.integralmall_img}"></a>
+				</div>
+			</li>
+			<li>
+				<div class="list-item-shop t-line">
+					<a href="#"><img src="${ctxPath}/static/mp/images/pd0.jpg"></a>
+				</div>
+			</li>
+			<li>
+				<div class="list-item-shop">
+					<a href="${ctxPath}/mp/bbsHome"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.bbs_img}"></a>
+				</div>
+			</li>
+			<li>
+				<div class="list-item-shop">
+					<a href="#"><img src="${ctxPath}/static/mp/images/pd0.jpg"></a>
+				</div>
+			</li>
+			<li>
+				<div class="list-item-shop">
+					<a href="${ctxPath}/mp/opinion_create"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.opinion_img}"></a>
+				</div>
+			</li>
+			<li>
+				<div class="list-item-shop">
+					<a href="#"><img src="${ctxPath}/static/mp/images/pd0.jpg"></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	-->
+
+
+
+
+
+	<div class="list-item-caption t-line">
+		<h2>拓展功能</h2>
+		<a href="#" class="list-item-more"><i class="icon icon-more"></i></a>
+	</div>
+	<div class="list-item-store item-groom item-lattice">
+		<ul>
+			@if(isNotEmpty(session.mpInfo.tz1_name)){
+			<li>
+				<div class="list-item-shop box-line">
+					<a href="${session.mpInfo.tz1_link}">
+						<span><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.tz1_img}"></span>
+						<p>${session.mpInfo.tz1_name}</p>
+					</a>
+				</div>
+			</li>
+			@}
+			@if(isNotEmpty(session.mpInfo.tz2_name)){
+			<li>
+				<div class="list-item-shop box-line">
+					<a href="${session.mpInfo.tz2_link}">
+						<span><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.tz2_img}"></span>
+						<p>${session.mpInfo.tz2_name}</p>
+					</a>
+				</div>
+			</li>
+			@}
+			@if(isNotEmpty(session.mpInfo.tz3_name)){
+			<li>
+				<div class="list-item-shop box-line">
+					<a href="${session.mpInfo.tz3_link}">
+						<span><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.tz3_img}"></span>
+						<p>${session.mpInfo.tz3_name}</p>
+					</a>
+				</div>
+			</li>
+			@}
+			@if(isNotEmpty(session.mpInfo.tz4_name)){
+			<li>
+				<div class="list-item-shop box-line">
+					<a href="${session.mpInfo.tz4_link}">
+						<span><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.tz4_img}"></span>
+						<p>${session.mpInfo.tz4_name}</p>
+					</a>
+				</div>
+			</li>
+			@}
+			@if(isNotEmpty(session.mpInfo.tz5_name)){
+			<li>
+				<div class="list-item-shop box-line">
+					<a href="${session.mpInfo.tz5_link}">
+						<span><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.tz5_img}"></span>
+						<p>${session.mpInfo.tz5_name}</p>
+					</a>
+				</div>
+			</li>
+			@}
+			@if(isNotEmpty(session.mpInfo.tz6_name)){
+			<li>
+				<div class="list-item-shop box-line">
+					<a href="${session.mpInfo.tz6_link}">
+						<span><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.tz6_img}"></span>
+						<p>${session.mpInfo.tz6_name}</p>
+					</a>
+				</div>
+			</li>
+			@}
+		</ul>
+	</div>
+
+	<div class="devider t-line"></div>
+
+</div>
+
+
+
+
+
+<!--copy--->
+<div class="copy">Copyright 2018-2019 ${session.mpInfo.title}版权所有</div>
+
+
+</body>
+
+</html>
+
+
+<!--js_ticket 项目中获取收货地址用-->
+<script type="text/javascript">
+    $.ajax({url: '${ctxPath}/mp/js_ticket'});
+</script>

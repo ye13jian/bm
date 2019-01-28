@@ -358,9 +358,9 @@ public class UserMgrController extends BaseController {
     /**
      * 上传图片
      */
-    @RequestMapping(method = RequestMethod.POST, path = "/upload")
-    @ResponseBody
-    public String upload(@RequestPart("file") MultipartFile picture) {
+    //@RequestMapping(method = RequestMethod.POST, path = "/upload")
+    //@ResponseBody
+    /*public String upload(@RequestPart("file") MultipartFile picture) {
 
         String pictureName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(picture.getOriginalFilename());
         try {
@@ -370,7 +370,30 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
+    }*/
+
+    /**
+     * 上传图片(上传到项目的webapp/static/img)
+     */
+    @RequestMapping(method = RequestMethod.POST, path = "/upload")
+    @ResponseBody
+    public String upload(@RequestPart("file") MultipartFile picture) {
+        System.out.println("upload:"+picture.getName().toString()+" "+picture.getOriginalFilename().toString());
+        String pictureName = UUID.randomUUID().toString() + ".jpg";//要支持音视频，所以要根据上传的文件后缀生成
+        pictureName = UUID.randomUUID().toString() + picture.getOriginalFilename().substring(picture.getOriginalFilename().lastIndexOf("."),picture.getOriginalFilename().length());
+        try {
+            String fileSavePath = gunsProperties.getFileUploadPath();
+            System.out.println("upload fileSavePath:"+fileSavePath+" "+pictureName);
+            picture.transferTo(new File(fileSavePath + pictureName));
+        } catch (Exception e) {
+            throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
+        }
+        return pictureName;
     }
+
+
+
+
 
     /**
      * 判断当前登录的用户是否有操作这个用户的权限

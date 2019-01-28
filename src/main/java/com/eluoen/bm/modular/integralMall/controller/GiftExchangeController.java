@@ -71,9 +71,8 @@ public class GiftExchangeController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public List<Map<String,Object>> list(String startdate, String enddate, String condition) {
-        List<Map<String,Object>> list =  giftExchangeService.selectList(startdate,enddate,condition);
-
-        return list;
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return giftExchangeService.selectList_U(userId,startdate,enddate,condition);
     }
 
     /**

@@ -213,7 +213,7 @@ public class StringUtil {
      * @return
      * @throws IllegalAccessException 
      */
-    /*public static Map<String, Object> sign_md5(String prepay_id) throws IllegalAccessException {
+    public static Map<String, Object> sign_md5(String prepay_id) throws IllegalAccessException {
         Map<String, Object> ret = new HashMap<String, Object>();
         String appId = Configure.getAppid();
         String nonceStr = createNonceStr();
@@ -231,7 +231,7 @@ public class StringUtil {
         ret.put("paySign", paySign);
 
         return ret;
-    }*/
+    }
 
 
 

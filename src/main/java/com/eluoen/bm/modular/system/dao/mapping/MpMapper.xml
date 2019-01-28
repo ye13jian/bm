@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.MpMapper">
+
+    <!--查询二维码-->
+    <select id="searchQrcode" resultType="java.util.Map">
+        SELECT * FROM tbl_qrcode WHERE qrcode=#{qrcode}
+    </select>
+
+    <!--查询认证-->
+    <select id="searchQrcodeAuth" resultType="java.util.Map">
+        SELECT * FROM tbl_qrcode_auth WHERE qrcode=#{qrcode}
+    </select>
+
+    <!--查询单本书籍-->
+    <select id="searchBook" resultType="java.util.Map">
+        SELECT * FROM tbl_book WHERE id=#{bookid}
+    </select>
+
+    <!--查询会员可看的书籍列表-->
+    <select id="searchBookList" resultType="java.util.Map">
+        SELECT * FROM tbl_book b,tbl_qrcode_auth q WHERE q.bookid=b.id AND q.openid=#{openid}
+    </select>
+
+    <!--查询书籍目录-->
+    <select id="searchBookCatalogList" resultType="java.util.Map">
+        SELECT c.*,b.name bookname,b.category,b.series,b.imgurl,b.author,b.editor FROM tbl_book_catalog c,tbl_book b WHERE c.bookid=b.id AND bookid=#{bookid}
+    </select>
+
+    <!--查询收藏的书籍目录-->
+    <select id="searchCollectionList" resultType="java.util.Map">
+        SELECT c.*,b.name bookname,b.category,b.series,b.imgurl,b.author,b.editor FROM tbl_wxcollection co,tbl_book_catalog c,tbl_book b WHERE co.bookcatalogid=c.id AND c.bookid=b.id AND co.openid=#{openid}
+    </select>
+
+    <!--添加收藏-->
+    <insert id="addCollection" parameterType="com.eluoen.bm.modular.system.model.Wxcollection" >
+        INSERT INTO tbl_wxcollection(openid,bookcatalogid) VALUES(#{coll.openid},#{coll.bookcatalogid})
+    </insert>
+
+    <!--取消收藏-->
+    <insert id="subCollection" parameterType="com.eluoen.bm.modular.system.model.Wxcollection" >
+        DELETE FROM tbl_wxcollection WHERE openid=#{coll.openid} AND bookcatalogid=#{coll.bookcatalogid}
+    </insert>
+
+    <!--查询是否收藏-->
+    <select id="searchCollection" resultType="java.util.Map">
+        SELECT * FROM tbl_wxcollection WHERE openid=#{coll.openid} AND bookcatalogid=#{coll.bookcatalogid} LIMIT 1
+    </select>
+
+    <!--查询书籍目录详细信息-->
+    <select id="searchBookCatalogDetail" resultType="java.util.Map">
+        SELECT c.*,b.name bookname,b.category,b.series,b.imgurl,b.author,b.editor FROM tbl_book_catalog c,tbl_book b WHERE c.bookid=b.id AND c.id=#{bookCatalogId}
+    </select>
+
+    <!--查询会员-->
+    <select id="searchMember" resultType="java.util.Map">
+        SELECT * FROM tbl_member WHERE openid=#{openid}
+    </select>
+
+    <!--根据书籍目录id和openid查询是否是对应的授权会员
+    <select id="searchMemberAuth" resultType="java.util.Map">
+        SELECT * FROM tbl_qrcode_auth WHERE bookid=(SELECT bookid FROM tbl_book_catalog WHERE id=#{bookCatalogId}) AND openid=#{openid}
+    </select>
+    -->
+
+    <!--插入二维码授权-->
+    <insert id="addQrcodeAuth" parameterType="java.util.Map">
+      INSERT INTO tbl_qrcode_auth(qrcode,bookid,openid,createdate,createtime) VALUES(#{map.qrcode},#{map.bookid},#{map.openid},CURDATE(),CURTIME())
+    </insert>
+
+    <!--插入会员-->
+    <insert id="addMember" parameterType="java.util.Map">
+      REPLACE INTO tbl_member(openid,nickname,sex,headimgurl,province,city,createdate,createtime) VALUES(#{map.openid},#{map.nickname},#{map.sex},#{map.headimgurl},#{map.province},#{map.city},CURDATE(),CURTIME())
+    </insert>
+
+    <!--插入播放记录-->
+    <insert id="addWxPlay" parameterType="com.eluoen.bm.modular.system.model.Wxcollection">
+      INSERT INTO tbl_wxplay(date,time,openid,bookcatalogid) VALUES(CURDATE(),CURTIME(),#{coll.openid},#{coll.bookcatalogid})
+    </insert>
+
+    <!--查询某一播放次数-->
+    <select id="searchWxPlayCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tbl_wxplay WHERE bookcatalogid=#{bookcatalogid}
+    </select>
+
+    <!--查询置顶文章列表，默认3条-->
+    <select id="searchBbsSysList" resultType="java.util.Map">
+        SELECT id,title FROM tbl_bbs_sys ORDER BY createdate DESC,createtime DESC LIMIT 3
+    </select>
+
+    <!--查询置顶文章详情-->
+    <select id="searchBbsSysDetail" resultType="java.util.Map">
+        SELECT * FROM tbl_bbs_sys WHERE id=#{bbsSysId}
+    </select>
+
+    <!--查询用户贴列表，默认100条-->
+    <select id="searchBbsWxList" resultType="java.util.Map">
+        SELECT * FROM tbl_bbs_wx b,tbl_member m WHERE b.openid=m.openid ORDER BY b.createdate LIMIT 100
+    </select>
+
+    <!--查询用户贴详情-->
+    <select id="searchBbsWxDetail" resultType="java.util.Map">
+        SELECT * FROM tbl_bbs_wx b,tbl_member m WHERE b.openid=m.openid AND b.id=#{bbsWxId}
+    </select>
+
+    <!--查询用户贴回复列表-->
+    <select id="searchBbsWxReplyList" resultType="java.util.Map">
+        SELECT * FROM tbl_bbs_wx_reply r,tbl_member m WHERE r.openid=m.openid AND r.bbswxid=#{bbsWxId}
+    </select>
+
+    <!--添加用户贴-->
+    <insert id="addBbsWx" parameterType="com.eluoen.bm.modular.system.model.BbsWx">
+      INSERT INTO tbl_bbs_wx(content,openid,createdate,createtime) VALUES(#{bbsWx.content},#{bbsWx.openid},CURDATE(),CURTIME())
+    </insert>
+
+    <!--添加用户贴回复记录-->
+    <insert id="addBbsWxReply" parameterType="com.eluoen.bm.modular.system.model.BbsWxReply">
+      INSERT INTO tbl_bbs_wx_reply(bbswxid,content,openid,createdate,createtime) VALUES(#{reply.bbswxid},#{reply.content},#{reply.openid},CURDATE(),CURTIME())
+    </insert>
+
+    <!--添加用户意见建议-->
+    <insert id="addOpinion" parameterType="com.eluoen.bm.modular.system.model.Opinion">
+      INSERT INTO tbl_opinion(content,openid,mobile,createdate,createtime) VALUES(#{opinion.content},#{opinion.openid},#{opinion.mobile},CURDATE(),CURTIME())
+    </insert>
+
+    <!--新增积分-->
+    <insert id="addIntegral" parameterType="java.util.Map">
+      INSERT INTO tbl_gift_integral(date,time,message,score,openid) VALUES(CURDATE(),CURTIME(),#{map.message},#{map.score},#{map.openid})
+    </insert>
+
+    <!--更新用户积分-->
+    <update id="updateMemberScore" parameterType="java.util.Map">
+        UPDATE tbl_member SET score=score+#{map.score} WHERE openid=#{map.openid}
+    </update>
+
+</mapper>

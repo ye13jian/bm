@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.MpInfoMapper">
+
+    <!--查询微信设置-->
+    <select id="getMpInfo" resultType="java.util.Map">
+        SELECT * FROM tbl_mp_info WHERE userid=#{userId}
+    </select>
+
+    <!--更新微信设置
+    <update id="setMpInfo" parameterType="com.eluoen.bm.modular.system.model.MpInfo">
+        UPDATE tbl_mp_info
+        SET
+        ad1_img=#{mpInfo.ad1_img},ad1_link=#{mpInfo.ad1_link},
+        ad2_img=#{mpInfo.ad2_img},ad2_link=#{mpInfo.ad2_link},
+        ad3_img=#{mpInfo.ad3_img},ad3_link=#{mpInfo.ad3_link},
+        ad4_img=#{mpInfo.ad4_img},ad4_link=#{mpInfo.ad4_link},
+        ad5_img=#{mpInfo.ad5_img},ad5_link=#{mpInfo.ad5_link},
+        ad6_img=#{mpInfo.ad6_img},ad6_link=#{mpInfo.ad6_link},
+        ad7_img=#{mpInfo.ad7_img},ad7_link=#{mpInfo.ad7_link},
+        ad8_img=#{mpInfo.ad8_img},ad8_link=#{mpInfo.ad8_link},
+        ad9_img=#{mpInfo.ad9_img},ad9_link=#{mpInfo.ad9_link},
+        ad10_img=#{mpInfo.ad10_img},ad10_link=#{mpInfo.ad10_link},
+        tz1_img=#{mpInfo.tz1_img},tz1_link=#{mpInfo.tz1_link},tz1_name=#{mpInfo.tz1_name},
+        tz2_img=#{mpInfo.tz2_img},tz2_link=#{mpInfo.tz2_link},tz2_name=#{mpInfo.tz2_name},
+        tz3_img=#{mpInfo.tz3_img},tz3_link=#{mpInfo.tz3_link},tz3_name=#{mpInfo.tz3_name},
+        tz4_img=#{mpInfo.tz4_img},tz4_link=#{mpInfo.tz4_link},tz4_name=#{mpInfo.tz4_name},
+        tz5_img=#{mpInfo.tz5_img},tz5_link=#{mpInfo.tz5_link},tz5_name=#{mpInfo.tz5_name},
+        tz6_img=#{mpInfo.tz6_img},tz6_link=#{mpInfo.tz6_link},tz6_name=#{mpInfo.tz6_name},
+        title=#{mpInfo.title},logo_img=#{mpInfo.logo_img},restype=#{mpInfo.restype},tel=#{mpInfo.tel},
+        rights=#{mpInfo.rights},wxname=#{mpInfo.wxname},wxqrcode_img=#{mpInfo.wxqrcode_img},
+        resource_img=#{mpInfo.resource_img},collection_img=#{mpInfo.collection_img},center_img=#{mpInfo.center_img},
+        integralmall_img=#{mpInfo.integralmall_img},bbs_img=#{mpInfo.bbs_img},opinion_img=#{mpInfo.opinion_img}
+    </update>
+    -->
+
+    <!--更新微信设置-->
+    <update id="setMpInfo" parameterType="com.eluoen.bm.modular.system.model.MpInfo">
+        UPDATE tbl_mp_info
+        SET
+        <if test="mpInfo.title != null">
+            <!--1系统信息-->
+            title=#{mpInfo.title},logo_img=#{mpInfo.logo_img},restype=#{mpInfo.restype},tel=#{mpInfo.tel}
+        </if>
+        <if test="mpInfo.rights != null">
+            <!--2认证页-->
+            rights=#{mpInfo.rights},wxname=#{mpInfo.wxname},wxqrcode_img=#{mpInfo.wxqrcode_img}
+        </if>
+        <if test="mpInfo.ad1_img != null">
+            <!--3首页-->
+            ad1_img=#{mpInfo.ad1_img},ad1_link=#{mpInfo.ad1_link},
+            ad2_img=#{mpInfo.ad2_img},ad2_link=#{mpInfo.ad2_link},
+            ad3_img=#{mpInfo.ad3_img},ad3_link=#{mpInfo.ad3_link},
+            ad8_img=#{mpInfo.ad8_img},ad8_link=#{mpInfo.ad8_link},
+            tz1_img=#{mpInfo.tz1_img},tz1_link=#{mpInfo.tz1_link},tz1_name=#{mpInfo.tz1_name},
+            tz2_img=#{mpInfo.tz2_img},tz2_link=#{mpInfo.tz2_link},tz2_name=#{mpInfo.tz2_name},
+            tz3_img=#{mpInfo.tz3_img},tz3_link=#{mpInfo.tz3_link},tz3_name=#{mpInfo.tz3_name},
+            tz4_img=#{mpInfo.tz4_img},tz4_link=#{mpInfo.tz4_link},tz4_name=#{mpInfo.tz4_name},
+            tz5_img=#{mpInfo.tz5_img},tz5_link=#{mpInfo.tz5_link},tz5_name=#{mpInfo.tz5_name},
+            tz6_img=#{mpInfo.tz6_img},tz6_link=#{mpInfo.tz6_link},tz6_name=#{mpInfo.tz6_name},
+            resource_img=#{mpInfo.resource_img},collection_img=#{mpInfo.collection_img},center_img=#{mpInfo.center_img}
+        </if>
+        <if test="mpInfo.ad4_img != null">
+            <!--4论坛主页-->
+            ad4_img=#{mpInfo.ad4_img},ad4_link=#{mpInfo.ad4_link},
+            ad9_img=#{mpInfo.ad9_img},ad9_link=#{mpInfo.ad9_link}
+        </if>
+        <if test="mpInfo.ad5_img != null">
+            <!--5个人中心-->
+            ad5_img=#{mpInfo.ad5_img},ad5_link=#{mpInfo.ad5_link},
+            ad10_img=#{mpInfo.ad10_img},ad10_link=#{mpInfo.ad10_link}
+        </if>
+        <if test="mpInfo.ad6_img != null">
+            <!--6商城主页-->
+            ad6_img=#{mpInfo.ad6_img},ad6_link=#{mpInfo.ad6_link},
+            ad7_img=#{mpInfo.ad7_img},ad7_link=#{mpInfo.ad7_link}
+        </if>
+        WHERE id=#{mpInfo.id}
+    </update>
+
+</mapper>

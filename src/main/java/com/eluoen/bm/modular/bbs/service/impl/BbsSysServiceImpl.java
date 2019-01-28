@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.eluoen.bm.modular.bbs.service.IBbsSysService;
 import com.eluoen.bm.modular.system.dao.BbsSysMapper;
 import com.eluoen.bm.modular.system.model.BbsSys;
+import com.eluoen.bm.modular.system.model.Gift;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +21,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BbsSysServiceImpl extends ServiceImpl<BbsSysMapper, BbsSys> implements IBbsSysService {
 
+    @Resource
+    private BbsSysMapper bbsSysMapper;
+
+    @Override
+    public List<BbsSys> selectList_U(Integer userId, String condition) {
+        return bbsSysMapper.selectList_U(userId,condition);
+    }
 }

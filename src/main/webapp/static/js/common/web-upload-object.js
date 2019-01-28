@@ -8,13 +8,13 @@
  * @author fengshuonan
  */
 (function() {
-	
+
 	var $WebUpload = function(pictureId) {
 		this.pictureId = pictureId;
 		this.uploadBtnId = pictureId + "BtnId";
 		this.uploadPreId = pictureId + "PreId";
 		this.uploadUrl = Feng.ctxPath + '/mgr/upload';
-		this.fileSizeLimit = 100 * 1024 * 1024;
+		this.fileSizeLimit = 100 * 1024 * 1024;//应该是100M
 		this.picWidth = 800;
 		this.picHeight = 800;
         this.uploadBarId = null;
@@ -42,8 +42,8 @@
 				},
 				accept : {
 					title : 'Images',
-					extensions : 'gif,jpg,jpeg,bmp,png',
-                    mimeTypes : 'image/gif,image/jpg,image/jpeg,image/bmp,image/png'
+					extensions : 'gif,jpg,jpeg,bmp,png,mp4,avi,ogg,mp3',//在这里加了mp4
+                    mimeTypes : 'image/gif,image/jpg,image/jpeg,image/bmp,image/png,audio/mp4,video/mp4,video/avi,video/ogg,audio/mpeg'//在这里加了audio/mp4,video/mp4
 				},
 				swf : Feng.ctxPath
 						+ '/static/js/plugins/webuploader/Uploader.swf',
@@ -60,9 +60,19 @@
 		 * 绑定事件
 		 */
 		bindEvent : function(bindedObj) {
+			//alert(this.pictureId);
 			var me =  this;
 			bindedObj.on('fileQueued', function(file) {
-				var $li = $('<div><img width="100px" height="100px"></div>');
+				//alert(me.pictureId+' '+me.picWidth+' '+me.picHeight);
+
+				//正面两句是根据传过来的pictureId值获取div里面对应的img的初始尺寸
+				var width = $('#'+me.uploadPreId+' img').width();
+				var height = $('#'+me.uploadPreId+' img').height();
+				//alert(width+' '+height);
+
+				//var $li = $('<div><img width="100px" height="100px"></div>');//原来的
+                var $li = $('<div><img width="'+width+'px" height="'+height+'px"></div>');//后来改的，根据图片初始值生成预览尺寸
+
 				var $img = $li.find('img');
 
 				$("#" + me.uploadPreId).html($li);
@@ -86,6 +96,10 @@
 			bindedObj.on('uploadSuccess', function(file,response) {
 				Feng.success("上传成功");
 				$("#" + me.pictureId).val(response);
+
+				//20181125，加上这句是为了便于页面需要监听hidden值的变化，然后做后面的动作
+                $("#" + me.pictureId).change();
+
 			});
 
 			// 文件上传失败，显示上传出错。

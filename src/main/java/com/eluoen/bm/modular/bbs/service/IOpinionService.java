@@ -1,7 +1,10 @@
 package com.eluoen.bm.modular.bbs.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.eluoen.bm.modular.system.model.BbsWx;
 import com.eluoen.bm.modular.system.model.Opinion;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.eluoen.bm.modular.system.model.Opinion;
  */
 public interface IOpinionService extends IService<Opinion> {
 
+    List<Opinion> selectList_U(Integer userId, String condition);
 }

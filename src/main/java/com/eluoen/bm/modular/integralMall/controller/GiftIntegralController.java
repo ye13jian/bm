@@ -64,7 +64,8 @@ public class GiftIntegralController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String startdate, String enddate, String condition) {
-        return giftIntegralService.selectList(startdate,enddate,condition);
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return giftIntegralService.selectList_U(userId,startdate,enddate,condition);
     }
 
     /**

@@ -67,13 +67,8 @@ public class GiftController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        if(ToolUtil.isEmpty(condition)){
-            return giftService.selectList(null);
-        }else{
-            EntityWrapper<Gift> entityWrapper = new EntityWrapper<Gift>();
-            Wrapper<Gift> wrapper = entityWrapper.like("name",condition);
-            return giftService.selectList(wrapper);
-        }
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return giftService.selectList_U(userId,condition);
     }
 
     /**

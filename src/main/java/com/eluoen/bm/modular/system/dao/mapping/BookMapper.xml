@@ -18,6 +18,7 @@
         <result column="publicationpress" property="publicationpress" />
         <result column="describes" property="describes" />
         <result column="createuser" property="createuser" />
+        <result column="userid" property="userid" />
         <result column="status" property="status" />
         <result column="createdate" property="createdate" />
         <result column="createtime" property="createtime" />
@@ -25,13 +26,13 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, category, series, isbn, imgurl, author, editor, price, score, publicationdate, publicationpress, describes, createuser, status, createdate, createtime
+        id, name, category, series, isbn, imgurl, author, editor, price, score, publicationdate, publicationpress, describes, userid, createuser, status, createdate, createtime
     </sql>
 
 
     <!-- 获取书籍的Ztree -->
     <select id="tree" resultType="com.eluoen.bm.core.common.node.ZTreeNode">
-		select id,0 as pId,name as name,true as isOpen from tbl_book
+		select id,0 as pId,name as name,true as isOpen from tbl_book WHERE userid=#{userId}
 	</select>
 
 </mapper>

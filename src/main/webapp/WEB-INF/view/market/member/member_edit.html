@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="openid" name="微信id" value="${item.openid}" underline="true"/>
+                            <#input id="mobile" name="手机号码" value="${item.mobile}" underline="true"/>
+                            <#input id="fullname" name="姓名" value="${item.fullname}" underline="true"/>
+                            <#input id="nickname" name="微信昵称" value="${item.nickname}" underline="true"/>
+                            <#input id="sex" name="性别" value="${item.sex}" underline="true"/>
+                            <#input id="headimgurl" name="微信头像" value="${item.headimgurl}" underline="true"/>
+                            <#input id="province" name="省份" value="${item.province}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="city" name="城市" value="${item.city}" underline="true"/>
+                            <#input id="address" name="详细地址" value="${item.address}" underline="true"/>
+                            <#input id="score" name="积分值" value="${item.integralvalue}" underline="true"/>
+                            <#input id="validitydate" name="有效期" value="${item.validitydate}" underline="true"/>
+                            <#input id="remark" name="备注" value="${item.remark}" underline="true"/>
+                            <#input id="status" name="状态" value="${item.status}" underline="true"/>
+                            <#input id="createdate" name="创建日期" value="${item.createdate}" underline="true"/>
+                            <#input id="createtime" name="创建时间" value="${item.createtime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MemberInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MemberInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/market/member/member_info.js"></script>
+@}

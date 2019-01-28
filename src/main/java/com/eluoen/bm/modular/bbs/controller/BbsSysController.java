@@ -1,8 +1,10 @@
 package com.eluoen.bm.modular.bbs.controller;
 
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import com.alibaba.fastjson.JSONObject;
 import com.eluoen.bm.core.common.constant.state.ManagerStatus;
 import com.eluoen.bm.core.log.LogObjectHolder;
+import com.eluoen.bm.core.shiro.ShiroUser;
 import com.eluoen.bm.modular.bbs.service.IBbsSysService;
 import com.eluoen.bm.modular.system.model.BbsSys;
 import org.slf4j.Logger;
@@ -69,7 +71,10 @@ public class BbsSysController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return bbsSysService.selectList(null);
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        ShiroUser shiroUser = (ShiroUser) super.getSession().getAttribute("shiroUser");
+        log.info("bbslist==============:"+userId+":"+JSONObject.toJSONString(shiroUser));
+        return bbsSysService.selectList_U(userId,condition);
     }
 
     /**

@@ -4,6 +4,8 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.eluoen.bm.core.shiro.ShiroKit;
+import com.eluoen.bm.core.shiro.ShiroUser;
 import com.eluoen.bm.modular.book.service.IBookService;
 import com.eluoen.bm.modular.system.model.Book;
 import com.eluoen.bm.core.common.constant.state.ManagerStatus;
@@ -92,7 +94,8 @@ public class BookController extends BaseController {
     @RequestMapping(value = "/tree")
     @ResponseBody
     public List<ZTreeNode> tree() {
-        List<ZTreeNode> tree = this.bookService.tree();
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        List<ZTreeNode> tree = this.bookService.tree(userId);
         tree.add(ZTreeNode.createParent());
         return tree;
     }

@@ -25,8 +25,8 @@ public class GiftExchangeServiceImpl extends ServiceImpl<GiftExchangeMapper, Gif
     private GiftExchangeMapper giftExchangeMapper;
 
     @Override
-    public List<Map<String, Object>> selectList(String startdate, String enddate, String condition) {
-        return this.giftExchangeMapper.selectList(startdate,enddate,condition);
+    public List<Map<String, Object>> selectList_U(Integer userId, String startdate, String enddate, String condition) {
+        return this.giftExchangeMapper.selectList_U(userId,startdate,enddate,condition);
     }
 
     @Override

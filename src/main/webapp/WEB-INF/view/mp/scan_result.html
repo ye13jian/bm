@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>${session.mpInfo!=null?session.mpInfo.title:"正品认证"}</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="${ctxPath}/static/modular/mp/css/scan.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<section class="aui-flexView" id="navHead" style="height:auto">
+    <header class="aui-navBar aui-navBar-bg aui-navBar-fixed" id="nav-wrap">
+        
+        <div class="aui-center">
+			
+        </div>
+        
+    </header>
+	
+	<div style="border:0px solid red;"><img src="${ctxPath}/kaptcha/kap?name=${book.imgurl}" alt="" style="width:100%;" ></div>
+	
+    <section class="aui-scrollView">
+		<!--
+        <div class="img_gallery" id="commodity">
+            <div class="main_img">
+                <ul style="width: 100%px; overflow: visible;">
+                    <li style="float: none; display: block; position: absolute; top: 0px; left: 0px; width: 100%;">
+                        <img src="images/timg.jpg" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="img_font">
+                <span style="display: inline;">书本名称2</span>
+            </div>
+        </div>
+		
+
+
+		-->
+
+        <div class="aui-reserve-head">
+            <h2>${book.name} <em>${book.author}</em>  <i>${book.editor}</i></h2>
+            <p></p>
+			<!--
+            <h3><i>￥</i>505 <i>/今日</i>  <em>(市场价:1178元)</em></h3>
+			-->
+			<h3><i>授权码：</i>${qrcode}</h3>
+        </div>
+		
+		<!--
+        <div class="aui-flex aui-flex-clear">
+            <div class="aui-flex-box">
+                <span>满7免1</span>
+                <span>满30天7折</span>
+            </div>
+            <div class="aui-arrow-right"></div>
+        </div>
+		
+        <div class="aui-flex aui-flex-clear b-line">
+            <div class="aui-flex-box ">
+                <i class="icon icon-add"></i><h5>中关村(地铁站)-4号线/大兴线</h5>
+            </div>
+            <div class="aui-arrow-right">18.9km</div>
+        </div>
+		-->
+		
+        <div class="aui-layout aui-flex">
+            <div class="aui-flex-box">
+                <a href="#">
+                    @if(sign==3){
+                    该码已经认证过了！<br>关注公众号获取最新资源。
+                    @}
+                    @if(sign==4){
+                    认证通过！您购买的是正版图书<br>关注公众号获取您的完整权益。
+                    @}
+                </a>
+                
+            </div>
+            <!--<div class="aui-arrow-right"></div>-->
+        </div>
+
+        <div class="divHeight"></div>
+
+
+        <div class="aui-text-head">
+            <div>
+                <h2>会员权益</h2>
+            </div>
+            <div class="aui-flex aui-flex-lou">
+                <div class="aui-car-lou">
+                    <img src="${ctxPath}/static/modular/mp/images/rights.png" alt="">
+                </div>
+
+                <div class="aui-flex-button">
+                    请关注"${session.mpInfo.wxname}"获取完整会员权益
+                </div>
+            </div>
+            <div>
+				<p id="rights">
+                    <pre style="font-size: 1rem;line-height: 22px;">${session.mpInfo.rights}</pre>
+				</p>
+                <p>&nbsp;</p>
+                <p style="text-align:center;">
+                    <img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.wxqrcode_img}" style="width:50%;">
+                    <!--
+                    <br><br>乐飞音乐工作室-->
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--
+    <div class="aui-reserve-footer">
+        <div class="aui-reserve-footer-one">
+            <a href="${ctxPath}/mp/bookList" class="aui-reserve-in">
+                <div class="aui-reserve-footer-inner">
+                    <div class="aui-reserve-text">资源库</div>
+                </div>
+            </a>
+        </div>
+        <div class="aui-reserve-footer-two">
+            <a href="${ctxPath}/mp/home" class="aui-reserve-in">
+                <div class="aui-reserve-footer-inner">
+                    <div class="aui-reserve-text">服务中心</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    -->
+</section>
+
+</body></html>

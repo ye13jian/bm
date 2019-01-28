@@ -1,0 +1,15 @@
+
+.webuploader_pick{
+	display: none;
+}
+.btn_submit{
+	border:0px;
+	border: 1px solid #2786e4;
+	border-radius:5px;
+	background-color: #2786e4;
+	width: 92px;
+	height: 34px;
+	color: white;
+	font-size: 16px;
+	margin-top: 10px;
+}

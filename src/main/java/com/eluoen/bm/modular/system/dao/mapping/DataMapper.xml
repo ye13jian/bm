@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.DataMapper">
+
+    <!--查询会员城市分布数据统计-->
+    <select id="searchMemberDataByCity" resultType="java.util.Map">
+        <choose>
+            <when test="userId != null and userId == 1">
+                SELECT city name,COUNT(*) value FROM tbl_member GROUP BY city
+            </when>
+            <otherwise>
+                SELECT city name,COUNT(*) value FROM tbl_member WHERE openid IN(SELECT openid FROM v_openid WHERE userid=#{userId}) GROUP BY city
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--查询最后几个认证会员信息，默认10个-->
+    <select id="searchMemberLast" resultType="java.util.Map">
+        <choose>
+            <when test="userId != null and userId == 1">
+                SELECT m.nickname,m.sex,m.headimgurl,m.province,m.city,q.createdate,q.createtime,q.qrcode,b.name bookname FROM tbl_member m,tbl_qrcode_auth q,tbl_book b WHERE m.openid=q.openid AND q.bookid=b.id ORDER BY q.createdate DESC,q.createtime DESC LIMIT 10
+            </when>
+            <otherwise>
+                SELECT m.nickname,m.sex,m.headimgurl,m.province,m.city,q.createdate,q.createtime,q.qrcode,b.name bookname FROM tbl_member m,tbl_qrcode_auth q,tbl_book b WHERE m.openid=q.openid AND q.bookid=b.id AND b.userid=#{userId} ORDER BY q.createdate DESC,q.createtime DESC LIMIT 10
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--查询会员扫描看资源活跃度城市分布数据统计-->
+    <select id="searchWxPlayDataByCity" resultType="java.util.Map">
+        <choose>
+            <when test="userId != null and userId == 1">
+                SELECT city name,COUNT(*) FROM tbl_wxplay w,tbl_member m WHERE w.openid=m.openid GROUP BY m.city
+            </when>
+            <otherwise>
+                SELECT city name,COUNT(*) FROM tbl_wxplay w,tbl_member m WHERE w.openid=m.openid GROUP BY m.city
+            </otherwise>
+        </choose>
+    </select>
+
+
+</mapper>

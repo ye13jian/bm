@@ -3,6 +3,7 @@ package com.eluoen.bm.modular.system.dao;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.eluoen.bm.core.common.node.ZTreeNode;
 import com.eluoen.bm.modular.system.model.Book;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface BookMapper extends BaseMapper<Book> {
     /**
      * 获取ztree的节点列表
      */
-    List<ZTreeNode> tree();
+    List<ZTreeNode> tree(@Param("userId") Integer userId);
 }

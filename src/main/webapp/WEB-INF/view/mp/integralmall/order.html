@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/integralmall/css/base.css">
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/integralmall/css/order.css">
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/integralmall/css/swiper.min.css">
+    <title>我的订单</title>  
+</head>
+<body>
+	<div class="wrap">
+		<!--tab-->
+		<ul class="orderstab">
+			<li class="active" id="qb" litype="qb"><a href="javascript:;">全部</a></li>
+			<li id="dfk" litype="dfk"><a href="javascript:;">待发货</a></li>
+			<li id="ywc" litype="ywc"><a href="javascript:;">已完成</a></li>
+		</ul>
+		
+		<div class="container_inner">
+		<!--list-->
+		<ul class="orders_list">
+
+			@for(order in orderList){
+			@if(order.status==1){
+			<li class="dfk">
+				<dl>
+					<dt>
+						<h2>时间:${order.date} ${order.time}</h2>
+					</dt>
+					<dd>
+						<div class="ddinfo">
+							<img src="${ctxPath}/kaptcha/kap?name=${order.imgurl1}">
+							<p>${order.name}</p>
+						</div>
+						<div class="dd_subinfo">
+							<span>共${order.count}件商品</span><span>共消费:<font>${order.score}分</font></span>
+						</div>
+						<div class="shdz">
+							<h4><span>${order.fullname}</span><span>${order.mobile}</span></h4>
+							<p>${order.province}${order.city}${order.country}<br>${order.detailaddress}</p>
+						</div>
+					</dd>
+				</dl>
+			</li>
+			@}
+			@}
+
+			@for(order in orderList){
+			@if(order.status==2){
+			<li class="ywc">
+				<dl>
+					<img src="${ctxPath}/static/modular/mp/integralmall/img/ywc.png">
+					<dt>
+						<h2>时间:${order.date} ${order.time}</h2>
+						<span>已完成</span>
+					</dt>
+					<dd>
+						<div class="ddinfo">
+							<img src="${ctxPath}/kaptcha/kap?name=${order.imgurl1}">
+							<p>${order.name}</p>
+						</div>
+						<div class="dd_subinfo">
+							<span>共${order.count}件商品</span><span>共消费:<font>${order.score}分</font></span>
+						</div>
+						<div class="shdz">
+							<h4><span>${order.fullname}</span><span>${order.mobile}</span></h4>
+							<p>${order.city}${order.country}${order.detailaddress}</p>
+						</div>
+						<div class="shdz">
+							<h4><span>${order.exp_name}</span><span>${order.expressno}</span></h4>
+							<p>${order.expressdate}已发货</p>
+						</div>
+					</dd>
+				</dl>
+			</li>
+			@}
+			@}
+
+		</ul>
+		</div>
+		
+	</div>
+
+
+<script type="text/javascript" src="${ctxPath}/static/modular/mp/integralmall/js/jquery-1.7.js"></script>
+<script type="text/javascript">
+    $(function(){
+    	//eruda.init();
+    	$("ul.orderstab").on("click","li",function(){
+    		$(this).addClass("active").siblings().removeClass("active");
+            $(".orders_list li").removeClass("order_v").removeClass("order_d").addClass("order_d");
+
+            var litype = $(this).attr("litype");
+            if(litype=="qb"){
+                $(".orders_list li").removeClass("order_d").addClass("order_v");
+            }else{
+                $("."+litype).removeClass("order_d").addClass("order_v");
+            }
+    	});
+
+
+        var orderType = '${orderType}';
+        //alert(orderType);
+        $('#'+orderType).click();
+
+
+
+	})
+</script>
+
+
+
+	<!--导航栏-->
+	<div class="footer">
+		<ul>
+			<li><a href="${ctxPath}/mp/home"><p><i class="icons"></i></p><h4>首页</h4></a></li>
+			<li><a href="${ctxPath}/mp/integralmall/home"><p><i class="icons"></i></p><h4>积分商城</h4></a></li>
+			<li class="active"><a><p><i class="icons"></i></p><h4>我的订单</h4></a></li>
+			<li><a href="${ctxPath}/mp/center"><p><i class="icons"></i></p><h4>个人中心</h4></a></li>
+		</ul>
+	</div>
+
+
+</body></html>

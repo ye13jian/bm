@@ -1,28 +1,13 @@
-/**
- * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.eluoen.bm.modular.system.controller;
 
 import cn.stylefeng.roses.core.util.FileUtil;
-import com.eluoen.bm.config.properties.GunsProperties;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.eluoen.bm.config.properties.GunsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -110,19 +95,35 @@ public class KaptchaController {
      * @author stylefeng
      * @Date 2017/5/24 23:00
      */
-    @RequestMapping("/{pictureId}")
-    public void renderPicture(@PathVariable("pictureId") String pictureId, HttpServletResponse response) {
+    //下面这种方式对带后缀的资源会造成后缀部分不显示
+    //@RequestMapping("/{pictureId}")
+    //public void renderPicture(@PathVariable("pictureId") String pictureId, HttpServletResponse response) {
+
+    @RequestMapping("/kap")
+    public void renderPicture(@RequestParam("name") String pictureId, HttpServletResponse response) {
+        //String path = gunsProperties.getFileUploadPath() + pictureId + ".jpg";//传过来的是已经带后缀的文件名了
         String path = gunsProperties.getFileUploadPath() + pictureId;
         try {
             byte[] bytes = FileUtil.toByteArray(path);
             response.getOutputStream().write(bytes);
-        } catch (Exception e) {
+        }catch (Exception e){
             //如果找不到图片就返回一个默认图片
             try {
-                response.sendRedirect("/static/img/girl.gif");
+                if(pictureId.contains(".")){
+                    String pix = pictureId.substring(pictureId.lastIndexOf(".")+1,pictureId.length());
+                    //20181125如果是图片才返回一个默认的图片，其它资源如音视频不用返回
+                    if("jpg".equals(pix)||"JPG".equals("pix")||"png".equals(pix)||"PNG".equals(pix)||"jpeg".equals(pix)||"JPEG".equals(pix)){
+                        response.sendRedirect("/static/img/girl.gif");
+                    }
+                }
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
     }
+
+
+
+
+
 }

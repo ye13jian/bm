@@ -30,10 +30,13 @@
         id, date, time, openid, giftid, count, score, message, province, city, country, detailaddress, fullname, mobile, express, expressno, expressdate, status, remark
     </sql>
 
-    <select id="selectList" resultType="map">
+    <select id="selectList_U" resultType="map">
         SELECT e.*,g.name giftname,m.nickname,m.fullname,m.mobile
         FROM tbl_gift_exchange e,tbl_gift g,tbl_member m
         WHERE e.giftid=g.id AND e.openid=m.openid
+        <if test="userId != null and userId != 1">
+            AND g.userid=#{userId}
+        </if>
         <choose>
             <when test="startdate != null and startdate != '' and enddate != null and enddate != ''">
                 AND (e.date BETWEEN #{startdate} AND #{enddate})

@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public interface IGiftExchangeService extends IService<GiftExchange> {
 
-    public List<Map<String,Object>> selectList(String startdate, String enddate, String condition);
+    public List<Map<String,Object>> selectList_U(Integer userId, String startdate, String enddate, String condition);
 
     public Map<String,Object> selectById(Integer giftExchangeId);
 }

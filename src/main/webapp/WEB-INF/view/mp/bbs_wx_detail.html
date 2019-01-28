@@ -1,0 +1,164 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${session.mpInfo.title}</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/css/bbsdetail.css"  />
+    <script src="${ctxPath}/static/modular/mp/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="${ctxPath}/static/modular/mp/js/bbswxreply.js" type="text/javascript"></script>
+
+</head>
+<body style="">
+
+<input type="hidden" id="ctxPath" value="${ctxPath}">
+
+	
+	
+<!-- 你的html代码 -->
+<div class="page page-current" id="page-index">
+    <div class="content">
+        <div class="content-inner">
+            <div class="evaluate">
+                <div class="evaluate-box">
+                	
+                    
+                    
+                    
+                    <div class="evaluate-list">
+
+
+                        
+                        
+ 
+                        <div class="evaluate-px">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><a href="javascript:;"><img src="${bbsWx.headimgurl }" alt=""></a></i>
+                                    <p><a href="javascript:;">${bbsWx.nickname }</a></p>
+                                </div>
+                                <div class="datum-time">
+                                    <p><span>${bbsWx.createdate }</span><span> ${bbsWx.createtime }</span></p>
+                                </div>
+                            </div>
+                            <div class="discuss">
+                                <p style="text-indent: 2em;"> ${bbsWx.content }</p>
+                            </div>
+                        </div>
+
+                        @for(bbsWxReply in bbsWxReplyList){
+                        <div class="evaluate-px" style="width: 90%;">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><img src="${bbsWxReply.headimgurl}" alt=""></i>
+                                    <p class="p1">${bbsWxReply.nickname}</p>
+                                    <p class="p2"><span>${bbsWxReply.createdate}</span><span> ${bbsWxReply.createtime}</span></p>
+                                </div>
+                            </div>
+                            <div class="discuss">
+                                <p style="text-indent: 2em;"> ${bbsWxReply.content}</p>
+                            </div>
+                        </div>
+                        @}
+
+                        <!--
+                        <div class="evaluate-px" style="width: 90%;">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><img src="${ctxPath}/static/mp/images/tx.png" alt=""></i>
+                                    <p class="p1">喜欢花</p>
+                                    <p class="p2"><span>2018-08-16</span><span> 12:00:00</span></p>
+                                </div>
+                            </div>
+                            <div class="discuss">
+                                <p style="text-indent: 2em;"> 按照集团教育实践活动要求况。</p>
+                            </div>
+                            <div class="delete">删除</div>
+                        </div>
+                        
+                        <div class="evaluate-px" style="width: 90%;">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><img src="${ctxPath}/static/mp/images/tx.png" alt=""></i>
+                                    <p class="p1">喜欢花</p>
+                                    <p class="p2"><span>2018-08-16</span><span> 12:00:00</span></p>
+                                </div>
+                            </div>
+                            <div class="discuss">
+                                <p style="text-indent: 2em;"> 按照集团教育实践活动要求况。</p>
+                            </div>
+                        </div>
+                        -->
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="Picture">
+    <div class="Picture-box">
+        <a href="javascript:;" class="mine open"><img src="${ctxPath}/static/mp/images/up_ico.png" alt=""></a>
+        <a href="javascript:;" class="Next open"><img src="${ctxPath}/static/mp/images/next_ico.png" alt=""></a>
+        <div class="theme">
+            <img src="" alt="">
+        </div>
+        <a href="javascript:;" class="gb-btn">×</a>
+    </div>
+</div>
+-->
+
+
+<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+
+		<div align="center" style="position: fixed;bottom: 0;width:100%;background-color: #fff;border-top: 1px solid #dbdadf;">
+		
+
+        <input type="hidden" id="openid" value="${session.openid}">
+		<input type="hidden" id="bbswxid" value="${bbsWx.id}">
+		<div id="div_reply_textarea" style="margin: 5px;display: none;">
+		<div align="right"><a href="javascript:hiddenReply();">  X  </a></div>
+		<textarea id="content" rows="6" cols="" style="width: 92%;border-radius:5px;border:1px solid #ddd;font-size: 16px;" placeholder="2-100个字"></textarea>
+		<div style="margin: 5px;">
+		<input type="button" id="addBbsReply" value="发表" style="width: 80px;height: 30px;border:1px solid #2786e4;background-color: #2786e4;border-radius:5px;color: white;font-size: 14px;">
+		</div>
+		</div>
+
+		
+		<a href="javascript:showReply();">
+			<div id="div_reply_link" style="height: 40px;padding: 5px;">
+			<img src="${ctxPath}/static/modular/mp/images/edit.png" style="height: 40px;line-height: 40px;">
+			</div>
+		</a>
+		</div>
+		
+		<script type="text/javascript">
+			function showReply(){
+				document.getElementById('div_reply_textarea').style.display='block';
+				document.getElementById('div_reply_link').style.display='none';
+			}
+			function hiddenReply(){
+				document.getElementById('div_reply_textarea').style.display='none';
+				document.getElementById('div_reply_link').style.display='block';
+			}
+		</script>
+
+        <script type="text/javascript">
+            function addBbsReply(){
+                var content = document.getElementById('bbsReplyContent').value;
+                if(content.length<2){
+                    alert('至少两个汉字！');
+                    return;
+                }
+                document.bbsReplyForm.submit();
+            }
+        </script>
+
+
+</body></html>

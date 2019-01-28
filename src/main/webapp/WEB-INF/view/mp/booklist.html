@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>${session.mpInfo.title}</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <link href="${ctxPath}/static/modular/mp/css/book.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed">
+                <a href="javascript:;" class="aui-navBar-item">
+                    <!--
+                    <i class="icon icon-return"></i>
+                    -->
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title">我的书籍</span>
+                </div>
+                <a href="javascript:;" class="aui-navBar-item">
+                    <i class="icon icon-sys"></i>
+                </a>
+            </header>
+            <section class="aui-scrollView">
+                <div class="aui-tab" data-ydui-tab="">
+                    <div class="aui-item-ofl b-line">
+                        <ul class="tab-nav">
+                            <li class="tab-nav-item tab-active">
+                                <a href="javascript:;">书籍列表</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-item tab-active">
+
+                            @for(book in bookList){
+                            <div class="aui-city-list">
+                                <div class="aui-city-item" onclick="location.href='${ctxPath}/mp/bookCatalogList/${book.id}'" >
+                                    <img src="${ctxPath}/kaptcha/kap?name=${book.imgurl}" alt="">
+                                    <!--
+                                    <span class="aui-city-tag"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.logo_img}" alt=""></span>
+                                    -->
+                                </div>
+                                <div class="aui-city-text">
+                                    <h2>${book.name} <em>${book.author}</em></h2>
+                                    <p>${book.describes}</p>
+                                </div>
+                            </div>
+                            @}
+
+                            <!--
+                            <div class="aui-city-list">
+                                <div class="aui-city-item" onclick="location.href='http://www.baidu.com'" >
+                                    <img src="${ctxPath}/static/mp/images/timg.jpg" alt="">
+                                    <span class="aui-city-tag"><img src="${ctxPath}/static/mp/images/icon-hot.png" alt=""></span>
+                                </div>
+                                <div class="aui-city-text">
+                                    <h2>从零开始学英语 <em>作者</em></h2>
+                                    <p>本土也有好的设计本土也有好的设计本土也有好的设计本土也有好的设计本土也有好的设计本土也有好的设计本土也有好的设计</p>
+                                </div>
+                            </div>
+                            <div class="aui-city-list">
+                                <div class="aui-city-item">
+                                    <img src="${ctxPath}/static/mp/images/city-img-002.jpg" alt="">
+                                    <span class="aui-city-tag"><img src="${ctxPath}/static/mp/images/icon-hot.png" alt=""></span>
+                                </div>
+                                <div class="aui-city-text">
+                                    <h2>超棒东直门阳光电梯两居室、工体</h2>
+                                    <p>本土也有好的设计</p>
+                                </div>
+                            </div>
+                            <div class="aui-city-list">
+                                <div class="aui-city-item">
+                                    <img src="${ctxPath}/static/mp/images/city-img-003.jpg" alt="">
+                                    <span class="aui-city-tag"><img src="${ctxPath}/static/mp/images/icon-hot.png" alt=""></span>
+                                </div>
+                                <div class="aui-city-text">
+                                    <h2>蓝桥|工体美食酒吧街三里屯太故里</h2>
+                                    <p>本土也有好的设计</p>
+                                </div>
+                            </div>
+                            <div class="aui-city-list">
+                                <div class="aui-city-item">
+                                    <img src="${ctxPath}/static/mp/images/city-img-004.jpg" alt="">
+                                    <span class="aui-city-tag"><img src="${ctxPath}/static/mp/images/icon-hot.png" alt=""></span>
+                                </div>
+                                <div class="aui-city-text">
+                                    <h2>北京广渠门家庭公寓双床房</h2>
+                                    <p>本土也有好的设计</p>
+                                </div>
+                            </div>
+                            -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    
+
+</body></html>

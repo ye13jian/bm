@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>${session.mpInfo!=null?session.mpInfo.title:bookCatalog.name}</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <link href="${ctxPath}/static/modular/mp/css/bookcatalogdetail.css" rel="stylesheet" type="text/css">
+        <script src="${ctxPath}/static/modular/mp/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="${ctxPath}/static/modular/mp/js/bookcatalogdetail.js" type="text/javascript"></script>
+
+<style type="text/css">
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .headdiv{
+        position:fixed;width:100%;top: 0;height: 50px;border: 0px solid red;background-color: #FFFFFF;line-height: 50px;padding-left:10px;color: #333333;
+    }
+</style>
+
+</head>
+<body>
+
+<input type="hidden" id="ctxPath" value="${ctxPath}">
+
+    <div class="headdiv">${bookCatalog.name}</div>
+
+
+    <iframe id="linkiframe" src="${bookCatalog.reslink}" style="border: 0;" frameborder="0"></iframe>
+
+
+    <script type="text/javascript">
+        var width = $(window).width();
+        var height = $(window).height();
+        //alert(width+' '+height);
+        $('#linkiframe').width(width);
+        $('#linkiframe').height(height-50);
+    </script>
+
+
+            
+            
+    <footer class="aui-footer-button aui-footer-flex aui-footer-fixed">
+        <div class="aui-footer-group aui-footer-flex1">
+            <div class="aui-footer-flex">
+                <div id="addCollection" collstatus="${collection!=null?true:false}" openid="${session.openid}" bookcatalogid="${bookCatalog.id}" class="aui-btn aui-btn-gray">
+                    <span id="collText">
+                        @if(collection==null){
+                            加入收藏
+                        @}else{
+                            取消收藏
+                        @}
+                    </span>
+                </div>
+                <div class="aui-btn aui-btn-red" onclick="location.href='${ctxPath}/mp/collection'">
+                    <span>我的收藏</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>

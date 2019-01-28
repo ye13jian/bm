@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>商品详情</title>
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<link href="${ctxPath}/static/modular/mp/integralmall/css/detail.css" rel="stylesheet" type="text/css">
+<script src="${ctxPath}/static/modular/mp/integralmall/js/jquery-1.7.js" type="text/javascript"></script>
+<script src="${ctxPath}/static/modular/mp/js/toast.js" type="text/javascript"></script>
+</head>
+
+<body style="background:#efefef">
+
+<div id="aui-slide2" class="aui-slide">
+	<div class="aui-slide-wrap">
+        @if(gift.imgurl1!=null&&gift.imgurl1!=""){
+        <div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+            <img src="${ctxPath}/kaptcha/kap?name=${gift.imgurl1}" alt="">
+        </div>
+        @}
+        @if(gift.imgurl2!=null&&gift.imgurl2!=""){
+        <div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+            <img src="${ctxPath}/kaptcha/kap?name=${gift.imgurl2}" alt="">
+        </div>
+        @}
+        @if(gift.imgurl3!=null&&gift.imgurl3!=""){
+        <div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+            <img src="${ctxPath}/kaptcha/kap?name=${gift.imgurl3}" alt="">
+        </div>
+        @}
+        @if(gift.imgurl4!=null&&gift.imgurl4!=""){
+        <div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+            <img src="${ctxPath}/kaptcha/kap?name=${gift.imgurl4}" alt="">
+        </div>
+        @}
+	</div>
+	<div class="aui-slide-page-wrap">
+		<!--分页容器-->
+	</div>
+</div>
+
+
+
+
+<div class="goods_info" style="margin-top:10px;">
+	<div class="i-gtitle" style="color: red;">
+        ${gift.score}
+        <em>积分</em>
+    </div>
+    <div class="pro-numb"  style="color: #212121;">
+        <em style="font-size: 18px;">${gift.name}</em>
+        <p style="font-size: 16px;">${gift.describes}</p>
+    </div>
+    <div class="pro-adr">
+    	<span style="float:left;">销量：${gift.sale}</span>
+        <span style="float:right;">库存：${gift.stock}</span>
+    </div>
+</div>
+
+
+
+
+<div class="goods_info" style="margin-top:10px">
+  <div class="proto">
+    	<div class="hh"><span>基本参数</span></div>
+  </div>
+  
+  <div class="pro-proto">
+  	<pre style="font-size: 13.5px;color: #666666;">${gift.attributes}</pre>
+  </div>
+
+    <br><br><br>
+  <!--
+  <div class="ginfo">
+    	<div class="hh">商品描述</div>
+        <div class="cc">
+           ${gift.describes}
+        </div>
+  </div>
+  -->
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="xuan-i" id="xuani" style="display:none;">
+	<div class="waidiv">
+    	<div class="f-goodsimg"><img src="${ctxPath}/kaptcha/kap?name=${gift.imgurl1}" width="110" height="110"></div>
+        <div class="f-jiage">${gift.score}积分</div>
+        <div class="f-kcs">库存<span>${gift.stock}</span>件</div>
+        <div class="forn-gmsl">购买数量</div>
+        <div class="forn-inline" data-box="buy">
+            <button type="button" class="butxz">-</button>
+            <input type="text" id="BuyNun" min="1" max="10" step="1" pattern="[0-9]*" value="1" name="BuyNum" class="buynum" readonly="readonly">
+            <button type="button" class="butxz">+</button>
+        </div>
+        <div class="forn-gmsl" style="top: 170px;">需要积分</div>
+        <div class="forn-inline"  style="top: 170px;" id="div01">${gift.score}</div>
+        <div class="forn-gmsl" style="top: 210px;">我的积分</div>
+        <div class="forn-inline"  style="top: 210px;">${member.score}</div>
+      <a class="xuanhide" title="关闭" onclick="hideOtherDiv()"></a>
+      <a  onclick="confirm()" class="but">确定</a>
+	</div>
+</div>
+<div class="xuan-zz" id="xuanzz" style="display:none;"></div>
+
+@if(gift.stock>0){
+    <div class="foot-gm" onclick="showOtherDiv()">
+        立即购买
+    </div>
+@}else{
+    <div class="foot-gm" style="background-color: darkgrey;">
+        暂无库存
+    </div>
+@}
+
+
+<script type="text/javascript">
+    function confirm(){
+        var giftId = ${gift.id};
+        var count = $('#BuyNun').val();
+        var allscore = ${gift.score}*count;
+        //alert(giftId+':'+count);
+        if(allscore>${member.score}){
+            //alert('你的积分不够！');
+            toast("你的积分不够！",2000);
+            return;
+        }
+        location.href = '${ctxPath}/mp/integralmall/confirm_add?giftId='+giftId+'&count='+count;
+    }
+</script>
+
+
+<script type="text/javascript" src="${ctxPath}/static/modular/mp/integralmall/js/aui-slide.js"></script>
+<script type="text/javascript">
+function showOtherDiv(){
+    //获取要显示的div对象
+    var  otherDiv=document.getElementById('xuani');
+    //显示
+    otherDiv.style.display="block";
+	var  otherDiv=document.getElementById('xuanzz');
+	otherDiv.style.display="block";
+}
+function hideOtherDiv(){
+    //获取要显示的div对象
+    var  otherDiv=document.getElementById('xuani');
+    //显示
+    otherDiv.style.display="none";
+	var  otherDiv=document.getElementById('xuanzz');
+	otherDiv.style.display="none";
+}
+
+
+</script>
+
+<script type="text/javascript">
+    var slide2 = new auiSlide({
+        container:document.getElementById("aui-slide2"),
+        // "width":300,
+        //"height":364,
+        "speed":300,
+        "autoPlay":3000, //自动播放
+        "pageShow":true,
+        "loop":true,
+        "pageStyle":'dot',
+        'dotPosition':'center'
+    })
+</script>
+<script type="text/javascript">
+        function getElementByAttr(tag, attr, value) {
+            var aElements = document.getElementsByTagName(tag);
+            var aEle = [];
+            for (var i = 0; i < aElements.length; i++) {
+                if (aElements[i].getAttribute(attr) == value)
+                    aEle.push(aElements[i]);
+            }
+            return aEle;
+        }
+        window.onload = function () {
+            var box = getElementByAttr("div", "data-box", "buy");
+            for (var i = 0; i < box.length; i++) {
+                calculate(box[i]);
+
+            }
+        }
+        function calculate(box) {
+            var oBtn = box.getElementsByTagName("button");
+            var ipt = box.getElementsByTagName("input")[0];
+            var number = parseInt(ipt.value);
+            oBtn[0].onclick = function () {
+                number--;
+                if (number < 1) {
+                    number = 1;
+                }
+                ipt.value = number;
+                $('#div01').text(ipt.value*${gift.score});
+            }
+            oBtn[1].onclick = function () {
+                number++;
+                if(number>${gift.stock}){
+                    number = ${gift.stock};
+                }
+                ipt.value = number;
+                $('#div01').text(ipt.value*${gift.score});
+            }
+        }
+ </script>
+</body>
+</html>

@@ -60,7 +60,8 @@ public class OpinionController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return opinionService.selectList(null);
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return opinionService.selectList_U(userId,condition);
     }
 
     /**

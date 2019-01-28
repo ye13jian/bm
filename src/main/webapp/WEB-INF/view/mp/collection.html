@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>${session.mpInfo!=null?session.mpInfo.title:'我的收藏'}</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <link href="${ctxPath}/static/modular/mp/css/bookcataloglist.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed">
+                <a href="javascript:;" class="aui-navBar-item">
+                    <!--
+                    <i class="icon icon-return"></i>
+                    -->
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title">
+                        我的收藏
+                    </span>
+                </div>
+                <a href="javascript:;" class="aui-navBar-item">
+                    <i class="icon icon-sys"></i>
+                </a>
+            </header>
+            
+            <section class="aui-scrollView">
+                	
+                    <div class="aui-item-ofl b-line">
+                        <ul class="tab-nav">
+                            <li class="tab-nav-item tab-active">
+                                <a href="javascript:;">收藏目录</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-panel">
+                        
+                        <div class="tab-panel-item tab-active">
+                            <div class="tab-item">
+
+                                @for(bookCatalog in bookCatalogList){
+                                <a href="${ctxPath}/mp/bookCatalogDetail/${bookCatalog.id}" class="aui-flex" target="_blank">
+                                    <div class="aui-flex aui-flex-show">
+                                        <div class="aui-flex-img">
+                                            <img src="${ctxPath}/static/modular/mp/images/image_CD_0.png" alt="">
+                                        </div>
+                                        <div class="aui-flex-box">
+                                            <h3>${bookCatalog.name}</h3>
+                                            <div class="aui-flex aui-flex-sm">
+                                                <img src="${ctxPath}/kaptcha/kap?name=${bookCatalog.imgurl}" alt=""> <p>${bookCatalog.bookname}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                @}
+
+                                <!--
+                                <a href="${ctxPath}/mp/bookCatalogDetail/12" class="aui-flex">
+                                    <div class="aui-flex aui-flex-show">
+                                        <div class="aui-flex-img">
+                                            <img src="images/ad-002.png" alt="">
+                                            <span class="aui-flex-tag">
+                                                <em class="aui-flex-tag-cho">
+                                                    直播<i class="icon icon-live"></i>
+                                                </em>
+                                                <em class="aui-flex-tag-tex">445人</em>
+                                            </span>
+                                            <span class="aui-tag-icon-zan"></span>
+                                        </div>
+                                        <div class="aui-flex-box">
+                                            <h3>12尚学季项链手环耳钉吊坠翡翠挂牌限时抢购</h3>
+                                            <p>老毕翡翠店铺</p>
+                                            <div class="aui-flex aui-flex-sm">
+                                                <img src="images/ad-sm-001.png" alt="">
+                                                <img src="images/ad-sm-002.png" alt="">
+                                                <img src="images/ad-sm-003.png" alt="">
+                                                <div class="aui-flex-nub">5件</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="javascript:;" class="aui-flex">
+                                    <div class="aui-flex aui-flex-show">
+                                        <div class="aui-flex-img">
+                                            <img src="images/ad-003.png" alt="">
+                                            <span class="aui-flex-tag">
+                                                <em class="aui-flex-tag-cho">
+                                                    直播<i class="icon icon-live"></i>
+                                                </em>
+                                                <em class="aui-flex-tag-tex">445人</em>
+                                            </span>
+                                            <span class="aui-tag-icon-zan"></span>
+                                        </div>
+                                        <div class="aui-flex-box">
+                                            <h3>尚学季项链手环耳钉吊坠翡翠挂牌限时抢购</h3>
+                                            <p>老毕翡翠店铺</p>
+                                            <div class="aui-flex aui-flex-sm">
+                                                <img src="images/ad-sm-001.png" alt="">
+                                                <img src="images/ad-sm-002.png" alt="">
+                                                <img src="images/ad-sm-003.png" alt="">
+                                                <div class="aui-flex-nub">5件</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="javascript:;" class="aui-flex">
+                                    <div class="aui-flex aui-flex-show">
+                                        <div class="aui-flex-img">
+                                            <img src="images/ad-004.png" alt="">
+                                            <span class="aui-flex-tag">
+                                                <em class="aui-flex-tag-cho">
+                                                    直播<i class="icon icon-live"></i>
+                                                </em>
+                                                <em class="aui-flex-tag-tex">445人</em>
+                                            </span>
+                                            <span class="aui-tag-icon-zan"></span>
+                                        </div>
+                                        <div class="aui-flex-box">
+                                            <h3>尚学季项链手环耳钉吊坠翡翠挂牌限时抢购</h3>
+                                            <p>老毕翡翠店铺</p>
+                                            <div class="aui-flex aui-flex-sm">
+                                                <img src="images/ad-sm-001.png" alt="">
+                                                <img src="images/ad-sm-002.png" alt="">
+                                                <img src="images/ad-sm-003.png" alt="">
+                                                <div class="aui-flex-nub">5件</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="javascript:;" class="aui-flex">
+                                    <div class="aui-flex aui-flex-show">
+                                        <div class="aui-flex-img">
+                                            <img src="images/ad-005.png" alt="">
+                                            <span class="aui-flex-tag">
+                                                <em class="aui-flex-tag-cho">
+                                                    直播<i class="icon icon-live"></i>
+                                                </em>
+                                                <em class="aui-flex-tag-tex">445人</em>
+                                            </span>
+                                            <span class="aui-tag-icon-zan"></span>
+                                        </div>
+                                        <div class="aui-flex-box">
+                                            <h3>尚学季项链手环耳钉吊坠翡翠挂牌限时抢购</h3>
+                                            <p>老毕翡翠店铺</p>
+                                            <div class="aui-flex aui-flex-sm">
+                                                <img src="images/ad-sm-001.png" alt="">
+                                                <img src="images/ad-sm-002.png" alt="">
+                                                <img src="images/ad-sm-003.png" alt="">
+                                                <div class="aui-flex-nub">5件</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+            </section>
+
+            <footer class="aui-footer aui-footer-fixed">
+                <a href="${ctxPath}/mp/home" class="aui-tabBar-item">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-home"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">首页</span>
+                </a>
+                <a href="#" class="aui-tabBar-item aui-tabBar-item-active">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-loan"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">收藏</span>
+                </a>
+                <a href="${ctxPath}/mp/opinion_create" class="aui-tabBar-item ">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-me"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">建议</span>
+                </a>
+                <a href="${ctxPath}/mp/center" class="aui-tabBar-item">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-meTo"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">我的</span>                                                                                                                                                                                                                                      </span>
+                </a>
+            </footer>
+
+        </section>
+
+</body>
+
+</html>

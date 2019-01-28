@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<script type="text/javascript">
+    //扫描页面上的目录二维码，如果没有session，到这里然后跳转到验证微信用户界面
+    var bookCatalogId = '${bookCatalogId}';
+    var IP = '${IP}';
+    //alert('start:'+bookCatalogId);
+	var redirect_uri = encodeURIComponent(IP+"/mp/bcdValidate?bookCatalogId="+bookCatalogId);
+	//alert(redirect_uri);
+	var appid= '${appid}';
+	var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+	//alert(url);
+	location.href=url;	
+</script>
+
+<body>
+
+
+
+</body>
+</html>

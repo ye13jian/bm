@@ -2,6 +2,9 @@ package com.eluoen.bm.modular.system.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.eluoen.bm.modular.system.model.Gift;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.eluoen.bm.modular.system.model.Gift;
  */
 public interface GiftMapper extends BaseMapper<Gift> {
 
+    List<Gift> selectList_U(@Param("userId") Integer userId, @Param("condition") String condition);
 }

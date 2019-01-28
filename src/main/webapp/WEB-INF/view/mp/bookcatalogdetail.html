@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>${session.mpInfo.title}</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <link href="${ctxPath}/static/modular/mp/css/bookcatalogdetail.css" rel="stylesheet" type="text/css">
+        <script src="${ctxPath}/static/modular/mp/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="${ctxPath}/static/modular/mp/js/bookcatalogdetail.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+
+    <input type="hidden" id="ctxPath" value="${ctxPath}">
+
+        <section class="aui-flexView">
+
+
+            
+            <section class="aui-scrollView">
+            	
+                <div class="img_gallery" id="commodity">
+                    <video id="videoID" controls="controls" src="${ctxPath}/kaptcha/kap?name=${bookCatalog.resurl}" preload="auto" x-webkit-airplay="true" x5-playsinline="true" webkit-playsinline="true" playsinline="true" style="width: 100%;"></video>
+                </div>
+                
+                <div id="d1" class="aui-product-head aui-footer-flex">               	
+                    <em><i class="icon"></i></em>
+                    <em> ${wxPlayCount} 次</em>
+                </div>
+                
+                <div class="aui-product-title">
+                    <h2>${bookCatalog.name}</h2>
+                </div>
+                <div class="aui-product-title aui-product-title-text">
+                    <h2>${bookCatalog.describes}</h2>
+                </div>
+                
+                <div class="aui-tag-info clearfix">
+                    <img src="${ctxPath}/static/modular/mp/images/icon-rb.png" alt="">
+                    <span>插播广告栏</span>
+                </div>
+                
+                <div class="aui-ad-img">
+                    <img src="${ctxPath}/static/modular/mp/images/ad-001.png" alt="">
+                </div>
+                
+                
+                <!--
+                <div class="divHeight"></div>
+                <div class="aui-evaluate-box">
+                    <div class="aui-footer-flex aui-evaluate-item">
+                        <div class="aui-footer-flex1 aui-evaluate-hd">商品评价(4599)</div>
+                        <div class="aui-evaluate-fr">我要评论</div>
+                    </div>
+                    <div class="aui-category-box-list ">
+                        评论内容......
+                    </div>
+                </div>
+                -->
+
+                <!--
+                <div class="divHeight"></div>
+                <div class="aui-footer-flex aui-pp-box">
+                    <div class="aui-footer-flex1 aui-evaluate-hd">
+                        <div class="aui-footer-flex">
+                            <div class="aui-pp-box-img">
+                                <img src="${ctxPath}/static/mp/images/logo-pp1.png" alt="">
+                            </div>
+                            <div class="aui-pp-box-text">
+                                <h2>${bookCatalog.bookname} </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-evaluate-fr">书籍目录</div>
+                </div>
+                -->
+                <!--
+                <div class="aui-vertical">
+                    <div class="aui-slide-list">
+                        <ul class="aui-slide-item-list">
+                            <li class="aui-slide-item-item">
+                                <a href="${ctxPath}/mp/bookCatalogList/${bookCatalog.book_id}" class="aui-link clearfix">
+                                    <div class="aui-page-hd">
+                                        <img src="${ctxPath}/static/mp/images/icon-page-001.png" alt="">
+                                    </div>
+                                    <div class="aui-page-bd">
+                                        <p>还好赶上活动买的价格挺</p>
+                                        <p>
+                                            <span class="aui-price">&lt;&nbsp;上一首</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="aui-slide-item-item">
+                                <a href="javascript:;" class="aui-link clearfix">
+                                    <div class="aui-page-hd">
+                                        <img src="${ctxPath}/static/mp/images/icon-page-002.png" alt="">
+                                    </div>
+                                    <div class="aui-page-bd">
+                                        <p>可能是新鞋的缘故吧</p>
+                                        <p>
+                                            <span class="aui-price">下一首&nbsp;&gt;</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                -->
+                <!--
+                <div class="divHeight"></div>
+                <div class="aui-introduce">
+                    <div class="aui-tab" data-ydui-tab="">
+
+                        <div class="tab-panel">
+                            <div class="tab-panel-item tab-active">
+                                <div class="tab-item">
+
+                                    <div class="aui-Written-text">
+                                        <h3>${collection}${collection!=null?true:false}不同版本信息说明</h3>
+                                        <p>${session.openid}:${session["openid"]}:session["openid"]:session.openid由于海淘商品是品牌方交由不同国家的生产厂家生产且出售国家地区不同，因此会出现同一商品多版本情况，不同版本的商品会存在细微的差异</p>
+                                        <p>商城对每批商品都会经过5道程序仔细核对，确保发到您手中的商品100%正品，假一赔十，请您放心购买</p>
+                                    </div>
+                                    <div class="aui-Written-title">
+                                        <h3>消费者告知书</h3>
+                                        <p>请您在购买前务必认真、详细阅读并完全理解本告知书的全部内容，并对资深风险承担做出客观判断</p>
+                                        <p>1、您在商城商城上购买的境外商品等同于原产地直接销售商品，因此商品本身可能无中文标签，如果需要您可以通过网站查看相关商品标签中文翻译或者联系客服。</p>
+                                        <p>2、促销价：如无特殊说明，促销价是销售商在参考价基础上给予的优惠价格。如有疑问，您可以与客服联系。</p>
+                                        <p>3、商城价：商城非会员用户购买的商品详情页显示的售价，是非会员用户最终决定是否购买该商品的依据。</p>
+                                        <p>4、会员价：在商城价的基础上给予会员用户的优惠价格，仅会员用户可以会员价购买该商品。</p>
+                                        <p>5、价格异常：因可能存在系统缓存、页面更新延迟等不确定性情况，导致价格显示异常，商品具体售价请以订单结算页价格为准。如您发现异常情况出现，请立即联系我们补正，以便您能顺利购物。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                -->
+                
+                
+                
+                
+            </section>
+            
+            
+            <footer class="aui-footer-button aui-footer-flex aui-footer-fixed">
+                <div class="aui-footer-group aui-footer-flex1">
+                    <div class="aui-footer-flex">
+                        <div id="addCollection" collstatus="${collection!=null?true:false}" openid="${session.openid}" bookcatalogid="${bookCatalog.id}" class="aui-btn aui-btn-gray">
+                            <span id="collText">
+                                @if(collection==null){
+                                    加入收藏
+                                @}else{
+                                    取消收藏
+                                @}
+                            </span>
+                        </div>
+                        <div class="aui-btn aui-btn-red" onclick="location.href='${ctxPath}/mp/collection'">
+                            <span>我的收藏</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            
+            
+        </section>
+        
+        
+
+</body></html>

@@ -19,6 +19,6 @@ public interface IBookService extends IService<Book> {
     /**
      * 获取ztree的节点列表
      */
-    List<ZTreeNode> tree();
+    List<ZTreeNode> tree(Integer userId);
 
 }

@@ -1,0 +1,117 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>${session.mpInfo.title}</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="${ctxPath}/static/modular/mp/css/bbslist.css"  />
+
+    <script src="${ctxPath}/static/modular/mp/js/jquery1.7.js?v=1.27" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body style="">
+	
+<section class="index">
+<div id="slideBox" class="slideBox">
+    <div class="bd">
+        <ul>
+            <li><a href="${session.mpInfo.ad4_link}" title=""><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad4_img}"  alt="" /></a></li>
+         </ul>
+    </div>
+</div>
+</section>
+	
+	
+	
+	
+<!-- 你的html代码 -->
+<div class="page page-current" id="page-index">
+    <div class="content">
+        <div class="content-inner">
+            <div class="evaluate">
+                <div class="evaluate-box">
+                    <div class="evaluate-bt">
+                        <p>在线交流</p>
+                        <a href="javascript:;">TOP3</a>
+                    </div>
+                    <div class="evaluate-list">
+
+                        @for(bbsSys in bbsSysList){
+                        <div class="evaluate-px" onclick="location.href='${ctxPath}/mp/bbsSysDetail/${bbsSys.id}'">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><a href="javascript:;"><img src="${ctxPath}/static/modular/mp/images/top3.png" alt=""></a></i>
+                                    <p><a href="javascript:;" style="color: #BF4746;">${bbsSys.title}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        @}
+
+
+                        <!--
+                        <div class="evaluate-px" onclick="location.href='http://www.baidu.com'">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><a href="javascript:;"><img src="${ctxPath}/static/mp/images/top3.png" alt=""></a></i>
+                                    <p><a href="javascript:;" style="color: #BF4746;">很喜欢这花，送给女友的，她非常的喜欢2</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+
+
+                        <!-- 插播广告图 -->
+                        <div class="evaluate-px">
+                            <div class="aui-centers-ad">
+                                <a href="${session.mpInfo.ad9_link}"><img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad9_img}" alt="" ></a>
+                            </div>
+                        </div>
+
+
+
+                        @for(bbsWx in bbsWxList){
+                        <div class="evaluate-px" onclick="location.href='${ctxPath}/mp/bbsWxDetail/${bbsWx.id}'">
+                            <div class="datum-rw">
+                                <div class="datum-name">
+                                    <i><a href="javascript:;"><img src="${bbsWx.headimgurl}" alt=""></a></i>
+                                    <p><a href="javascript:;">${bbsWx.nickname}</a></p>
+                                </div>
+                                <div class="datum-time">
+                                    <p><span>${bbsWx.createtime}</span><span> ${bbsWx.createtime}</span></p>
+                                </div>
+                            </div>
+                            <div class="discuss">
+                                <p style="text-indent: 2em;"> ${bbsWx.content}</p>
+                            </div>
+                        </div>
+                        @}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Picture">
+    <div class="Picture-box">
+        <a href="javascript:;" class="mine open"><img src="${ctxPath}/static/modular/mp/images/up_ico.png" alt=""></a>
+        <a href="javascript:;" class="Next open"><img src="${ctxPath}/static/modular/mp/images/next_ico.png" alt=""></a>
+        <div class="theme">
+            <img src="http://www.17sucai.com/preview/1160620/2018-10-01/pl/index.html" alt="">
+        </div>
+        <a href="javascript:;" class="gb-btn">×</a>
+    </div>
+</div>
+
+
+
+
+<div style="position: fixed;bottom: 30px;right: 30px;">
+	<a href="${ctxPath}/mp/bbsEdit"><img src="${ctxPath}/static/modular/mp/images/edit.png" style="width: 60px;"></a>
+</div>
+
+
+</body></html>

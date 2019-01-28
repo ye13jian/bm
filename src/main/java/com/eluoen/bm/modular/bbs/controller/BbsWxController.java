@@ -60,7 +60,8 @@ public class BbsWxController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return bbsWxService.selectList(null);
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return bbsWxService.selectList_U(userId,condition);
     }
 
     /**

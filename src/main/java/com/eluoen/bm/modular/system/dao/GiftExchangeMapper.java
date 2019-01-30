@@ -17,9 +17,10 @@ import java.util.Map;
  */
 public interface GiftExchangeMapper extends BaseMapper<GiftExchange> {
 
-
     public List<Map<String,Object>> selectList_U(@Param("userId") Integer userId, @Param("startdate") String startdate, @Param("enddate") String enddate, @Param("condition") String condition);
 
     public Map<String,Object> selectById(@Param("giftExchangeId") Integer giftExchangeId);
+
+    public List<Map<String,Object>> selectExpressUserList(@Param("userId") Integer userId, @Param("expCode") String expCode);
 
 }

@@ -33,4 +33,9 @@ public class GiftExchangeServiceImpl extends ServiceImpl<GiftExchangeMapper, Gif
     public Map<String, Object> selectById(Integer giftExchangeId) {
         return giftExchangeMapper.selectById(giftExchangeId);
     }
+
+    @Override
+    public List<Map<String,Object>> selectExpressUserList(Integer userId, String expCode) {
+        return this.giftExchangeMapper.selectExpressUserList(userId,expCode);
+    }
 }

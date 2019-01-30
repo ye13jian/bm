@@ -56,4 +56,12 @@
         WHERE e.giftid=g.id AND e.openid=m.openid AND e.id=#{giftExchangeId}
     </select>
 
+    <select id="selectExpressUserList" resultType="java.util.Map">
+        SELECT e.id,e.exp_code expCode,e.exp_name expName FROM tbl_express e LEFT JOIN tbl_express_user u ON e.exp_code=u.exp_code
+        WHERE u.userid=#{userId}
+        <if test="expCode != null and expCode != ''">
+        OR e.exp_code=#{expCode}
+        </if>
+    </select>
+
 </mapper>

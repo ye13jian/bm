@@ -17,13 +17,14 @@
         <result column="sale" property="sale" />
         <result column="remark" property="remark" />
         <result column="status" property="status" />
+        <result column="userid" property="userid" />
         <result column="createdate" property="createdate" />
         <result column="createtime" property="createtime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, attributes, describes, imgurl1, imgurl2, imgurl3, imgurl4, score, stock, sale, remark, status, createdate, createtime
+        id, name, attributes, describes, imgurl1, imgurl2, imgurl3, imgurl4, score, stock, sale, remark, status, userid, createdate, createtime
     </sql>
 
     <select id="selectList_U" resultMap="BaseResultMap">

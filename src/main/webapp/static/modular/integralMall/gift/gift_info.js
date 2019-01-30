@@ -55,7 +55,8 @@ GiftInfoDlg.collectData = function() {
     .set('imgurl4')
     .set('score')
     .set('stock')
-    .set('sale');
+    .set('sale')
+    .set('userid');
 }
 
 /**

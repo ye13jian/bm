@@ -1,8 +1,5 @@
-package com.eluoen.bm.modular.market;
+package com.eluoen.bm.modular.market.controller;
 
-import cn.stylefeng.roses.core.util.ToolUtil;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.eluoen.bm.core.log.LogObjectHolder;
 import com.eluoen.bm.modular.market.service.IMemberService;
@@ -63,15 +60,17 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        if(ToolUtil.isEmpty(condition)){
-            return memberService.selectList(null);
-        }else{
-            EntityWrapper<Member> entityWrapper = new EntityWrapper<>();
+        //if(ToolUtil.isEmpty(condition)){
+            //return memberService.selectList(null);
+        //}else{
+            //EntityWrapper<Member> entityWrapper = new EntityWrapper<>();
             //Wrapper<Member> wrapper = entityWrapper.like("openid",condition);
             //多字段匹配
-            Wrapper<Member> wrapper = entityWrapper.like("CONCAT(openid, nickname, IFNULL(mobile,''), IFNULL(fullname,''))",condition);
-            return memberService.selectList(wrapper);
-        }
+            //Wrapper<Member> wrapper = entityWrapper.like("CONCAT(openid, nickname, IFNULL(mobile,''), IFNULL(fullname,''))",condition);
+            //return memberService.selectList(wrapper);
+        //}
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return memberService.selectList_U(userId,condition);
     }
 
     /**

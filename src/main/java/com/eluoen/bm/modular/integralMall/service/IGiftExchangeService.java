@@ -2,6 +2,7 @@ package com.eluoen.bm.modular.integralMall.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.eluoen.bm.modular.system.model.GiftExchange;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,7 @@ public interface IGiftExchangeService extends IService<GiftExchange> {
     public List<Map<String,Object>> selectList_U(Integer userId, String startdate, String enddate, String condition);
 
     public Map<String,Object> selectById(Integer giftExchangeId);
+
+    public List<Map<String,Object>> selectExpressUserList(Integer userId, String expCode);
+
 }

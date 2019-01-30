@@ -131,7 +131,7 @@ public class MpController extends BaseController {
 
                     //获取当前IP
                     String addr = MpUtil.getIpAddr(request);
-                    Map<String,String> map = MpUtil.getLocation(addr);
+                    Map<String,String> map = MpUtil.getBaiduLocation(addr);
                     qrcodeInfo.putAll(map);
                     //log.info("qrcodeInfo:"+qrcodeInfo);
 

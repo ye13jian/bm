@@ -58,6 +58,7 @@ public class Gift extends Model<Gift> {
      * 状态
      */
     private Integer status;
+    private Integer userid;
     private String createdate;
     private String createtime;
 
@@ -166,6 +167,14 @@ public class Gift extends Model<Gift> {
         this.status = status;
     }
 
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
     public String getCreatedate() {
         return createdate;
     }
@@ -190,21 +199,22 @@ public class Gift extends Model<Gift> {
     @Override
     public String toString() {
         return "Gift{" +
-        "id=" + id +
-        ", name=" + name +
-        ", attributes=" + attributes +
-        ", describes=" + describes +
-        ", imgurl1=" + imgurl1 +
-        ", imgurl2=" + imgurl2 +
-        ", imgurl3=" + imgurl3 +
-        ", imgurl4=" + imgurl4 +
-        ", score=" + score +
-        ", stock=" + stock +
-        ", sale=" + sale +
-        ", remark=" + remark +
-        ", status=" + status +
-        ", createdate=" + createdate +
-        ", createtime=" + createtime +
-        "}";
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", attributes='" + attributes + '\'' +
+                ", describes='" + describes + '\'' +
+                ", imgurl1='" + imgurl1 + '\'' +
+                ", imgurl2='" + imgurl2 + '\'' +
+                ", imgurl3='" + imgurl3 + '\'' +
+                ", imgurl4='" + imgurl4 + '\'' +
+                ", score=" + score +
+                ", stock=" + stock +
+                ", sale=" + sale +
+                ", remark='" + remark + '\'' +
+                ", status=" + status +
+                ", userid=" + userid +
+                ", createdate='" + createdate + '\'' +
+                ", createtime='" + createtime + '\'' +
+                '}';
     }
 }

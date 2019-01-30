@@ -17,4 +17,15 @@
         id, qrcode, bookid, openid, createdate, createtime
     </sql>
 
+    <select id="selectList_U" resultType="java.util.Map">
+        SELECT a.*,m.*,b.* FROM tbl_qrcode_auth a,tbl_member m,tbl_book b
+        WHERE a.openid=m.openid AND a.bookid=b.id
+        <if test="userId != null and userId != 1">
+            AND b.userid=#{userId}
+        </if>
+        <if test="condition != null and condition != ''">
+            AND CONCAT(a.qrcode, m.nickname, IFNULL(m.mobile,''), IFNULL(m.fullname,''),b.name) like CONCAT('%',#{condition},'%')
+        </if>
+    </select>
+
 </mapper>

@@ -5,6 +5,7 @@
 
             <input type="hidden" id="id" value="${item.id}">
             <input type="hidden" id="status" value="2">
+            <input type="hidden" id="expressdate" value="${item.expressdate}">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
@@ -12,16 +13,15 @@
                             <#input id="consignee" name="收货人" value="${item.fullname} ${item.mobile}" readonly="readonly" />
                             <#input id="area" name="区域" value="${item.province} ${item.city} ${item.country}" readonly="readonly" />
                             <#input id="detailaddress" name="详细地址" value="${item.detailaddress}" readonly="readonly" />
-                            <#textarea id="message" name="买家留言" style="width:100%;height:54px;" value="${item.message}" readonly="readonly"/>
                 </div>
 
                 <div class="col-sm-6">
                             <#input id="gift" name="兑换礼品" value="${item.giftname}" readonly="readonly" />
-                            <#input id="count" name="礼品数量" value="${item.count}" readonly="readonly" underline="true" />
-                            <#DateCon id="expressdate" name="发货日期" />
+                            <#input id="count" name="礼品数量" value="${item.count}" readonly="readonly" />
                             <#select id="express" name="快递公司">
                                     <option value="">------ 请选择 ------</option>
                                 @for(express in expresses){
+                                @if(express.status==1||express.expCode==item.express){
                                     <option value="${express.expCode}"
                                         @if(express.expCode==item.express){
                                         selected="selected"
@@ -30,9 +30,9 @@
                                         ${express.expName}
                                     </option>
                                 @}
+                                @}
                             </#select>
                             <#input id="expressno" name="快递单号" value="${item.expressno}" />
-
                 </div>
             </div>
 
@@ -47,18 +47,10 @@
     </div>
 </div>
 <script>
-    laydate.render({
-        elem: '#expressdate'
-    });
-</script>
-<script>
-    //var expressdate = $('#expressdate').val();
-    var expressdate = '${item.expressdate}';
+    var expressdate = $('#expressdate').val();
     //alert(expressdate);
     if(expressdate==null||expressdate==''){
         $('#expressdate').val(dateFormat(new Date(),'yyyy-MM-dd'));
-    }else{
-        $('#expressdate').val(expressdate);
     }
 </script>
 <script src="${ctxPath}/static/modular/integralMall/giftExchange/giftExchange_info.js"></script>

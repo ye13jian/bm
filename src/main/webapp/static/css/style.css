@@ -3419,7 +3419,8 @@ a:focus {
     color: #ffffff;
     background-color: #ffffff;
     height: 1px;
-    margin: 20px 0;
+    /*margin: 20px 0;*/
+    margin: 15px 0;
 }
 
 .hr-line-solid {

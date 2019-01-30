@@ -4,6 +4,7 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.eluoen.bm.core.log.LogObjectHolder;
 import com.eluoen.bm.modular.integralMall.service.IExpressService;
 import com.eluoen.bm.modular.integralMall.service.IGiftExchangeService;
+import com.eluoen.bm.modular.market.service.IExpressUserService;
 import com.eluoen.bm.modular.system.model.Express;
 import com.eluoen.bm.modular.system.model.GiftExchange;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class GiftExchangeController extends BaseController {
     @Autowired
     private IGiftExchangeService giftExchangeService;
     @Autowired
-    private IExpressService expressService;
+    private IExpressUserService expressUserService;
 
     /**
      * 跳转到礼品兑换首页
@@ -59,7 +60,8 @@ public class GiftExchangeController extends BaseController {
         model.addAttribute("item",giftExchange);
         LogObjectHolder.me().set(giftExchange);
 
-        List<Express> expresses = expressService.selectList(null);
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        List<Map<String,Object>> expresses = giftExchangeService.selectExpressUserList(userId,giftExchange.get("express")==null?null:giftExchange.get("express").toString());
         model.addAttribute("expresses",expresses);
 
         return PREFIX + "giftExchange_edit.html";

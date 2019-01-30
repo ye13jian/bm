@@ -1,6 +1,8 @@
 package com.eluoen.bm.modular.mp.util;
 
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
@@ -21,9 +23,13 @@ import java.util.Map;
  */
 public class MpUtil {
 
+    private Logger log = LoggerFactory.getLogger(MpUtil.class);
 
     //百度ak密钥
     private final static String ak = "54fc34735729786f0c4c375156e1e7ee";
+
+    //腾讯key密钥
+    private final static String key = "KW5BZ-5Y4CF-PXPJY-NJNEV-AZ4IE-QZFGM";
 
     /**
      * 获取当前网络ip
@@ -145,11 +151,11 @@ public class MpUtil {
     }
 
     /**
-     * 获取省市
+     * 百度获取省市
      * @param ip
      * @return
      */
-    public static Map<String,String> getLocation(String ip){
+    public static Map<String,String> getBaiduLocation(String ip){
 
         Map<String,String> map = new HashMap<String, String>();
         String province = "";
@@ -185,7 +191,48 @@ public class MpUtil {
 
         map.put("province", province);
         map.put("city", city);
-        System.out.println(map);
+        //System.out.println(map);
+        return map;
+
+    }
+
+
+
+    /**
+     * 腾讯获取省市(这个测试不如百度准确)
+     * @param ip
+     * @return
+     */
+    public static Map<String,String> getTencentLocation(String ip){
+
+        Map<String,String> map = new HashMap<String, String>();
+        String province = "";
+        String city = "";
+        try {
+            String url = "https://apis.map.qq.com/ws/location/v1/ip?key="+key+"&ip="+ip;
+            String result = httpClient(null, url, "GET");
+
+            JSONObject jsonObject = JSONObject.parseObject(result);
+            Map<String,Object> m2 = (Map<String, Object>) jsonObject.get("result");
+            Map<String,Object> m3 = (Map<String, Object>) m2.get("ad_info");
+
+            province = m3.get("province").toString();
+            city = m3.get("city").toString();
+            province = province.replaceAll("省", "");
+            province = province.replaceAll("市", "");
+            city = city.length()>2?city.substring(0, city.length()-1):city;
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        province = province.equals("")?"":province;
+        city = city.equals("")?"":city;
+
+        map.put("province", province);
+        map.put("city", city);
+        //System.out.println(map);
         return map;
 
     }
@@ -193,13 +240,12 @@ public class MpUtil {
 
 
 
-
     public static void main(String[] args) {
 
 
-        String ip = "120.76.225.234";
-        getLocation(ip);
-
+        String ip = "113.246.155.172";
+        getTencentLocation(ip);
+        getBaiduLocation(ip);
 
 
 

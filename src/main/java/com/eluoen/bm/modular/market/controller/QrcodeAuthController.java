@@ -1,9 +1,11 @@
-package com.eluoen.bm.modular.market;
+package com.eluoen.bm.modular.market.controller;
 
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.eluoen.bm.core.log.LogObjectHolder;
 import com.eluoen.bm.modular.market.service.IQrcodeAuthService;
 import com.eluoen.bm.modular.system.model.QrcodeAuth;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/qrcodeAuth")
 public class QrcodeAuthController extends BaseController {
+
+    private Logger log = LoggerFactory.getLogger(QrcodeAuthController.class);
 
     private String PREFIX = "/market/qrcodeAuth/";
 
@@ -60,7 +64,11 @@ public class QrcodeAuthController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return qrcodeAuthService.selectList(null);
+        //return qrcodeAuthService.selectList(null);
+
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        log.info("qrcodeAuth list:"+userId);
+        return qrcodeAuthService.selectList_U(userId,condition);
     }
 
     /**

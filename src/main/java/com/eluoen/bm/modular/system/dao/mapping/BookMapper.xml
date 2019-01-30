@@ -32,7 +32,10 @@
 
     <!-- 获取书籍的Ztree -->
     <select id="tree" resultType="com.eluoen.bm.core.common.node.ZTreeNode">
-		select id,0 as pId,name as name,true as isOpen from tbl_book WHERE userid=#{userId}
+		select id,0 as pId,name as name,true as isOpen from tbl_book
+		<if test="userId != null and userId != 1">
+            WHERE userid=#{userId}
+        </if>
 	</select>
 
 </mapper>

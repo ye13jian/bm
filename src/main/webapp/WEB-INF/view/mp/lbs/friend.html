@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <title>${session.mpInfo!=null?session.mpInfo.title:'找朋友'}</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="${ctxPath}/static/modular/mp/css/friend.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${ctxPath}/static/modular/mp/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/modular/mp/js/tab.js"></script>
+
+    <script type="text/javascript" src="${ctxPath}/static/modular/mp/js/jweixin-1.1.0.js"></script>
+    <script type="text/javascript">
+        alert(location.href.split('#')[0]);
+
+        var province = '${info.province}';
+        var city = '${info.city}';
+        var country = '${info.country}';
+        var detailaddress = '${info.detailaddress}';
+        var fullname = '${info.fullname}';
+        var mobile = '${info.mobile}';
+
+        var ret_appId = '${ret.appId}';
+        var ret_timestamp = '${ret.timestamp}';
+        var ret_nonceStr = '${ret.nonceStr}';
+        var ret_signature = '${ret.signature}';
+
+        //alert(ret_appId+'\n'+ret_timestamp+'\n'+ret_nonceStr+'\n'+ret_signature);
+
+        wx.config({
+            debug:true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId:ret_appId, // 必填，公众号的唯一标识
+            timestamp:ret_timestamp, // 必填，生成签名的时间戳
+            nonceStr:ret_nonceStr, // 必填，生成签名的随机串
+            signature:ret_signature,// 必填，签名，见附录1
+            jsApiList:['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+    </script>
+
+    <script type="text/javascript">
+        wx.ready(function(){
+            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+            getLocation();
+        });
+    </script>
+
+    <script type="text/javascript">
+        function getLocation(){
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+                    //alert(latitude+' '+longitude+' '+speed+' '+accuracy);
+
+                    var latLng = latitude+','+longitude;
+
+                    $.ajax({
+                        type : 'get',
+                        url : 'https://apis.map.qq.com/ws/geocoder/v1',
+                        dataType:'jsonp',
+                        data : {
+                            key:"KW5BZ-5Y4CF-PXPJY-NJNEV-AZ4IE-QZFGM",//开发密钥
+                            location:latLng,//位置坐标
+                            get_poi:"0",//是否返回周边POI列表：1.返回；0不返回(默认)
+                            coord_type:"1",//输入的locations的坐标类型,1 GPS坐标
+                            output:"jsonp"
+                        },
+                        success : function(data, textStatus) {
+                            //alert(data.result.formatted_addresses.recommend);
+                            province = data.result.address_component.province;
+                            city = data.result.address_component.city;
+                            address = province+city+data.result.formatted_addresses.recommend;
+
+                        },
+                        error : function() {
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+<section class="aui-flexView">
+    <header class="aui-navBar aui-navBar-fixed">
+        <a href="javascript:;" class="aui-navBar-item">
+            <i class="icon icon-return"></i>
+        </a>
+        <div class="aui-center">
+            <span class="aui-center-title">找朋友</span>
+        </div>
+        <a href="javascript:;" class="aui-navBar-item">
+            <i class="icon icon-sys"></i>
+        </a>
+    </header>
+    <section class="aui-scrollView">
+        <div class="aui-tab" data-ydui-tab="">
+            <ul class="tab-nav">
+                <li class="tab-nav-item tab-active">
+                    <a href="javascript:;">
+                        <span>同一本书</span>
+                    </a>
+                </li>
+                <li class="tab-nav-item">
+                    <a href="javascript:;">
+                        <span>广交天下</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-panel">
+                <div class="tab-panel-item tab-active">
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-001.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>小岗村的村长 <em>分析师</em></h2>
+                            <h3>海淀区中关村中国技术交易大厦</h3>
+                            <p>北京市海淀区北四环西路66号</p>
+                        </div>
+                        <div class="aui-album-button aui-album-button-add">
+                            <button>+关注</button>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-002.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>小梅同志 <em>分析师</em></h2>
+                            <h3>海淀区中关村中国技术交易大厦123</h3>
+                            <p>北京市海淀区北四环西路66号中华人民共和国</p>
+                        </div>
+                        <div class="aui-album-button">
+                            <button>已关注</button>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-003.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>流浪者 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button">
+                            <button>已关注</button>
+                        </div>
+                    </a>
+
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-004.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>凌驾者 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button aui-album-button-add">
+                            <button>+关注</button>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-005.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>宝来驾驶者 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button aui-album-button-add">
+                            <button>+关注</button>
+                        </div>
+                    </a>
+                </div>
+                
+                
+                <div class="tab-panel-item">
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-author-user">
+                            <img src="./friend_files/vip-001.png" alt="">
+                        </div>
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-001.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>小岗村的村长 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button aui-album-button-add">
+                            <button>+关注</button>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-author-user">
+                            <img src="./friend_files/vip-002.png" alt="">
+                        </div>
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-002.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>小梅同志 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button">
+                            <button>已关注</button>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-author-user">
+                            <img src="./friend_files/vip-003.png" alt="">
+                        </div>
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-003.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>流浪者 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button">
+                            <button>已关注</button>
+                        </div>
+                    </a>
+
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-author-user">
+                            <img src="./friend_files/vip-004.png" alt="">
+                        </div>
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-004.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>凌驾者 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button aui-album-button-add">
+                            <button>+关注</button>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-flex b-line">
+                        <div class="aui-album-img">
+                            <img src="./friend_files/user-005.png" alt="">
+                        </div>
+                        <div class="aui-flex-box">
+                            <h2>宝来驾驶者 <em>分析师</em></h2>
+                            <h3>周阅读量33万</h3>
+                            <p>坐标杭州、上海、北京微信号:yyossom 加好友时请备注公司和职位以及来意、欢迎交流~</p>
+                        </div>
+                        <div class="aui-album-button aui-album-button-add">
+                            <button>+关注</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+</body>
+</html>

@@ -27,4 +27,16 @@
         id, openid, mobile, fullname, nickname, sex, headimgurl, province, city, address, score, validitydate, remark, status, createdate, createtime
     </sql>
 
+    <select id="selectList_U" resultMap="BaseResultMap">
+        SELECT m.* FROM tbl_member m,v_openid o
+        WHERE m.openid=o.openid
+        <if test="userId != null and userId != 1">
+            AND o.userid=#{userId}
+        </if>
+        <if test="condition != null and condition != ''">
+            AND CONCAT(m.openid, m.nickname, IFNULL(m.mobile,''), IFNULL(m.fullname,'')) like CONCAT('%',#{condition},'%')
+        </if>
+    </select>
+
+
 </mapper>

@@ -14,14 +14,28 @@ var QrcodeAuth = {
 QrcodeAuth.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            //{title: '', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            {title: '微信头像', field: 'headimgurl', visible: true, align: 'center', valign: 'middle', formatter:QrcodeAuth.imgFormat},
+            {title: '微信昵称', field: 'nickname', visible: true, align: 'center', valign: 'middle'},
+            {title: '手机号码', field: 'mobile', visible: true, align: 'center', valign: 'middle'},
+            {title: '姓名', field: 'fullname', visible: true, align: 'center', valign: 'middle'},
             {title: '二维码', field: 'qrcode', visible: true, align: 'center', valign: 'middle'},
-            {title: '书籍id', field: 'bookid', visible: true, align: 'center', valign: 'middle'},
-            {title: '微信openid', field: 'openid', visible: true, align: 'center', valign: 'middle'},
-            {title: '认证日期', field: 'createdate', visible: true, align: 'center', valign: 'middle'},
-            {title: '认证时间', field: 'createtime', visible: true, align: 'center', valign: 'middle'}
+            {title: '书籍', field: 'name', visible: true, align: 'center', valign: 'middle'},
+            //{title: '微信openid', field: 'openid', visible: true, align: 'center', valign: 'middle'},
+            {title: '认证日期', field: 'createdate', visible: true, align: 'center', valign: 'middle', formatter:QrcodeAuth.dateFormat},
+            {title: '认证时间', field: 'createtime', visible: true, align: 'center', valign: 'middle', formatter:QrcodeAuth.timeFormat}
     ];
 };
+
+QrcodeAuth.imgFormat = function(value,row,index){
+    return '<img src='+value+' style="height:32px;" />';
+}
+QrcodeAuth.dateFormat = function(value,row,index){
+    return value.substr(0,10);
+}
+QrcodeAuth.timeFormat = function(value,row,index){
+    return value.substr(value.length-8,8);
+}
 
 /**
  * 检查是否选中

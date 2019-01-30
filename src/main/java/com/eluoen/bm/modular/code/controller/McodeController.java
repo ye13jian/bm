@@ -96,8 +96,8 @@ public class McodeController extends BaseController {
         GenQo genQo = new GenQo();
         genQo.setProjectPath(ToolUtil.getWebRootPath((String)null));
         genQo.setAuthor("eluoen");
-        genQo.setProjectPackage("com.eluoen.book");
-        genQo.setCorePackage("com.eluoen.book.core");
+        genQo.setProjectPackage("com.eluoen.bm");
+        genQo.setCorePackage("com.eluoen.bm.core");
         genQo.setIgnoreTabelPrefix("tbl_");
         genQo.setModuleName("system");
         genQo.setParentMenuName("系统管理");

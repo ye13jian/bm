@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.ExpressUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eluoen.bm.modular.system.model.ExpressUser">
+        <id column="id" property="id" />
+        <result column="exp_code" property="expCode" />
+        <result column="userid" property="userid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, exp_code, userid
+    </sql>
+
+    <select id="selectList_U" resultType="java.util.Map">
+        SELECT u.id,u.exp_code expCode,e.exp_name expName,u.userid FROM tbl_express_user u,tbl_express e
+        WHERE u.exp_code=e.exp_code
+        <if test="userId != null and userId != 1">
+            AND u.userid=#{userId}
+        </if>
+        <if test="condition != null and condition != ''">
+            AND e.name like CONCAT('%',#{condition},'%')
+        </if>
+    </select>
+
+    <select id="selectExpressList" resultType="java.util.Map">
+        SELECT * FROM tbl_express WHERE status=1
+    </select>
+
+</mapper>

@@ -2,6 +2,9 @@ package com.eluoen.bm.modular.market.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.eluoen.bm.modular.system.model.Member;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.eluoen.bm.modular.system.model.Member;
  */
 public interface IMemberService extends IService<Member> {
 
+    List<Member> selectList_U(Integer userId, String condition);
 }

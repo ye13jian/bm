@@ -15,12 +15,12 @@ Member.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
             //{title: '', field: 'id', visible: true, align: 'center', valign: 'middle'},
-            {title: '微信id', field: 'openid', visible: true, align: 'center', valign: 'middle'},
+            {title: '微信头像', field: 'headimgurl', visible: true, align: 'center', valign: 'middle', formatter:Member.imgFormat},
+            {title: '微信昵称', field: 'nickname', visible: true, align: 'center', valign: 'middle'},
+            //{title: '微信id', field: 'openid', visible: true, align: 'center', valign: 'middle'},
             {title: '手机号码', field: 'mobile', visible: true, align: 'center', valign: 'middle'},
             {title: '姓名', field: 'fullname', visible: true, align: 'center', valign: 'middle'},
-            {title: '微信昵称', field: 'nickname', visible: true, align: 'center', valign: 'middle'},
             {title: '性别', field: 'sex', visible: true, align: 'center', valign: 'middle'},
-            //{title: '微信头像', field: 'headimgurl', visible: true, align: 'center', valign: 'middle'},
             {title: '省份', field: 'province', visible: true, align: 'center', valign: 'middle'},
             {title: '城市', field: 'city', visible: true, align: 'center', valign: 'middle'},
             //{title: '详细地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
@@ -32,6 +32,10 @@ Member.initColumn = function () {
             {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle'}
     ];
 };
+
+Member.imgFormat = function(value,row,index){
+    return '<img src='+value+' style="height:32px;" />';
+}
 
 /**
  * 检查是否选中

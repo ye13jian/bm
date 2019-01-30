@@ -16,5 +16,18 @@ public class IMpLbsServiceImpl implements IMpLbsService {
     private MpLbsMapper mpLbsMapper;
 
 
+    @Override
+    public int replaceMemberLocation(Map<String, Object> map) {
+        return this.mpLbsMapper.replaceMemberLocation(map);
+    }
 
+    @Override
+    public List<Map<String, Object>> selectMemberLocationByOpenid(Map<String, Object> map) {
+        return this.mpLbsMapper.selectMemberLocationByOpenid(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectMemberLocationByUserid(Map<String, Object> map) {
+        return this.mpLbsMapper.selectMemberLocationByUserid(map);
+    }
 }

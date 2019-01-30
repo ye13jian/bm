@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class MpUtil {
 
-    private Logger log = LoggerFactory.getLogger(MpUtil.class);
+    private final static Logger log = LoggerFactory.getLogger(MpUtil.class);
 
     //百度ak密钥
     private final static String ak = "54fc34735729786f0c4c375156e1e7ee";
@@ -237,17 +237,53 @@ public class MpUtil {
 
     }
 
+    /**
+     * 根据经纬度腾讯获取位置信息
+     * @param latLng 纬经度
+     * @return
+     */
+    public static Map<String, Object> getTencentGeocoder(String latLng){
 
+        String url = "https://apis.map.qq.com/ws/geocoder/v1?key="+key+"&location="+latLng;
+        String result = httpClient(null, url, "GET");
+
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        if(jsonObject!=null&&jsonObject.get("result")!=null){
+            Map<String,Object> map = new HashMap<String,Object>();
+            JSONObject jsonResult = (JSONObject) jsonObject.get("result");
+
+            map.put("address",jsonResult.get("address"));
+
+            JSONObject jsonFormatted_addresses = (JSONObject) jsonResult.get("formatted_addresses");
+            map.put("recommend",jsonFormatted_addresses.get("recommend"));
+
+            JSONObject jsonAddress_component = (JSONObject) jsonResult.get("address_component");
+            map.put("province",jsonAddress_component.get("province"));
+            map.put("city",jsonAddress_component.get("city"));
+            map.put("district",jsonAddress_component.get("district"));
+
+            JSONObject jsonLocation = (JSONObject) jsonResult.get("location");
+            map.put("latitude",jsonLocation.get("lat"));
+            map.put("longitude",jsonLocation.get("lng"));
+            //log.info(JSONObject.toJSONString(map).toString());
+            return map;
+        }
+        //log.info(JSONObject.toJSONString(map).toString());
+        return null;
+    }
 
 
     public static void main(String[] args) {
 
 
-        String ip = "113.246.155.172";
-        getTencentLocation(ip);
-        getBaiduLocation(ip);
-
-
+        //String ip = "113.246.155.172";
+        //getTencentLocation(ip);
+        //getBaiduLocation(ip);
+        //113.075048,28.263818
+        String latitude = "28.263818";
+        String longitude = "113.075048";
+        String latLng = latitude+","+longitude;
+        getTencentGeocoder(latLng);
 
     }
 

@@ -3,6 +3,30 @@
 <mapper namespace="com.eluoen.bm.modular.system.dao.MpLbsMapper">
 
 
+    <!--插入或更新用户位置-->
+    <insert id="replaceMemberLocation" parameterType="java.util.Map">
+      REPLACE INTO tbl_member_location(openid,longitude,latitude,province,city,district,address,recommend,datetime) VALUES(#{map.openid},#{map.longitude},#{map.latitude},#{map.province},#{map.city},#{map.district},#{map.address},#{map.recommend},NOW())
+    </insert>
+
+    <!--同一本书，经纬度距离排序，6378.138是地球直径，distance是计算的距离(km)-->
+    <select id="selectMemberLocationByOpenid" resultType="java.util.Map">
+        SELECT
+        s.*,m.*,
+        round((6378.138 * acos (cos(radians(${map.latitude}))*cos(radians(s.latitude))*cos(radians( s.longitude)-radians(${map.longitude}))+sin(radians(${map.latitude}))*sin(radians(s.latitude)))),2) AS distance
+        FROM tbl_member_location s,tbl_member m
+        WHERE s.openid=m.openid AND s.openid IN(SELECT DISTINCT(openid) FROM tbl_qrcode_auth a WHERE bookid IN(SELECT bookid FROM tbl_qrcode_auth a WHERE openid=#{map.openid}))
+        ORDER BY distance
+    </select>
+
+    <!--广交天下，经纬度距离排序，6378.138是地球直径，distance是计算的距离(km)-->
+    <select id="selectMemberLocationByUserid" resultType="java.util.Map">
+        SELECT
+        s.*,m.*,
+        round((6378.138 * acos (cos(radians(${map.latitude}))*cos(radians( s.latitude))*cos(radians( s.longitude)-radians(${map.longitude}))+sin(radians(${map.latitude}))*sin(radians(s.latitude)))),2) AS distance
+        FROM tbl_member_location s,tbl_member m
+        WHERE s.openid=m.openid AND s.openid IN(SELECT openid FROM v_openid WHERE userid=#{map.userid})
+        ORDER BY distance
+    </select>
 
 
 </mapper>

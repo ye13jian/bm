@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="${ctxPath}/static/modular/mp/js/jweixin-1.1.0.js"></script>
     <script type="text/javascript">
-        alert(location.href.split('#')[0]);
+        //alert(location.href.split('#')[0]);
 
         var ret_appId = '${ret.appId}';
         var ret_timestamp = '${ret.timestamp}';
@@ -14,7 +14,7 @@
         //alert(ret_appId+'\n'+ret_timestamp+'\n'+ret_nonceStr+'\n'+ret_signature);
 
         wx.config({
-            debug:true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug:false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId:ret_appId, // 必填，公众号的唯一标识
             timestamp:ret_timestamp, // 必填，生成签名的时间戳
             nonceStr:ret_nonceStr, // 必填，生成签名的随机串
@@ -42,32 +42,10 @@
                     //alert(latitude+' '+longitude+' '+speed+' '+accuracy);
 
                     var latLng = latitude+','+longitude;
-                    var url = "${ctxPath}/mp/lbs/friend/"+latLng;
-                    alert(url);
+                    var url = "${ctxPath}/mp/lbs/friend?latLng="+latLng;
+                    //alert(url);
                     location.href = url;
 
-
-                    $.ajax({
-                        type : 'get',
-                        url : 'https://apis.map.qq.com/ws/geocoder/v1',
-                        dataType:'jsonp',
-                        data : {
-                            key:"KW5BZ-5Y4CF-PXPJY-NJNEV-AZ4IE-QZFGM",//开发密钥
-                            location:latLng,//位置坐标
-                            get_poi:"0",//是否返回周边POI列表：1.返回；0不返回(默认)
-                            coord_type:"1",//输入的locations的坐标类型,1 GPS坐标
-                            output:"jsonp"
-                        },
-                        success : function(data, textStatus) {
-                            //alert(data.result.formatted_addresses.recommend);
-                            province = data.result.address_component.province;
-                            city = data.result.address_component.city;
-                            address = province+city+data.result.formatted_addresses.recommend;
-
-                        },
-                        error : function() {
-                        }
-                    });
                 }
             });
         }

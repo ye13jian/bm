@@ -38,9 +38,9 @@
     </insert>
 
     <!--取消收藏-->
-    <insert id="subCollection" parameterType="com.eluoen.bm.modular.system.model.Wxcollection" >
+    <delete id="subCollection" parameterType="com.eluoen.bm.modular.system.model.Wxcollection" >
         DELETE FROM tbl_wxcollection WHERE openid=#{coll.openid} AND bookcatalogid=#{coll.bookcatalogid}
-    </insert>
+    </delete>
 
     <!--查询是否收藏-->
     <select id="searchCollection" resultType="java.util.Map">

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.MpWxMapper">
+
+    <!--查询会员应该打的标签名称 province,bookname-->
+    <select id="searchMemberTagName" resultType="java.lang.String">
+        SELECT province tagname FROM tbl_member WHERE openid=#{openid}
+        UNION
+        SELECT b.name bookname FROM tbl_qrcode_auth q,tbl_book b WHERE q.bookid=b.id AND openid=#{openid}
+    </select>
+
+    <!--查询标签-->
+    <select id="searchTag" resultType="java.lang.Integer">
+        SELECT g.tagid FROM tbl_wx_tag g WHERE g.name=#{tagName}
+    </select>
+
+    <!--插入标签信息-->
+    <insert id="addTag" parameterType="java.util.Map">
+        INSERT INTO tbl_wx_tag(name,tagid) VALUES(#{tagName},#{tagId})
+    </insert>
+
+    <!--关键字回复-->
+    <select id="searchWxReply" resultType="java.lang.String">
+        SELECT reply FROM tbl_wx_reply WHERE keyword=#{keyword}
+    </select>
+
+</mapper>

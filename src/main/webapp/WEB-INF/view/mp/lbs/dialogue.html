@@ -1,0 +1,141 @@
+<html lang="zh-cn" >
+<head>
+<meta charset="utf-8" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" media="screen" />
+<link href="${ctxPath}/static/modular/mp/lbs/css/dialogue.css" rel="stylesheet" type="text/css">
+<title>${to.nickname}</title>
+
+</head>
+<body>
+<div class="speak_window">
+	<div class="speak_box">
+		<div class="answer">
+			<div class="heard_img left"><img src="${to.headimgurl}"></div>
+			<div class="answer_text">
+				<p>Hey，我是${to.nickname}，很高兴因为共同的爱好在这里相遇，方便的话，加个微信成为好朋友吧!</p>
+				<i></i>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="saying">
+	<img src="${ctxPath}/static/modular/mp/lbs/images/saying.gif"/>
+</div>
+<div class="wenwen-footer">
+	<!---->
+	<div class="wenwen_btn left"  style="display: none;" onClick="to_write()"><img src="${ctxPath}/static/modular/mp/lbs/images/jp_btn.png"></div>
+	<div class="wenwen_text left">
+	    <div class="write_box">
+	        <input type="text" class="left" onKeyUp="keyup()" placeholder="请输入关键字" />
+	    </div>   
+	    <div class="circle-button" id="wenwen">
+	        按住 说话
+	    </div>
+	</div>
+	
+	<div class="wenwen_help right">
+	    <a href="http://www.dgtour.com.cn/yuyin/index.html">
+	        <img src="images/help_btn.png">
+	    </a>
+	    <button onClick="up_say2()" class="right">发送</button>
+	</div>
+	<div style="opacity:0;" class="clear"></div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/modular/mp/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/modular/mp/lbs/js/dialogue.js"></script>
+
+<script type="text/javascript">
+	function up_say2(){
+		$('.write_list').remove();
+	    var text = $('.write_box input').val(),
+	        str  = '<div class="question">';
+	        str += '<div class="heard_img right"><img src="${me.headimgurl}"/></div>';
+	        str += '<div class="question_text clear"><p>'+text+'</p><i></i>';
+	        str += '</div></div>';
+	    if(text == ''){
+	        alert('请输入信息！');
+	        $('.write_box input').focus();
+	    }else{
+	        $('.speak_box').append(str);
+	        $('.write_box input').val('');
+	        $('.write_box input').focus();
+	        autoWidth();
+	        for_bottom();     
+
+	        var openid = '${me.openid}';
+            var touser = '${to.openid}';
+	        var data = {'openid':openid,'touser':touser,'message':text};
+	        //存信息
+	        $.ajax({
+	        	type:'POST',
+	        	url:'${ctxPath}/mp/lbs/addDialogue',
+	        	dataType:'json',
+	        	data:data,
+	        	success:function(){
+	        		
+	        	}
+	        });
+	        
+	        
+	    }
+	}
+</script>
+
+<script type="text/javascript">
+	function refMess(){
+
+        var touser = '${me.openid}';
+        var openid = '${to.openid}';
+        var data = {'openid':openid,'touser':touser};
+        $.ajax({
+            type:'POST',
+            url:'${ctxPath}/mp/lbs/getLastDialogue',
+            dataType:'json',
+            data:data,
+            success:function(res){
+				//alert(JSON.stringify(res));
+                //alert(res.length);
+                if(res!=null){
+                    for(var i=0;i<res.length;i++) {
+
+                        var text = res[i].message;
+                        var ans = '<div class="answer"><div class="heard_img left"><img src="${to.headimgurl}"/></div>';
+                        ans += '<div class="answer_text"><p>' + text + '</p><i></i>';
+                        ans += '</div></div>';
+                        $('.speak_box').append(ans);
+                        for_bottom();
+
+                    }
+                }
+            }
+        });
+	}
+	//每隔5秒取信息
+	setInterval(refMess,15000);
+</script>
+
+<script type="text/javascript">
+	var resp = '${resp}';
+	//alert(resp);
+	if(resp=='1'){
+        var touser = '${to.openid}';
+        //alert(touser);
+        $.ajax({
+            type: "POST",
+            url: "${ctxPath}/mp/lbs/sendMessage",
+            data: "touser="+touser+"&templateId=2",
+            success: function (res) {
+                //alert(JSON.stringify(res));
+            }
+        });
+	}
+</script>
+
+</body>
+</html>

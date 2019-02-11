@@ -30,4 +30,32 @@ public interface IMpLbsService {
      */
     public List<Map<String,Object>> selectMemberLocationByUserid(Map<String,Object> map);
 
+    /**
+     * 获取模板信息
+     * @param id
+     * @return
+     */
+    public Map<String,Object> getTemplateInfo(Integer id);
+
+    /**
+     * 获取用户位置信息
+     * @param openid
+     * @return
+     */
+    public Map<String,Object> getMemberLocation(String openid);
+
+    /**
+     * 添加留言
+     * @param map
+     * @return
+     */
+    public int addDialogue(Map<String,Object> map);
+
+    /**
+     * 获获取当天最后一条对话记录
+     * @param map
+     * @return
+     */
+    public List<Map<String,Object>> getDialogueList(Map<String,Object> map);
+
 }

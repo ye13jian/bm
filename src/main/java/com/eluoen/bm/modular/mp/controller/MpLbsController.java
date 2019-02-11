@@ -9,6 +9,7 @@ import com.eluoen.bm.modular.mp.service.IMpLbsService;
 import com.eluoen.bm.modular.mp.service.IMpService;
 import com.eluoen.bm.modular.mp.util.MpUtil;
 import com.eluoen.bm.modular.mp.util.StringUtil;
+import com.eluoen.bm.modular.mp.util.WeiXinInterfacetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class MpLbsController extends BaseController {
         return openid;
     }
 
+    /**
+     * 找朋友入口
+     * @param model
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/friendStart")
     public String friendStart(Model model, HttpServletRequest request){
         //首先校验session
@@ -74,6 +81,13 @@ public class MpLbsController extends BaseController {
 
     }
 
+    /**
+     * 朋友列表界面
+     * @param latLng
+     * @param model
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/friend")
     public String friend(String latLng, Model model, HttpServletRequest request){
 
@@ -108,6 +122,146 @@ public class MpLbsController extends BaseController {
         request.getSession().setAttribute("latLng",latLng);
 
         return PREFIX + "friend.html";
+    }
+
+    /**
+     * 找到朋友，点击主动向朋友发送微信通知
+     * @param touser
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/sendMessage")
+    @ResponseBody
+    public Object sendMessage(Integer templateId, String touser, Model model, HttpServletRequest request){
+        String openid = getSessionOpenid(model,request);
+        if(openid==null) return PREFIX + "../home_start.html";
+
+        Map<String,Object> template = this.mpLbsService.getTemplateInfo(templateId);
+        Map<String,Object> memberLocation = this.mpLbsService.getMemberLocation(openid);
+
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("touser",touser);
+        map.put("template_id",template.get("templateid"));
+        map.put("url",template.get("url")+"?touser="+openid);
+
+        Map<String,Object> data = new HashMap<String,Object>();
+        Map<String,Object> keyword1 = new HashMap<String,Object>();
+        keyword1.put("value",memberLocation.get("nickname"));
+        keyword1.put("color","#173177");
+        data.put("keyword1",keyword1);
+        Map<String,Object> keyword2 = new HashMap<String,Object>();
+        keyword2.put("value",memberLocation.get("recommend"));
+        keyword2.put("color","#173177");
+        data.put("keyword2",keyword2);
+        Map<String,Object> remark = new HashMap<String,Object>();
+        remark.put("value",template.get("remark"));
+        remark.put("color","#173177");
+        data.put("remark",remark);
+
+        map.put("data",data);
+
+
+        String params = JSONObject.toJSONString(map);
+        WeiXinInterfacetUtil.templateSend(params);
+
+        return new SuccessTip();
+    }
+
+    /**
+     * 收到通知后，点击跳转到聊天界面
+     * @param touser
+     * @return
+     */
+    @RequestMapping(value = "/dialogueTo")
+    public String dialogueTo(String code, String touser, Model model, HttpServletRequest request){
+        String openid = getSessionOpenid(model,request);
+
+        if(openid==null){
+            if(code!=null){
+
+                // 获取微信网页授权
+                JSONObject jsonObject = WeiXinInterfacetUtil.oauth2AccessTokenMap(code);
+                if (jsonObject == null || jsonObject.get("access_token") == null|| jsonObject.get("openid") == null) {
+                    model.addAttribute("message",jsonObject.toJSONString());
+                    return PREFIX + "../home_error.html";
+                }
+                openid = jsonObject.get("openid").toString();
+                request.getSession().setAttribute("openid",openid);
+
+            }else{
+                model.addAttribute("touser",touser);
+                return PREFIX + "dialogue_start.html";
+            }
+        }
+
+        Map<String,Object> to = mpLbsService.getMemberLocation(touser);
+        Map<String,Object> me = mpLbsService.getMemberLocation(openid);
+        model.addAttribute("to",to);
+        model.addAttribute("me",me);
+        model.addAttribute("resp","1");
+
+        return PREFIX + "dialogue.html";
+    }
+
+    /**
+     * 响应收到通知后，点击跳转到聊天界面
+     * @param touser
+     * @return
+     */
+    @RequestMapping(value = "/dialogueResp")
+    public String dialogueResp(String code, String touser, Model model, HttpServletRequest request){
+        String openid = getSessionOpenid(model,request);
+
+        if(openid==null){
+            if(code!=null){
+
+                // 获取微信网页授权
+                JSONObject jsonObject = WeiXinInterfacetUtil.oauth2AccessTokenMap(code);
+                if (jsonObject == null || jsonObject.get("access_token") == null|| jsonObject.get("openid") == null) {
+                    model.addAttribute("message",jsonObject.toJSONString());
+                    return PREFIX + "../home_error.html";
+                }
+                openid = jsonObject.get("openid").toString();
+                request.getSession().setAttribute("openid",openid);
+
+            }else{
+                model.addAttribute("touser",touser);
+                return PREFIX + "dialogue_start.html";
+            }
+        }
+
+        Map<String,Object> to = mpLbsService.getMemberLocation(touser);
+        Map<String,Object> me = mpLbsService.getMemberLocation(openid);
+        model.addAttribute("to",to);
+        model.addAttribute("me",me);
+        model.addAttribute("resp","0");
+
+        return PREFIX + "dialogue.html";
+    }
+
+    /**
+     * 保存对话信息
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/addDialogue")
+    @ResponseBody
+    public Object addDialogue(@RequestParam Map<String,Object> map){
+        mpLbsService.addDialogue(map);
+        return new SuccessTip();
+    }
+
+    /**
+     * 获取未获取的对话信息
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/getLastDialogue")
+    @ResponseBody
+    public Object getLastDialogue(@RequestParam Map<String,Object> map){
+        List<Map<String,Object>> dialogues = mpLbsService.getDialogueList(map);
+        return dialogues;
     }
 
 }

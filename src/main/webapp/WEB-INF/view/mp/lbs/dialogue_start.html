@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<script type="text/javascript">
+    var touser = '${touser}';
+    var IP = '${IP}';
+	var redirect_uri = encodeURIComponent(IP+"/mp/lbs/dialogueTo?touser="+touser);
+	//alert(redirect_uri);
+
+	var appid= '${appid}';
+	var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+	//alert(url);
+	location.href=url;	
+</script>
+
+<body>
+
+</body>
+</html>

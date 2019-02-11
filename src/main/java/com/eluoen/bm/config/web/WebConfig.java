@@ -34,13 +34,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.boot.web.servlet.filter.OrderedHiddenHttpMethodFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -195,4 +203,41 @@ public class WebConfig implements WebMvcConfigurer {
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
     }
+
+
+    /**
+     * 使用Springboot集成wpsoffice在线编辑保存时获取不到流。
+     * 在Springboot程序启动后，会默认添加OrderedCharacterEncodingFilter和HiddenHttpMethodFilter过滤器。
+     * 在HiddenHttpMethodFilter过滤器中会调用request.getParameter(),从而造成我们在controller中通过request的InputStream无法读取到RequestBody的数据。
+     * eluoen 20181219。这个问题是在测试上传文件到oss然后回调时发现的，回调获取不到inputstream流
+     * 解决方法参见 https://segmentfault.com/a/1190000016406484?utm_source=tag-newest
+     * 也就是新增本方法
+     * @return
+     */
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        return new OrderedHiddenHttpMethodFilter(){
+            @Override
+            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+                    throws ServletException, IOException {
+
+                String requestURI = request.getRequestURI();
+                //String requestURL = request.getRequestURL().toString();
+                //logger.info("requestURI:"+requestURI);
+                //logger.info("requestURL:"+requestURL);
+
+                //暂时只在上传oss回调时使用
+                //ossCallBack不能随便改，要配合controllr中的名称
+                if(requestURI.contains("ossCallBack")){
+                    // 防止流读取一次后就没有了, 所以需要将流继续写出去
+                    ServletRequest requestWrapper = new   BodyReaderHttpServletRequestWrapper(request);
+                    filterChain.doFilter(requestWrapper, response);
+                }else{
+                    filterChain.doFilter(request, response);
+                }
+
+            }
+        };
+    }
+
 }

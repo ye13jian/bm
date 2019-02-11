@@ -12,6 +12,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WeiXinInterfacetUtil {
 
@@ -111,6 +113,15 @@ public class WeiXinInterfacetUtil {
 		String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+StringUtil.AppId+"&secret="+StringUtil.AppSecret+"";
 		String resultMsg = httpClient("", url, GET);
 		return JSON.parseObject(resultMsg);
+	}
+
+	/**
+	 * 基础支持 获取access_token
+	 * @return
+	 */
+	private static String getAccessToken(){
+		JSONObject token = accessToken();
+		return token.get("access_token").toString();
 	}
 
 
@@ -346,13 +357,50 @@ public class WeiXinInterfacetUtil {
     }
 
 
-	
+	/**
+	 * 模板消息：获取设置的行业信息
+	 * @param ACCESS_TOKEN
+	 * @return
+	 */
+	public static JSONObject templateGetIndustry(String ACCESS_TOKEN){
+		String url = "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token="+ACCESS_TOKEN;
+		String resultMsg = httpClient("",url,GET);
+		return JSON.parseObject(resultMsg);
+	}
+
+
+	/**
+	 * 模板消息：获取模板列表
+	 * @param ACCESS_TOKEN
+	 * @return
+	 */
+	public static JSONObject templateGetAllPrivateTemplate(String ACCESS_TOKEN){
+		String url = "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token="+ACCESS_TOKEN;
+		String resultMsg = httpClient("",url,GET);
+		return JSON.parseObject(resultMsg);
+	}
+
+	/**
+	 * 模板消息：发送模板消息
+	 * @param params
+	 * @return
+	 */
+	public static JSONObject templateSend(String params){
+		String ACCESS_TOKEN = getAccessToken();
+		String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+ACCESS_TOKEN;
+		log.info(params);
+		String resultMsg = httpClient(params,url,POST);
+		return JSON.parseObject(resultMsg);
+	}
+
+
+
 
 	/**
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void tag(String[] args) {
         //{"tags":[{"name":"星标组","count":0,"id":2},{"name":"testupdate","count":0,"id":100},{"name":"test1","count":0,"id":101}]}
 		String openid = "o5kXljm1CXR4fopA_mEA8z8lW5Rw";
 
@@ -388,13 +436,46 @@ public class WeiXinInterfacetUtil {
             e.printStackTrace();
         }
 
-
-
-
-
 	}
-	
-	
-	
+
+
+	public static void main(String[] args) {
+		StringUtil.AppId="wx350478a629ab49bb";
+		StringUtil.AppSecret="b34bb35b941547d58fcce42f4b154711";
+		JSONObject token = accessToken();
+		String access_token = token.get("access_token").toString();
+		//templateGetAllPrivateTemplate(access_token);
+
+		//templateSend
+		String touser = "o5kXljm1CXR4fopA_mEA8z8lW5Rw";
+		String link = "http://www.baidu.com";
+		String template_id = "tF4A8BxN1IT9UgLunCpOqC8O4fBnyTXt3whq-GdDCfw";
+		//String data = "{\"first\":{\"value\":\"好朋友啊\",\"color\":\"#173177\"},\"keyword1\":{\"value\":\"怎么样？\",\"color\":\"#173177\"}}";
+
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("touser","o5kXljm1CXR4fopA_mEA8z8lW5Rw");
+		map.put("template_id","WeyunRCXtxVl8HfKfpatZtx_bKjIryCEji_0iWiRFbk");
+		map.put("url","http://www.baidu.com");
+
+		Map<String,Object> data = new HashMap<String,Object>();
+		Map<String,Object> first = new HashMap<String,Object>();
+		first.put("value","陈志云");
+		first.put("color","#173177");
+		data.put("nickname",first);
+		Map<String,Object> keyword1 = new HashMap<String,Object>();
+		keyword1.put("value","星沙三一街区");
+		keyword1.put("color","#173177");
+		data.put("location",keyword1);
+		Map<String,Object> remark = new HashMap<String,Object>();
+		remark.put("value","快快去和他聊天吧！");
+		remark.put("color","#173177");
+		data.put("remark",remark);
+
+		map.put("data",data);
+
+		String params = JSONObject.toJSONString(map);
+
+		templateSend(params);
+	}
 
 }

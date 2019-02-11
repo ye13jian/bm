@@ -10,7 +10,29 @@
     <link href="${ctxPath}/static/modular/mp/lbs/css/friend.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${ctxPath}/static/modular/mp/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="${ctxPath}/static/modular/mp/lbs/js/tab.js"></script>
+    <script src="${ctxPath}/static/modular/mp/js/toast.js" type="text/javascript"></script>
 </head>
+
+<script type="text/javascript">
+    function sendMessage(touser) {
+        //alert(touser);
+        if(confirm("确定给"+touser+"发信息吗?")){
+
+            $.ajax({
+               type: "POST",
+               url: "${ctxPath}/mp/lbs/sendMessage",
+               data: "touser="+touser+"&templateId=1",
+               success: function (res) {
+                   //alert(JSON.stringify(res));
+                   if(res.code==200){
+                       toast("请求已发送，请等待对方回应！",3000);
+                   }
+               }
+            });
+
+        }
+    }
+</script>
 
 <body>
 <section class="aui-flexView">
@@ -45,7 +67,7 @@
                     @if(openidList!=null){
                     @for(map in openidList){
                     @if(map.openid!=session.openid){
-                    <a href="javascript:;" class="aui-flex b-line">
+                    <a onclick="sendMessage('${map.openid}')" class="aui-flex b-line">
                         <div class="aui-album-img">
                             <img src="${map.headimgurl}" alt="">
                         </div>
@@ -70,7 +92,7 @@
                     @if(useridList!=null){
                     @for(map in useridList){
                     @if(map.openid!=session.openid){
-                    <a href="javascript:;" class="aui-flex b-line">
+                    <a onclick="sendMessage('${map.openid}')" class="aui-flex b-line">
                         <div class="aui-album-img">
                             <img src="${map.headimgurl}" alt="">
                         </div>

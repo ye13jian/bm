@@ -35,4 +35,39 @@ public interface MpLbsMapper {
      * @return
      */
     public List<Map<String,Object>> selectMemberLocationByUserid(@Param("map") Map<String,Object> map);
+
+    /**
+     * 获取模板信息
+     * @param id
+     * @return
+     */
+    public Map<String,Object> getTemplateInfo(@Param("id") Integer id);
+
+    /**
+     * 获取用户位置信息
+     * @param openid
+     * @return
+     */
+    public Map<String,Object> getMemberLocation(@Param("openid") String openid);
+
+    /**
+     * 添加留言
+     * @param map
+     * @return
+     */
+    public int addDialogue(@Param("map") Map<String,Object> map);
+
+    /**
+     * 获获取当天最后一条对话记录
+     * @param map
+     * @return
+     */
+    public List<Map<String,Object>> getDialogueList(@Param("map") Map<String,Object> map);
+
+    /**
+     * 更新获取过的信息状态
+     * @param ids
+     * @return
+     */
+    public int updateDialogueStatus(@Param("ids") String ids);
 }

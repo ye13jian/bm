@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eluoen.bm.modular.system.dao.MpLbsMapper">
 
-
     <!--插入或更新用户位置-->
     <insert id="replaceMemberLocation" parameterType="java.util.Map">
       REPLACE INTO tbl_member_location(openid,longitude,latitude,province,city,district,address,recommend,datetime) VALUES(#{map.openid},#{map.longitude},#{map.latitude},#{map.province},#{map.city},#{map.district},#{map.address},#{map.recommend},NOW())
@@ -28,5 +27,28 @@
         ORDER BY distance
     </select>
 
+    <!--获取用户位置信息-->
+    <select id="getMemberLocation" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT * FROM tbl_member_location l,tbl_member m WHERE l.openid=m.openid AND l.openid=#{openid}
+    </select>
+
+    <!--获取模板信息-->
+    <select id="getTemplateInfo" parameterType="java.lang.Integer" resultType="java.util.Map">
+        SELECT * FROM tbl_template WHERE id=#{id}
+    </select>
+
+    <!--添加对话记录-->
+    <insert id="addDialogue" parameterType="java.util.Map">
+        INSERT INTO tbl_dialogue(openid,touser,message,date,time) VALUES(#{map.openid},#{map.touser},#{map.message},CURDATE(),CURTIME())
+    </insert>
+
+    <!--获取未获取的对话记录-->
+    <select id="getDialogueList" resultType="java.util.Map">
+        SELECT * FROM tbl_dialogue WHERE openid=#{map.openid} AND touser=#{map.touser} AND status IS NULL
+    </select>
+
+    <update id="updateDialogueStatus">
+        UPDATE tbl_dialogue SET status=1 WHERE id IN(${ids})
+    </update>
 
 </mapper>

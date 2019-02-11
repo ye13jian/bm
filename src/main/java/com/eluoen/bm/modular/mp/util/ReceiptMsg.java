@@ -19,6 +19,10 @@ public class ReceiptMsg implements Serializable {
 	private String Recognition;
 	private String Format;
 
+	//发送模板后反馈下列不存在
+	private String MsgID;
+	private String Status;
+
 	public String getToUserName() {
 		return ToUserName;
 	}
@@ -131,23 +135,41 @@ public class ReceiptMsg implements Serializable {
 		Format = format;
 	}
 
-    @Override
-    public String toString() {
-        return "ReceiptMsg{" +
-                "ToUserName='" + ToUserName + '\'' +
-                ", FromUserName='" + FromUserName + '\'' +
-                ", CreateTime='" + CreateTime + '\'' +
-                ", MsgType='" + MsgType + '\'' +
-                ", Content='" + Content + '\'' +
-                ", MsgId='" + MsgId + '\'' +
-                ", Event='" + Event + '\'' +
-                ", EventKey='" + EventKey + '\'' +
-                ", Ticket='" + Ticket + '\'' +
-                ", MenuId='" + MenuId + '\'' +
-                ", ScanCodeInfo='" + ScanCodeInfo + '\'' +
-                ", MediaId='" + MediaId + '\'' +
-                ", Recognition='" + Recognition + '\'' +
-                ", Format='" + Format + '\'' +
-                '}';
-    }
+	public String getMsgID() {
+		return MsgID;
+	}
+
+	public void setMsgID(String msgID) {
+		MsgID = msgID;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "ReceiptMsg{" +
+				"ToUserName='" + ToUserName + '\'' +
+				", FromUserName='" + FromUserName + '\'' +
+				", CreateTime='" + CreateTime + '\'' +
+				", MsgType='" + MsgType + '\'' +
+				", Content='" + Content + '\'' +
+				", MsgId='" + MsgId + '\'' +
+				", Event='" + Event + '\'' +
+				", EventKey='" + EventKey + '\'' +
+				", Ticket='" + Ticket + '\'' +
+				", MenuId='" + MenuId + '\'' +
+				", ScanCodeInfo='" + ScanCodeInfo + '\'' +
+				", MediaId='" + MediaId + '\'' +
+				", Recognition='" + Recognition + '\'' +
+				", Format='" + Format + '\'' +
+				", MsgID='" + MsgID + '\'' +
+				", Status='" + Status + '\'' +
+				'}';
+	}
 }

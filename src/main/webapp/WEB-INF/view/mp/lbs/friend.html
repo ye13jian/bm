@@ -14,30 +14,37 @@
 </head>
 
 <script type="text/javascript">
-    function sendMessage(touser) {
-        //alert(touser);
-        if(confirm("确定给"+touser+"发信息吗?")){
+    function sendMessage(touser,nickname,dialogus) {
+        //alert(dialogus+':'+typeof(dialogus));
+        if(dialogus==touser){
+            //alert('touser='+touser);
+            location.href = '${ctxPath}/mp/lbs/dialogueTo?touser='+touser;
+        }else{
+            if(confirm("确定和 "+nickname+" 发起对话吗?")){
 
-            $.ajax({
-               type: "POST",
-               url: "${ctxPath}/mp/lbs/sendMessage",
-               data: "touser="+touser+"&templateId=1",
-               success: function (res) {
-                   //alert(JSON.stringify(res));
-                   if(res.code==200){
-                       toast("请求已发送，请等待对方回应！",3000);
-                   }
-               }
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "${ctxPath}/mp/lbs/sendMessage",
+                    data: "touser="+touser+"&templateId=1",
+                    success: function (res) {
+                        //alert(JSON.stringify(res));
+                        if(res.code==200){
+                            //toast("请求已发送，请等待对方回应！",3000);
+                            location.href = '${ctxPath}/mp/lbs/dialogueTo?touser='+touser;
+                        }
+                    }
+                });
 
+            }
         }
+
     }
 </script>
 
 <body>
 <section class="aui-flexView">
     <header class="aui-navBar aui-navBar-fixed">
-        <a href="javascript:;" class="aui-navBar-item">
+        <a href="javascript:;" class="aui-navBar-item" style="display: none;">
             <i class="icon icon-return"></i>
         </a>
         <div class="aui-center">
@@ -67,7 +74,7 @@
                     @if(openidList!=null){
                     @for(map in openidList){
                     @if(map.openid!=session.openid){
-                    <a onclick="sendMessage('${map.openid}')" class="aui-flex b-line">
+                    <a onclick="sendMessage('${map.openid}','${map.nickname}','${map.touser}')" class="aui-flex b-line">
                         <div class="aui-album-img">
                             <img src="${map.headimgurl}" alt="">
                         </div>
@@ -76,9 +83,16 @@
                             <h3>${map.recommend}</h3>
                             <p>${map.address}</p>
                         </div>
+                        @if(map.touser==null){
                         <div class="aui-album-button aui-album-button-add">
                             <button>+关注</button>
                         </div>
+                        @}else{
+                        <div class="aui-album-button">
+                            <button>…对话</button>
+                        </div>
+                        @}
+
                     </a>
                     @}
                     @}
@@ -92,7 +106,7 @@
                     @if(useridList!=null){
                     @for(map in useridList){
                     @if(map.openid!=session.openid){
-                    <a onclick="sendMessage('${map.openid}')" class="aui-flex b-line">
+                    <a onclick="sendMessage('${map.openid}','${map.nickname}','${map.touser}')" class="aui-flex b-line">
                         <div class="aui-album-img">
                             <img src="${map.headimgurl}" alt="">
                         </div>
@@ -101,9 +115,15 @@
                             <h3>${map.recommend}</h3>
                             <p>${map.address}</p>
                         </div>
+                        @if(map.touser==null){
                         <div class="aui-album-button aui-album-button-add">
                             <button>+关注</button>
                         </div>
+                        @}else{
+                        <div class="aui-album-button">
+                            <button>…对话</button>
+                        </div>
+                        @}
                     </a>
                     @}
                     @}

@@ -11,10 +11,18 @@
 <link href="${ctxPath}/static/modular/mp/lbs/css/dialogue.css" rel="stylesheet" type="text/css">
 <title>${to.nickname}</title>
 
+<style type="text/css">
+	.stime{
+		font-size: 13px;
+		color: darkgray;
+	}
+</style>
+
 </head>
 <body>
 <div class="speak_window">
 	<div class="speak_box">
+		<!--
 		<div class="answer">
 			<div class="heard_img left"><img src="${to.headimgurl}"></div>
 			<div class="answer_text">
@@ -22,6 +30,7 @@
 				<i></i>
 			</div>
 		</div>
+		-->
 	</div>
 </div>
 <div class="saying">
@@ -78,11 +87,8 @@
 	        	dataType:'json',
 	        	data:data,
 	        	success:function(){
-	        		
 	        	}
 	        });
-	        
-	        
 	    }
 	}
 </script>
@@ -105,8 +111,9 @@
                     for(var i=0;i<res.length;i++) {
 
                         var text = res[i].message;
+                        var stime = res[i].date + ' ' + res[i].time;
                         var ans = '<div class="answer"><div class="heard_img left"><img src="${to.headimgurl}"/></div>';
-                        ans += '<div class="answer_text"><p>' + text + '</p><i></i>';
+                        ans += '<div class="answer_text"><p><span class="stime">' + stime + '</span><br>' + text + '</p><i></i>';
                         ans += '</div></div>';
                         $('.speak_box').append(ans);
                         for_bottom();
@@ -116,14 +123,15 @@
             }
         });
 	}
+    refMess();
 	//每隔5秒取信息
-	setInterval(refMess,15000);
+	setInterval(refMess,5000);
 </script>
 
 <script type="text/javascript">
 	var resp = '${resp}';
 	//alert(resp);
-	if(resp=='1'){
+	if(resp=='100'){
         var touser = '${to.openid}';
         //alert(touser);
         $.ajax({

@@ -1,6 +1,7 @@
 package com.eluoen.bm.modular.mp.controller;
 
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.eluoen.bm.core.tips.ErrorTip;
 import com.eluoen.bm.core.tips.SuccessTip;
@@ -161,9 +162,15 @@ public class MpLbsController extends BaseController {
 
         map.put("data",data);
 
-
         String params = JSONObject.toJSONString(map);
         WeiXinInterfacetUtil.templateSend(params);
+
+        //保存为首次对话信息
+        Map<String,Object> dialogue = new HashMap<String,Object>();
+        dialogue.put("openid",openid);
+        dialogue.put("touser",touser);
+        dialogue.put("message","Hi");
+        mpLbsService.addDialogue(dialogue);
 
         return new SuccessTip();
     }
@@ -261,6 +268,7 @@ public class MpLbsController extends BaseController {
     @ResponseBody
     public Object getLastDialogue(@RequestParam Map<String,Object> map){
         List<Map<String,Object>> dialogues = mpLbsService.getDialogueList(map);
+        log.info(JSON.toJSONString(dialogues));
         return dialogues;
     }
 

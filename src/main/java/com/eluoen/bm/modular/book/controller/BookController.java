@@ -79,13 +79,15 @@ public class BookController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
         log.info("book/list---------------------------------------------------");
-        if(ToolUtil.isEmpty(condition)){
+        Integer userId = (Integer) super.getSession().getAttribute("userId");
+        return bookService.selectList_U(userId,condition);
+        /*if(ToolUtil.isEmpty(condition)){
             return bookService.selectList(null);
         }else{
             EntityWrapper<Book> entityWrapper = new EntityWrapper<Book>();
             Wrapper<Book> wrapper = entityWrapper.like("name",condition);
             return bookService.selectList(wrapper);
-        }
+        }*/
     }
 
     /**
@@ -112,6 +114,9 @@ public class BookController extends BaseController {
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
         book.setCreatedate(sdf1.format(new Date()));
         book.setCreatetime(sdf2.format(new Date()));
+
+        log.info(book.toString());
+
         bookService.insert(book);
         return SUCCESS_TIP;
     }

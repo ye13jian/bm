@@ -83,6 +83,7 @@ BookInfoDlg.collectData = function() {
     .set('describes')
     .set('createuser')
     .set('status')
+    .set('userid')
     .set('createdate')
     .set('createtime');
 }

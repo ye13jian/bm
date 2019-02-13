@@ -51,4 +51,17 @@ public class DataController extends BaseController {
         return PREFIX + "member_active.html";
     }
 
+    /**
+     * 朋友关系图
+     * @return
+     */
+    @RequestMapping(value = "/friendsGraph")
+    public String friendsGraph(Model model){
+        String[] images = new String[2];
+        images[0] = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLL6qhN5cP9CagyrQibr4rnag3LyicLeXbnhbsnlYS59AJZJk1IpJbXC8cJDkDsHeTBNE9p1jV8tPKQ/132";
+        images[1] = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKmWhxYwMIZW0oS71zCIZlGdWKh9Tlrb0nDick6TwIpq7LdPMIox4l7VPMQccAlotVA3icYYHlg2maQ/132";
+        model.addAttribute("images",images);
+        return PREFIX + "friends_graph.html";
+    }
+
 }

@@ -7,21 +7,21 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                            <#input id="name" name="书名" value="${item.name}" underline="true"/>
-                            <#avatar id="imgurl" name="书籍图片\n500×500" avatarImg="${item.imgurl}" underline="true" />
-                            <#input id="author" name="作者" value="${item.author}" underline="true"/>
+                            <#input id="name" name="书名" value="${item.name}" />
+                            <#avatar id="imgurl" name="书籍图片\n500×500" avatarImg="${item.imgurl}" />
+                            <#input id="author" name="作者" value="${item.author}" />
                             <#input id="editor" name="编辑" value="${item.editor}"/>
                 </div>
 
                 <div class="col-sm-6">
-                            <#input id="category" name="书籍类别" value="${item.category}" underline="true"/>
-                            <#input id="series" name="书籍系列" value="${item.series}" underline="true"/>
-                            <#input id="isbn" name="ISBN号" value="${item.isbn}" underline="true"/>
-                            <#input id="price" name="价格" value="${item.price}" underline="true"/>
-                            <#input id="publicationdate" name="出版日期" underline="true" type="date"
+                            <#input id="category" name="书籍类别" value="${item.category}" />
+                            <#input id="series" name="书籍系列" value="${item.series}" />
+                            <#input id="isbn" name="ISBN号" value="${item.isbn}" />
+                            <#input id="price" name="价格" type="number" value="${item.price}" />
+                            <#input id="publicationdate" name="出版日期" type="date"
                             value="${item.publicationdate}"
                             clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
-                            <#input id="publicationpress" name="出版社" value="${item.publicationpress}" underline="true"/>
+                            <#input id="publicationpress" name="出版社" value="${item.publicationpress}" />
                             <#input id="describes" name="书籍描述" value="${item.describes}"/>
                 </div>
             </div>

@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>朋友关系图</title>
+
+    <script src="${ctxPath}/static/modular/data/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${ctxPath}/static/modular/data/js/echarts.min.js" type="text/javascript" ></script>
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+        table {
+            background-color: #0A1B3E;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div id="container" style="height: 100%"></div>
+
+
+<script type="text/javascript">
+
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+
+    //初始化数据
+    option = {
+        series: [{
+            type: 'graph',
+            layout: 'force',
+            focusNodeAdjacency: true,
+            force: {
+                repulsion: 1000,
+                edgeLength: 50
+            },
+            symbolSize: 50,
+            roam: true,
+            itemStyle: {
+                normal: {
+                    shadowBlur: 10,
+                    shadowColor: 'rgba(0, 0, 0, 0.3)'
+                }
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'bottom',
+                    color: '#435068',
+                    fontSize: '12px',
+                    align: 'center',
+                    lineHeight: 18,
+                    rich: {
+                        name: {
+                            fontSize: 14,
+                            color: '#435068',
+                            fontFamily: 'SourceHanSansCN-Medium'
+                        },
+                        tag: {
+                            fontSize: 12,
+                            color: '#a2a7b2',
+                        }
+                    },
+                }
+            },
+
+
+
+            data: [{
+                name: '阿姨',
+                symbol: `image://${images[0]}`
+            },
+                {
+                    name: '燕青',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '卢俊义',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '张三',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '李四',
+                    symbol: `image://${images[1]}`
+                },
+                {
+                    name: '张三2',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '李逵',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '赖子',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '王五',
+                    symbol: `image://${images[0]}`
+                },
+                {
+                    name: '刘大',
+                    symbol: `image://${images[1]}`
+                }
+            ],
+            links: [{
+                source: '阿姨',
+                target: '燕青',
+                value: '',
+
+            },
+                {
+                    source: '赖子',
+                    target: '燕青',
+                    value: '',
+
+                },
+                {
+                    source: '刘大',
+                    target: '李逵',
+                    value: '',
+
+                },
+                {
+                    source: '阿姨',
+                    target: '卢俊义',
+                    value: '',
+                },
+                {
+                    source: '阿姨',
+                    target: '张三',
+                    value: '',
+                },
+                {
+                    source: '阿姨',
+                    target: '李四',
+                    value: '',
+                },
+                {
+                    source: '阿姨',
+                    target: '张三'
+                },
+                {
+                    source: '燕青',
+                    target: '张三2',
+                    value: '',
+                },
+                {
+                    source: '燕青',
+                    target: '李逵',
+                    value: '',
+
+                },
+                {
+                    source: '李四',
+                    target: '赖子',
+                    value: '',
+                },
+                {
+                    source: '李四',
+                    target: '王五',
+                    value: '',
+                },
+                {
+                    source: '王五',
+                    target: '刘大',
+                    value: '',
+                }
+            ],
+            lineStyle: {
+                normal: {
+                    opacity: 0.9,
+                    // width: 5,
+                    // curveness: 0,
+                    color: '#8DBFFF',
+                    type: 'dashed'
+                }
+            },
+        }]
+    }
+
+
+
+    myChart.setOption(option);
+</script>
+
+
+
+</body>
+</html>

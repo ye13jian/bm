@@ -34,6 +34,8 @@ public class BbsSys extends Model<BbsSys> {
      * 状态
      */
     private Integer status;
+
+    private Integer userid;
     /**
      * 创建用户
      */
@@ -104,6 +106,14 @@ public class BbsSys extends Model<BbsSys> {
         this.createtime = createtime;
     }
 
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.id;
@@ -112,13 +122,14 @@ public class BbsSys extends Model<BbsSys> {
     @Override
     public String toString() {
         return "BbsSys{" +
-        "id=" + id +
-        ", title=" + title +
-        ", content=" + content +
-        ", status=" + status +
-        ", createuser=" + createuser +
-        ", createdate=" + createdate +
-        ", createtime=" + createtime +
-        "}";
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", status=" + status +
+                ", userid=" + userid +
+                ", createuser='" + createuser + '\'' +
+                ", createdate='" + createdate + '\'' +
+                ", createtime='" + createtime + '\'' +
+                '}';
     }
 }

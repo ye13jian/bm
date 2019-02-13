@@ -8,6 +8,7 @@
         <result column="title" property="title" />
         <result column="content" property="content" />
         <result column="status" property="status" />
+        <result column="userid" property="userid" />
         <result column="createuser" property="createuser" />
         <result column="createdate" property="createdate" />
         <result column="createtime" property="createtime" />
@@ -15,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, title, content, status, createuser, createdate, createtime
+        id, title, content, status, userid, createuser, createdate, createtime
     </sql>
 
     <select id="selectList_U" resultMap="BaseResultMap">

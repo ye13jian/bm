@@ -50,6 +50,7 @@ BbsSysInfoDlg.collectData = function() {
     .set('id')
     .set('title')
     .set('content')
+    .set('userid')
     .set('createuser');
 }
 

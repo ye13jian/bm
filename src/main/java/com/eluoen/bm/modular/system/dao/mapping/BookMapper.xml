@@ -29,6 +29,16 @@
         id, name, category, series, isbn, imgurl, author, editor, price, score, publicationdate, publicationpress, describes, userid, createuser, status, createdate, createtime
     </sql>
 
+    <select id="selectList_U" resultMap="BaseResultMap">
+        SELECT * FROM tbl_book
+        WHERE 1=1
+        <if test="userId != null and userId != 1">
+            AND userid=#{userId}
+        </if>
+        <if test="condition != null and condition != ''">
+            AND name like CONCAT('%',#{condition},'%')
+        </if>
+    </select>
 
     <!-- 获取书籍的Ztree -->
     <select id="tree" resultType="com.eluoen.bm.core.common.node.ZTreeNode">

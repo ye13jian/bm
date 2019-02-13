@@ -97,6 +97,8 @@ public class BbsSysController extends BaseController {
         bbsSys.setCreatedate(sdf1.format(new Date()));
         bbsSys.setCreatetime(sdf2.format(new Date()));
 
+        log.info(bbsSys.toString());
+
         bbsSysService.insert(bbsSys);
         return SUCCESS_TIP;
     }

@@ -14,7 +14,7 @@ var Book = {
 Book.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '', field: 'id', visible: true, align: 'center', valign: 'middle'},
+            {title: 'ID', field: 'id', visible: true, align: 'center', valign: 'middle'},
             {title: '书名', field: 'name', visible: true, align: 'center', valign: 'middle'},
             {title: '书籍类别', field: 'category', visible: true, align: 'center', valign: 'middle'},
             {title: '书籍系列', field: 'series', visible: true, align: 'center', valign: 'middle'},
@@ -22,9 +22,9 @@ Book.initColumn = function () {
             //{title: '书籍图片', field: 'imgurl', visible: true, align: 'center', valign: 'middle'},
             {title: '作者', field: 'author', visible: true, align: 'center', valign: 'middle'},
             {title: '编辑', field: 'editor', visible: true, align: 'center', valign: 'middle'},
-            {title: '价格', field: 'price', visible: true, align: 'center', valign: 'middle'},
+            //{title: '价格', field: 'price', visible: true, align: 'center', valign: 'middle'},
             {title: '积分', field: 'score', visible: true, align: 'center', valign: 'middle'},
-            {title: '出版日期', field: 'publicationdate', visible: true, align: 'center', valign: 'middle'},
+            //{title: '出版日期', field: 'publicationdate', visible: true, align: 'center', valign: 'middle'},
             //{title: '出版社', field: 'publicationpress', visible: true, align: 'center', valign: 'middle'},
             //{title: '书籍描述', field: 'describes', visible: true, align: 'center', valign: 'middle'},
             //{title: '创建人', field: 'createuser', visible: true, align: 'center', valign: 'middle'},

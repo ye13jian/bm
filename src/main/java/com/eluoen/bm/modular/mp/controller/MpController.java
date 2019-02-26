@@ -218,6 +218,13 @@ public class MpController extends BaseController {
             }
         }
 
+        if(userId==null){
+            userId = (Integer) request.getSession().getAttribute("userId");
+        }
+        Map<String,Object> mpInfo = mpInfoService.getMpInfo(userId);
+        request.getSession().setAttribute("mpInfo",mpInfo);
+
+
         Map<String,Object> wxuser = mpService.searchMember(openid);
         if(wxuser==null){
             model.addAttribute("message","你还不是会员，请先认证！");
@@ -229,11 +236,7 @@ public class MpController extends BaseController {
             //mpInfo = mpInfoService.getMpInfo();
             //request.getSession().setAttribute("mpInfo",mpInfo);
         //}
-        if(userId==null){
-            userId = (Integer) request.getSession().getAttribute("userId");
-        }
-        Map<String,Object> mpInfo = mpInfoService.getMpInfo(userId);
-        request.getSession().setAttribute("mpInfo",mpInfo);
+
         request.getSession().setAttribute("openid",openid);
         request.getSession().setAttribute("userId",Integer.parseInt(mpInfo.get("userid").toString()));
 

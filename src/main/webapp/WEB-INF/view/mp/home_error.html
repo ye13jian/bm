@@ -19,7 +19,7 @@
 
 <body class="gray-bg">
 
-<img src="${ctxPath}/static/modular/mp/images/cd4dd96353cf18187e40775b7804b801.jpg" style="width: 100%;" />
+<img src="${ctxPath}/kaptcha/kap?name=${session.mpInfo.ad1_img}" style="width: 100%;" />
 
 
 <div style="padding: 10px;">
@@ -36,10 +36,7 @@
             </div>
             <div>
 				<p  style="font-size: 0.9em;line-height: 25px;letter-spacing: 1px;">
-					使用本书配套的视频/音频资料<span style="font-size: 0.6em;">（全部图书） </span><br>
-					使用增值电子谱资料<span style="font-size: 0.6em;">（部分图书）</span><br>
-					会员论坛交流<span style="font-size: 0.6em;">（部分图书）</span><br>
-					获取网络课程<span style="font-size: 0.6em;">（部分图书）</span>
+                    <pre style="font-size: 1rem;line-height: 22px;">${session.mpInfo.rights}</pre>
 				</p>
 				<p>&nbsp;</p>
 

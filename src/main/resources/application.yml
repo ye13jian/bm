@@ -18,10 +18,10 @@ beetl:
 
 ###################  微信公众号配置，测试了放在最下面不行（不知道原因）  ###################
 weixin:
-  ip: http://niqan.nat300.top/bm
+  ip: http://bm.niqan.com/bm
   token: eluoen
-  appid: wx350478a629ab49bb
-  appsecret: b34bb35b941547d58fcce42f4b154711
+  appid: wx166bce585f8f889c
+  appsecret: c43cee05e81ae8ed498f8ef183e485d7
 
 
 

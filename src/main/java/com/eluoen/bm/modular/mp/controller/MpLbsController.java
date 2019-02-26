@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,12 +149,17 @@ public class MpLbsController extends BaseController {
         map.put("url",template.get("url")+"?touser="+openid);
 
         Map<String,Object> data = new HashMap<String,Object>();
+        Map<String,Object> first = new HashMap<String,Object>();
+        String message = "Hi，我在"+memberLocation.get("address")+"("+memberLocation.get("recommend")+")附近。";
+        first.put("value",message);
+        first.put("color","#173177");
+        data.put("first",first);
         Map<String,Object> keyword1 = new HashMap<String,Object>();
         keyword1.put("value",memberLocation.get("nickname"));
         keyword1.put("color","#173177");
         data.put("keyword1",keyword1);
         Map<String,Object> keyword2 = new HashMap<String,Object>();
-        keyword2.put("value",memberLocation.get("recommend"));
+        keyword2.put("value",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         keyword2.put("color","#173177");
         data.put("keyword2",keyword2);
         Map<String,Object> remark = new HashMap<String,Object>();
@@ -169,7 +176,7 @@ public class MpLbsController extends BaseController {
         Map<String,Object> dialogue = new HashMap<String,Object>();
         dialogue.put("openid",openid);
         dialogue.put("touser",touser);
-        dialogue.put("message","Hi");
+        dialogue.put("message",message+template.get("remark"));
         mpLbsService.addDialogue(dialogue);
 
         return new SuccessTip();

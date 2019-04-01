@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eluoen.bm.modular.system.dao.MpTeachersMapper">
+
+
+
+    <!--根据联系电话查询老师-->
+    <select id="selectTeacherByMobile" resultType="java.util.Map">
+        SELECT * FROM tbl_teachers
+        WHERE mobile=#{mobile}
+    </select>
+
+
+    <!--获取所有书箱资源-->
+    <select id="selectTeacherMapList" resultType="java.util.Map">
+        SELECT * FROM tbl_book_catalog
+    </select>
+
+
+
+</mapper>

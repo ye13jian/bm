@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="序号" underline="true"/>
+                            <#input id="fullname" name="姓名" underline="true"/>
+                            <#input id="mobile" name="联系电话" underline="true"/>
+                            <#input id="province" name="省份" underline="true"/>
+                            <#input id="city" name="城市" underline="true"/>
+                            <#input id="country" name="县区"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="school" name="学校" underline="true"/>
+                            <#input id="grades" name="年级" underline="true"/>
+                            <#input id="classes" name="班级" underline="true"/>
+                            <#input id="status" name="状态" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="TeachersInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="TeachersInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/resource/teachers/teachers_info.js"></script>
+@}

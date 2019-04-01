@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>教师认证</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <link href="${ctxPath}/static/modular/mp/teachers/css/auth.css" rel="stylesheet" type="text/css">
+
+
+    </head>
+    <body>
+
+
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed">
+                <a href="javascript:;" class="aui-navBar-item">
+                    <i class="icon icon-return"></i>
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title">教师认证</span>
+                </div>
+                <a href="javascript:;" class="aui-navBar-item">
+                    <i class="icon icon-class"></i>
+                </a>
+            </header>
+            <section class="aui-scrollView">
+                <div class="aui-banner">
+                    <img src="${ctxPath}/static/modular/mp/teachers/img/banner.png" alt="">
+                    <div class="aui-banner-text">
+                        <h1>领新人大礼包</h1>
+                        <h2>仅限即日起到2019年12月31日活动期间</h2>
+                        <h3>首次完成实名认证用户</h3>
+                    </div>
+                </div>
+                <div class="aui-flex" style="padding-top:8px; padding-bottom:8px;">
+                    <div class="aui-tag">
+                        <img src="${ctxPath}/static/modular/mp/teachers/img/tag.png" alt="">
+                    </div>
+                    <div class="aui-flex-box">
+                        <p>请填写你的真实信息,通过后将不能修改</p>
+                    </div>
+                </div>
+                
+                <div class="aui-name-form">
+                    <form action="${ctxPath}/mp/teachers/bookcatalogList">
+                        <div class="aui-flex aui-flex-color b-line">
+                            <div class="aui-flex-box">
+                                <input type="text" placeholder="真实姓名" id="t1" onkeyup="myText()">
+                            </div>
+                        </div>
+                        <div class="aui-flex aui-flex-color">
+                            <div class="aui-flex-box">
+                                <input type="text" placeholder="联系号码" id="t2" onkeyup="myText()">
+                            </div>
+                        </div>
+                        <div class="aui-flex">
+                            <div class="aui-flex-box">
+                                <button type="submit" id="btn" value="submit">提交</button>
+                            </div>
+                        </div>
+                        <div class="aui-flex" style="padding-top:0">
+                            <div class="aui-flex-box">
+                                <p>以上信息用户身份验证</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="aui-name-list">
+                    <div class="aui-name-title">
+                        <h2>实名认证优势</h2>
+                    </div>
+                    <div class="aui-palace">
+                        <a href="javascript:;" class="aui-palace-grid">
+                            <div class="aui-palace-grid-icon">
+                                <img src="${ctxPath}/static/modular/mp/teachers/img/icon-itme-001.png" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>保障账户安全</h2>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="aui-palace-grid">
+                            <div class="aui-palace-grid-icon">
+                                <img src="${ctxPath}/static/modular/mp/teachers/img/icon-itme-002.png" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>专属优惠</h2>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="aui-palace-grid">
+                            <div class="aui-palace-grid-icon">
+                                <img src="${ctxPath}/static/modular/mp/teachers/img/icon-itme-003.png" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>资源更丰富</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+        
+    
+
+</body></html>

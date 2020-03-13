@@ -32,7 +32,7 @@
         <jwt.version>0.9.0</jwt.version>
         <zxing.version>3.2.1</zxing.version>
         <httpclient.version>4.3.6</httpclient.version>
-        <xstream.version>1.4.10</xstream.version>
+        <xstream.version>1.4.10-java7</xstream.version>
     </properties>
 
     <dependencies>
